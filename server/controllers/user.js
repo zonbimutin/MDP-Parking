@@ -4,10 +4,11 @@ const jwt = require("jsonwebtoken");
 
 
 function createToken(user, SECRET_KEY, expiresIn){
-    const {id, username, email} = user;
+    const {id, firstname, lastname, email} = user;
     const payload = {
         id,
-        username,
+        firstname,
+        lastname,
         email,
     };
     return jwt.sign(payload, SECRET_KEY, { expiresIn });
@@ -18,17 +19,13 @@ async function register( input ) {
     const newUser = input;
     // format inputs 
     newUser.email = newUser.email.toLowerCase();
-    newUser.username = newUser.username.toLowerCase();
 
-    const { email, username, password } = newUser;
+    const { email, password } = newUser;
 
     // Revisamos que el email no este en uso
 
     const foundEmail = await User.findOne({ email });
     if(foundEmail) throw new Error('El email esta en uso');
-
-    const foundUsername = await User.findOne({ username });
-    if(foundUsername) throw new Error('El username esta en uso');
 
     // Encriptar password
     const salt = await bcryptjs.genSaltSync(10);

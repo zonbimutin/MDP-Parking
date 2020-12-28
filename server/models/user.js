@@ -2,15 +2,13 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = Schema({
-    name: {
+    firstname: {
       type: String,
       require: true,
     },
-    username: {
+    lastname: {
       type: String,
       require: true,
-      trim: true,
-      unique: true,
     },
     email: {
       type: String,
@@ -22,18 +20,14 @@ const UserSchema = Schema({
       type: String,
       trim: true,
     },
-    siteWeb: {
-      type: String,
-      trim: true,
-    },
-    description: {
-      type: String,
-      trim: true,
-    },
     password: {
       type: String,
       require: true,
       trim: true,
+    },
+    isHost: {
+      type: Boolean,
+      default: false,
     },
     createAt: {
       type: Date,

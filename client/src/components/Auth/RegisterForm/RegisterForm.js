@@ -7,6 +7,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 // UI Components
 import { Form, Button } from "semantic-ui-react";
+// Toast
 import { toast } from "react-toastify";
 
 function initialValues() {
@@ -70,7 +71,7 @@ const RegisterForm = (props) => {
     return (
         <>
         <h2 className="register-form-title">
-          Regístrate para ver fotos y vídeos de tus amigos.
+          Sign up
         </h2>
         <Form className="register-form" onSubmit={formik.handleSubmit}>
           <Form.Input

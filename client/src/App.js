@@ -11,11 +11,10 @@ import AuthContext from "./context/AuthContext";
 import { getToken, removeToken, decodeToken } from "./utils/token";
 
 //UI Components
-import { Container } from 'semantic-ui-react';
 import { ToastContainer } from "react-toastify";
 
-// Compopnets
-import Auth from "./components/Auth";
+// Navigation
+import Navigation from './routes/Navigation';
 
 
 export default function App() {
@@ -50,19 +49,17 @@ export default function App() {
   return (
     <ApolloProvider client={ client }>
 		<AuthContext.Provider value={ authData }>
-			<Container>
-				<Auth></Auth>
-			</Container>
+			<Navigation/>
 			<ToastContainer
-			position="top-right"
-			autoClose={5000}
-			hideProgressBar
-			newestOnTop
-			closeOnClick
-			rtl={false}
-			pauseOnFocusLoss
-			draggable
-			pauseOnHover
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar
+				newestOnTop
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
 			/>
 		</AuthContext.Provider>
     </ApolloProvider>

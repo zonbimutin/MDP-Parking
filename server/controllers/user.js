@@ -31,6 +31,10 @@ async function register( input ) {
     const salt = await bcryptjs.genSaltSync(10);
     newUser.password = await bcryptjs.hash(password, salt);
 
+    //TODO: crear UserStripe 
+
+    //TODO: guardar UserStripe en User
+
     // Guardar el user en la DB
     try {
         const user = new User(newUser);

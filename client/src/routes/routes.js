@@ -1,9 +1,9 @@
 
-import LayoutBasic from '../layouts/LayoutBasic';
+import LayoutBasic from '../components/layouts/LayoutBasic';
 import Home from '../pages/Home';
 import Search from '../pages/Search';
-import Resume from '../pages/Resume';
 import Error404 from '../pages/Error404';
+import Profile from '../pages/Profile';
 
 
 const routes = [
@@ -20,8 +20,8 @@ const routes = [
         layout: LayoutBasic
     },
     {
-        path: '/resume',
-        component: Resume,
+        path: '/profile/:idUser',
+        component: Profile,
         exact: true,
         layout: LayoutBasic
     },

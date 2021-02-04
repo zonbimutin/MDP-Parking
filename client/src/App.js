@@ -27,7 +27,6 @@ export default function App() {
 			setAuth(null);
 		} else {
 			setUser(token);
-			console.log(auth);
 		}
 	}, []);
 

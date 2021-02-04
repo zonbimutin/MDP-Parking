@@ -63,6 +63,11 @@ const LoginForm = (props) => {
                 setUser(token);
                 // Toast Success message
                 toast.success('User Loged');
+                //Close modal if existe
+                if(props.closeModal) {
+                    props.closeModal(false);
+                }
+
             } catch (error) {
                 setError(error.message);
                 console.log(error);

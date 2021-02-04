@@ -1,21 +1,20 @@
 import {React, useState} from 'react';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
-
+// Components
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-
+// Style
 import './Auth.scss';
 
 
 const Auth = (props) => {
 
-    const [showLogin , setShowLogin] = useState(false);
+    const [showLogin , setShowLogin] = useState(true);
 
     return (
         <div className="auth">
             <div className="form-container">
             { showLogin ? (
-                <LoginForm></LoginForm>
+                <LoginForm closeModal={props.closeModal}></LoginForm>
             ) : (
                 <RegisterForm setShowLogin={ setShowLogin }></RegisterForm>
             ) 

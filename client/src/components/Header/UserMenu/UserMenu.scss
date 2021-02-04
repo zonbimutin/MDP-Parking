@@ -1,0 +1,25 @@
+@import '../../../index.scss';
+
+.userMenu {
+
+    &__dropdown {
+
+        padding: 5px 5px 5px 12px !important;
+        border-radius: 38px !important;
+        
+    }
+
+    .dropdown {
+        
+        &__trigger{
+            display: flex;
+            align-items: center;
+            .icon {
+                margin-right: 0.4em;
+                font-size: 1.4rem;
+                line-height: 1.4rem
+            }
+        }
+    }
+}
+

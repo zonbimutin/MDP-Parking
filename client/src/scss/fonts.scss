@@ -1,0 +1,16 @@
+/*===============================
+    Font Family
+=================================*/
+@font-face {
+    font-family: 'Century Gotham';
+    src: url('../assets/fonts/CenturyGotham/CenturyGothic.ttf');
+}
+
+$body-font: 'Century Gotham', sans-serif;
+$heading-font: 'Franklin Gothic Book', sans-serif;
+
+
+// Heading Font List
+$font-1: 'Franklin Gothic Book', sans-serif;
+
+$fontList: $font-1;

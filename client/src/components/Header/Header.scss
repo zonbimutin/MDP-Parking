@@ -11,16 +11,17 @@
         position: absolute;
         top: 0;
         z-index: 999;
-        padding-left: 50px;
-        padding-right: 50px;
         width: 100%;
         background: $primary-color;
         transition: 0.3s;
         
-        .container {
+        .header__container {
             display: flex !important;
             justify-content: space-between;
             align-items: center;
+            width: 100% !important;
+            margin-left: 1rem;
+            margin-right: 1rem;
         }
     }
 

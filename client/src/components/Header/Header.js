@@ -40,7 +40,7 @@ const Header = () => {
 
     return (
         <div className="header header--fixed">
-            <Container>
+            <div className="header__container">
                 <div className="header__logo">
                     <Link to="/">
                         <Image src={Logo} alt="Parki" />
@@ -50,7 +50,7 @@ const Header = () => {
                     <Link className='ui button' to='/'>Become a host !</Link>
                     <UserMenu/>
                 </div>
-            </Container>
+            </div>
         </div>
     )
 }

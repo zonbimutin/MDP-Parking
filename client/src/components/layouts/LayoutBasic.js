@@ -10,7 +10,10 @@ const LayoutBasic = (props) => {
     return (
         <>
             <Header/>
-            <Container fluid className="layout-basic">{children}</Container>
+            <div className="LayoutBasic">
+                {children}
+            </div>
+            
         </>
     )
 }

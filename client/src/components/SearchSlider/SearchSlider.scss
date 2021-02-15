@@ -1,9 +1,12 @@
-.searchSlider {
+.SearchSlider {
 
     position: relative;
     width: 100%;
     padding-top: 120px;
     padding-bottom: 200px;
+
+    display: flex;
+    justify-content: center;
 
 
 
@@ -15,7 +18,7 @@
         height: 100%;
         z-index: -999;
         
-        img {            
+        .image {            
             height: 100%;
             width: 100%;
             object-fit: cover;

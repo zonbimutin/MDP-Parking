@@ -11,9 +11,10 @@ import './Home.scss';
 
 const Home = () => {
     return (
-        <Container fluid className='home' >
+        <div className="Home">
             <SearchSlider/>
-        </Container>
+        </div>
+
     )
 }
 

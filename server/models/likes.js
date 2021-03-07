@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const RatingSchema = Schema({
+const LikeSchema = Schema({
     idParking: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
@@ -13,16 +13,6 @@ const RatingSchema = Schema({
         require: true,
         ref: "User"
     },
-
-    note: {
-        type: Number,
-        require: true
-    },
-
-    createAt: {
-        type: Date,
-        default: Date.now()
-    }
 });
 
-module.exports = mongoose.model("Rating", RatingSchema);
+module.exports = mongoose.model("Like", LikeSchema);

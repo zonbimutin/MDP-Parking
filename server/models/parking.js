@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const Schema   = mongoose.Schema;
 
 const ParkingShema = Schema({
     idUser: {
@@ -7,18 +7,22 @@ const ParkingShema = Schema({
         require: true,
         ref: "User",
     },
+
     parkingNumber: {
         type: Number
     },
+
     streetNumber: {
         type: Number,
         require: true,
         trim: true,
     },
+
     streetName: {
         type: String,
         require: true,
     },
+
     zipCode: {
         type: Number,
         min: 5,
@@ -26,23 +30,36 @@ const ParkingShema = Schema({
         default: 74000,
         require: true,
     },
+
     country: {
         type: String,
         enum: ['france'],
         default: 'france',
         require: true,
     },
+
     city: {
         type: String,
         require: true,
         enum: ['annecy'],
         default: 'annecy'
     },
+
+    facilities: [{
+        type: mongoose.Schema.Types.ObjectId.ObjectId,
+        ref: "Facility",
+        required: true
+    }],
+
+    image: {
+        data: buffer,
+        contentType: String
+    },
+
     createAt: {
         type: Date,
         default: Date.now(),
-      },
-
+    },
 });
 
 module.exports = mongoose.model("Parking", ParkingShema);

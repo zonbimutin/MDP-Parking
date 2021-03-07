@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const BookingSchema = Schema({
+const CommentSchema = Schema({
+    idParking: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
+        ref: "Parking"
+    },
 
     idUser: {
         type: mongoose.Schema.Types.ObjectId,
@@ -9,25 +14,14 @@ const BookingSchema = Schema({
         ref: "User"
     },
 
-    idParking: {
+    idBooking: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
-        ref: "Parking"
+        ref: "Booking"
     },
 
-    bookingStatus: {
-        type: String,
-        enum: ["active", "canceled", "validation"],
-        default: "validation"
-    },
-
-    startDate: {
-        type: Date,
-        require: true
-    },
-
-    endDate: {
-        type: Date,
+    comment: {
+        type: Text,
         require: true
     },
 
@@ -37,4 +31,4 @@ const BookingSchema = Schema({
     }
 });
 
-module.exports = mongoose.model("Booking", BookingSchema);
+module.exports = mongoose.model("Comment", CommentSchema);

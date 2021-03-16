@@ -14,7 +14,7 @@ const routes = [
         layout: LayoutBasic
     },
     {
-        path: '/search',
+        path: '/search/:cityName',
         component: Search,
         exact: true,
         layout: LayoutBasic

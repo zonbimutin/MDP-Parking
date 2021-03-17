@@ -1,0 +1,17 @@
+.Mapbox {
+    &__marker {
+        height: 20px;
+        width: 20px;
+        background-color: blueviolet;
+
+        button {
+            height: 20px;
+            width: 20px;
+            padding: 0 !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: brown;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.ParkisList {
+    position: absolute;
+    height: 100%;
+    width: 500px;
+    margin: 2rem;
+    display: flex;
+    z-index: 4;
+
+    &__ParkisList__card {
+        height: 100%;
+    }
+}

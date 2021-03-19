@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl'
-import * as Data from './parki.json'
 import {Button} from 'semantic-ui-react'
 
 import './Mapbox.scss'
 
 
-const Mapbox = () => {
+const Mapbox = ({parkis, handleSelection}) => {
 
     const [viewport, setViewport] = useState({
         latitude: 45.899780,
         longitude: 6.128350,
-        width: '100vw',
+        width: '100%',
         height: '100vh',
         zoom: 13
     })
@@ -25,14 +24,14 @@ const Mapbox = () => {
                     setViewport(viewport)
                 }}
             >
-                { Data.parkis.map(parki => (
+                { parkis.map(parki => (
                     <Marker 
                         key={parki.id} 
                         longitude={parki.lon} 
                         latitude={parki.lat}
                     >
                         <div className={"Mapbox__marker"}>
-                            <Button>{parki.id}</Button>
+                            <Button onClick={() => handleSelection(parki)}>{parki.id}</Button>
                         </div>
                     </Marker>
                 ))}

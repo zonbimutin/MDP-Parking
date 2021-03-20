@@ -1,4 +1,5 @@
 import React from 'react';
+import PlaceAutocomplite,{ geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { Card, Input, Form, Button } from 'semantic-ui-react';
 
 const Search = () => {

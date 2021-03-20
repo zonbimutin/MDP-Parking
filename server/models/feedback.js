@@ -1,24 +1,14 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const BookingSchema = Schema({
-    id_customer: {
+const FeedbackSchema = Schema({
+    id_person: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Customer',
+        ref: 'Person',
     },
 
-    id_parkingspace: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'ParkingSpace',
-    },
-
-    start_booking: {
-        type: Date,
-        require: true,
-    },
-
-    end_booking: {
-        type: Date,
+    description: {
+        type: String,
         require: true,
     },
 
@@ -38,4 +28,4 @@ const BookingSchema = Schema({
     },
 });
 
-module.exports = mongoose.model("Booking", BookingSchema);
+module.exports = mongoose.model("Feedback", FeedbackSchema);

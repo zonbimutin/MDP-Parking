@@ -1,15 +1,10 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const RatingSchema = Schema({
-    id_booking: {
+const ParkingSpaceSchema = Schema({
+    id_location: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Booking',
-    },
-
-    id_customer: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Customer',
+        ref: 'Location',
     },
 
     id_host: {
@@ -17,22 +12,17 @@ const RatingSchema = Schema({
         ref: 'Host',
     },
 
-    customer_rating: {
+    street_number: {
         type: String,
         require: true,
     },
 
-    customer_comment: {
+    street_name: {
         type: String,
         require: true,
     },
 
-    host_rating: {
-        type: Boolean,
-        require: true,
-    },
-
-    host_comment: {
+    availability: {
         type: Boolean,
         require: true,
     },
@@ -48,4 +38,4 @@ const RatingSchema = Schema({
     },
 });
 
-module.exports = mongoose.model("Rating", RatingSchema);
+module.exports = mongoose.model("ParkingSpace", ParkingSpaceSchema);

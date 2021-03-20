@@ -1,8 +1,6 @@
 const userController = require("./../controllers/user");
 const parkingController = require("../controllers/parking");
 const bookingController = require("../controllers/booking");
-
-
 const resolvers = {
     Query: {
         // User

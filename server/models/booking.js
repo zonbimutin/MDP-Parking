@@ -2,22 +2,22 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const BookingSchema = Schema({
-    id_customer: {
+    idCustomer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer',
     },
 
-    id_parkingspace: {
+    idParking: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ParkingSpace',
+        ref: 'Parking',
     },
 
-    start_booking: {
+    startBooking: {
         type: Date,
         require: true,
     },
 
-    end_booking: {
+    endBooking: {
         type: Date,
         require: true,
     },

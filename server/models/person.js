@@ -27,7 +27,7 @@ const PersonSchema = Schema({
         require: true,
     },
 
-    birth_date: {
+    birthDate: {
         type: Date,
     },
 
@@ -38,12 +38,12 @@ const PersonSchema = Schema({
 
     gender: {
         type: String,
-        enum: ["homme", "femme"],
+        enum: ["Homme", "Femme"],
     },
 
-    account_status: {
+    accountStatus: {
         type: String,
-        enum: ["ACTIVE","INACTIVE"],
+        enum: ["Active","Inactive"],
         default: "ACTIVE",
     },
 

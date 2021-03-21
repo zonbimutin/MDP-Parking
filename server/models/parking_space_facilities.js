@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const ParkingSpaceFacilitiesSchema = Schema({
-    id_parkingspace: {
+const ParkingFacilitiesSchema = Schema({
+    idParking: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ParkingSpace',
+        ref: 'Parking',
     },
 
-    id_facilities: {
+    idFacilities: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Facilities',
     },
@@ -23,4 +23,4 @@ const ParkingSpaceFacilitiesSchema = Schema({
     },
 });
 
-module.exports = mongoose.model("ParkingSpaceFacilities", ParkingSpaceFacilitiesSchema);
+module.exports = mongoose.model("ParkingFacilities", ParkingFacilitiesSchema);

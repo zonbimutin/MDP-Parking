@@ -2,22 +2,22 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const HostSchema = Schema({
-    bank_name: {
+    banName: {
         type: String,
         require: true,
     },
 
-    account_type: {
+    accountType: {
         type: String,
         require: true,
     },
 
-    account_number: {
+    accountNumber: {
         type: String,
         require: true,
     },
 
-    routing_number: {
+    routingNumber: {
         type: String,
         require: true,
     },    

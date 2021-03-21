@@ -2,37 +2,37 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const RatingSchema = Schema({
-    id_booking: {
+    idBooking: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Booking',
     },
 
-    id_customer: {
+    idCustomer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer',
     },
 
-    id_host: {
+    idHost: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Host',
     },
 
-    customer_rating: {
+    customerRating: {
         type: String,
         require: true,
     },
 
-    customer_comment: {
+    customerComment: {
         type: String,
         require: true,
     },
 
-    host_rating: {
+    hostRating: {
         type: Boolean,
         require: true,
     },
 
-    host_comment: {
+    hostComment: {
         type: Boolean,
         require: true,
     },

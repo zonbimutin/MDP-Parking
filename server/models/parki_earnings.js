@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const ParkiEarningsSchema = Schema({
-    id_payment: {
+    idPayment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Payment',
     },
 
-    earnings_amount: {
+    earningsAmount: {
         type: Date,
         require: true,
     },

@@ -3,14 +3,14 @@ const Schema   = mongoose.Schema;
 
 const ReviewSchema = Schema({
 
-    id_customer: {
+    idCustomer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer',
     },
 
-    id_parkingspace: {
+    idParking: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ParkingSpace',
+        ref: 'Parking',
     },
 
     comments: {

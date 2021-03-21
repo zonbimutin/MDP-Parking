@@ -1,23 +1,23 @@
 const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
-const ParkingSpaceSchema = Schema({
-    id_location: {
+const ParkingSchema = Schema({
+    idLocation: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Location',
     },
 
-    id_host: {
+    idHost: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Host',
     },
 
-    street_number: {
+    streetNumber: {
         type: String,
         require: true,
     },
 
-    street_name: {
+    streetName: {
         type: String,
         require: true,
     },
@@ -38,4 +38,4 @@ const ParkingSpaceSchema = Schema({
     },
 });
 
-module.exports = mongoose.model("ParkingSpace", ParkingSpaceSchema);
+module.exports = mongoose.model("Parking", ParkingSchema);

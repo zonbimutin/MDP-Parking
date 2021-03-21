@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const RefundSchema = Schema({
-    id_payment: {
+    idPayment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Payment',
     },
 
-    refund_date: {
+    refundDate: {
         type: Date,
         require: true,
     },

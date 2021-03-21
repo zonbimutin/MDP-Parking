@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const FeedbackSchema = Schema({
-    id_person: {
+    idPerson: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Person',
     },

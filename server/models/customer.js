@@ -2,22 +2,22 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const CustomerSchema = Schema({
-    payment_type: {
+    paymentType: {
         type: String,
         require: true,
     },
 
-    card_number: {
+    cardNumber: {
         type: String,
         require: true,
     },
 
-    security_code: {
+    securityCode: {
         type: String,
         require: true,
     },
 
-    name_on_card: {
+    nameOnCard: {
         type: String,
         require: true,
     },    

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const PaymentSchema = Schema({
-    id_booking: {
+    idBooking: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Booking',
     },

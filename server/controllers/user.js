@@ -1,6 +1,7 @@
-const User = require("./../models/user");
+const User     = require("./../models/user");
+const Feedback = require("./../models/feedback");
 const bcryptjs = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const jwt      = require("jsonwebtoken");
 
 
 function createToken(user, SECRET_KEY, expiresIn){
@@ -62,15 +63,62 @@ async function login( input ){
     return {
         token: createToken(userFound, process.env.SECRET_KEY, "24h")
     };
+}
 
+/*async function getFeedback(req, res, next) {
+    const { feedback } = req.params;
+    const user = await User.find(feedback);
+    res.status(200).json(user);
 }
 
 function getUser(){
     return null;
-}
+}*/
 
 module.exports = {
     register,
     getUser,
     login,
+    getFeedback,
 }
+
+exports.createUser = (req, res, next) => {
+    delete req.body._id;
+    const review = new Review({
+        ...req.body
+    });
+
+    User.save()
+        .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
+        .catch(error => res.status(400).json({ error }));
+};
+
+exports.editUser = (req, res, next) => {
+    User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+        .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
+        .catch(error => res.status(400).json({ error }));
+};
+
+exports.deleteUser = (req, res, next) => {
+    User.deleteOne({ _id: req.params.id })
+        .then(()     => res.status(200).json({ message: 'Objet suprimé' }))
+        .catch(error => res.status(400).json({ error }));
+};
+
+exports.getOneUser = (req, res, next) => {
+    User.findOne({ _id: req.params.id })
+        .then(user   => res.status(200).json(user))
+        .catch(error => res.status(404).json({ error }));
+};
+
+exports.getUsers = (req, res, next) => {
+    User.find()
+        .then(users  => res.status(200).json(users))
+        .catch(error => res.status(400).json({ error }));
+};
+
+exports.getFeedbacks = (req, res, next) => {
+    Feedback.find()
+        .then(feedbacks => res.status(200).json(feedbacks))
+        .catch(error    => res.status(400).json({ error }));
+};

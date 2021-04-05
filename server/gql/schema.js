@@ -69,9 +69,7 @@ const typeDefs = gql`
         getUser(input: Int): User
 
         # Parking
-
         getParkings: [Parking]
-
     }
 
     type Mutation {

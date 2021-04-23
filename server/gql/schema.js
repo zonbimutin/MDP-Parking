@@ -343,6 +343,32 @@ const typeDefs = gql`
         #Booking
         addBooking(input: BookingInput): Booking
 
+        # Customer
+        addCustomer(input: CustomerInput): Customer
+        
+        # Facility
+        addFacility(input: FacilityInput): Facility
+        
+        # Feedback
+        addFeedback(input: FeedbackInput): Feedback
+
+        # Host Earning
+        addHostEarning(input: HostEarningsInput): HostEarnings
+
+        # Host
+        addHost(input: HostInput): Host 
+
+        # Location
+        addLocation(input: LocationInput): Location
+
+        # Parki Earnings
+        addParkiEarnings(input: ParkiEarningsInput): ParkiEarnings
+        
+        # Refund
+        addRefund(input: RefundInput): Refund
+
+        # Review
+        addReview(input: ReviewInput): Review
     }
 `;
 

@@ -48,7 +48,7 @@ const resolvers = {
         getFeedBacks: (_, {}) => feedbackController.getFeedbacks(),
 
         // Host Earnings
-        gethostEarnings        : (_, {}) => hostEarningsController.getHostEarnings(),
+        getHostEarnings        : (_, {}) => hostEarningsController.getHostEarnings(),
         getHostEarningsPayments: (_, {}) => hostEarningsController.getPayments(),
 
         // Host
@@ -100,34 +100,34 @@ const resolvers = {
         addBooking: (_, { input }, ctx)       => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
 
         // Customer
-        addCustomer: (_, { input }, ctx)      => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addCustomer: (_, { input }, ctx)      => customerController.createCustomer( input , ctx ), // .addBooking( input , ctx ),
 
         // Facility
-        addFacility: (_, { input }, ctx)      => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addFacility: (_, { input }, ctx)      => facilityController.createFacility( input , ctx ), // .addBooking( input , ctx ),
 
         // Feedback
-        addFeedback: (_, { input }, ctx)      => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addFeedback: (_, { input }, ctx)      => feedbackController.createFeedback( input , ctx ), // .addBooking( input , ctx ),
 
         // Host Earning
-        addHostEarning: (_, { input }, ctx)   => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addHostEarning: (_, { input }, ctx)   => hostEarningsController.createHostEarnings( input , ctx ), // .addBooking( input , ctx ),
 
         // Host
-        addHost: (_, { input }, ctx)          => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addHost: (_, { input }, ctx)          => hostController.createHost( input , ctx ), // .addBooking( input , ctx ),
 
         // Location
-        addLocation: (_, { input }, ctx)      => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addLocation: (_, { input }, ctx)      => locationController.createLocation( input , ctx ), // .addBooking( input , ctx ),
 
         // Parki Earnings
-        addParkiEarnings: (_, { input }, ctx) => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addParkiEarnings: (_, { input }, ctx) => parkiEarningsController.createParkiEarnings( input , ctx ), // .addBooking( input , ctx ),
 
         // Parking
-        regParkingrking: (_,{ input }, ctx)   => parkingController.register( input , ctx ),
+        registerParking: (_,{ input }, ctx)   => parkingController.register( input , ctx ),
 
         // Refund
-        addRefund: (_, { input }, ctx)        => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addRefund: (_, { input }, ctx)        => refundController.createRefund( input , ctx ), // .addBooking( input , ctx ),
 
         // Review
-        addReview: (_, { input }, ctx)        => bookingController.createBooking( input , ctx ), // .addBooking( input , ctx ),
+        addReview: (_, { input }, ctx)        => reviewController.createReview( input , ctx ), // .addBooking( input , ctx ),
     },
 };
 

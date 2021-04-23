@@ -288,8 +288,8 @@ const typeDefs = gql`
         getFeedBacks: [Feedback]
 
         # Host Earnings
-        getHostEarnings: [HostEarning]
-        getHostEarningsPayments: [HostEarning]
+        getHostEarnings: [HostEarnings]
+        getHostEarningsPayments: [HostEarnings]
 
         # Host
         getHosts: [Host]
@@ -301,13 +301,13 @@ const typeDefs = gql`
         getLocationsparkings: [Location]
 
         # Parki Earnings
-        getParkiEarnings: [ParkiEarning]
-        getParkiEarningsPayments: [ParkiEarning]
+        getParkiEarnings: [ParkiEarnings]
+        getParkiEarningsPayments: [ParkiEarnings]
 
         # Parking Facilities
-        getParkingFacilities: [ParkingFacility]
-        getParkingFacilitiesParkings: [ParkingFacility]
-        getParkingFacilitiesFacilities: [ParkingFacility]
+        getParkingFacilities: [ParkingFacilities]
+        getParkingFacilitiesParkings: [ParkingFacilities]
+        getParkingFacilitiesFacilities: [ParkingFacilities]
 
         # Payment
         getPayments: [Payment]

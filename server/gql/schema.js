@@ -44,6 +44,7 @@ const typeDefs = gql`
         email: String!
         password: String!
     }
+
     input LoginInput {
         email: String!
         password: String!
@@ -70,6 +71,75 @@ const typeDefs = gql`
 
         # Parking
         getParkings: [Parking]
+        getParkingsReviews: [Parking]
+        getParkingsBookings: [Parking]
+        getParkingsHosts: [Parking]
+        getParkingsLocation: [Parking]
+        getParkingsParkingFacilities: [Parking]
+
+        # Booking
+        getBookings: [Booking]
+        getBookingsCustomers: [Booking]
+        getBookingsRatings: [Booking]
+        getBookingsParkings: [Booking]
+        getBookingsPayments: [Booking]
+
+        # Customers
+        getCustomers: [Customer]
+        getCustomersBookings: [Customer]
+        getCustomersRatings: [Customer]
+        getCustomersReview: [Customer]
+
+        # Facilities
+        getFacilities: [Facility]
+        getFacilitiesParkings: [Facility]
+
+        # Feedbacks
+        getFeedBacks: [Feedback]
+
+        # Host Earnings
+        getHostEarnings: [HostEarning]
+        getHostEarningsPayments: [HostEarning]
+
+        # Host
+        getHosts: [Host]
+        getHostsParkings: [Host]
+        getHostsRatings: [Host]
+
+        # Location
+        getLocations: [Location]
+        getLocationsparkings: [Location]
+
+        # Parki Earnings
+        getParkiEarnings: [ParkiEarning]
+        getParkiEarningsPayments: [ParkiEarning]
+
+        # Parking Facilities
+        getParkingFacilities: [ParkingFacility]
+        getParkingFacilitiesParkings: [ParkingFacility]
+        getParkingFacilitiesFacilities: [ParkingFacility]
+
+        # Payment
+        getPayments: [Payment]
+        getPaymentsBookings: [Payment]
+        getPaymentsRefunds: [Payment]
+        getPaymentsParkiEarnings: [Payment]
+        getPaymentsHostEarnings: [Payment]
+
+        # Rating
+        getRatings: [Rating]
+        getRatingsCustomers: [Rating]
+        getRatingsHosts: [Rating]
+        getRatingsBookings: [Rating]
+
+        # Refund
+        getRefunds: [Refund]
+        getRefundsPayments: [Refund]
+
+        # Review
+        getReviews: [Review]
+        getReviewsCustomers: [Review]
+        getReviewsParkings: [Review]
     }
 
     type Mutation {

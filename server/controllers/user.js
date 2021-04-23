@@ -77,16 +77,12 @@ function getUser(){
 
 module.exports = {
     register,
-    getUser,
     login,
-    getFeedback,
 }
 
 exports.createUser = (req, res, next) => {
     delete req.body._id;
-    const review = new Review({
-        ...req.body
-    });
+    const review = new Review({ ...req.body });
 
     User.save()
         .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
@@ -105,7 +101,7 @@ exports.deleteUser = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
-exports.getOneUser = (req, res, next) => {
+exports.getUser = (req, res, next) => {
     User.findOne({ _id: req.params.id })
         .then(user   => res.status(200).json(user))
         .catch(error => res.status(404).json({ error }));
@@ -119,6 +115,6 @@ exports.getUsers = (req, res, next) => {
 
 exports.getFeedbacks = (req, res, next) => {
     Feedback.find()
-        .then(feedbacks => res.status(200).json(feedbacks))
-        .catch(error    => res.status(400).json({ error }));
+            .then(feedbacks => res.status(200).json(feedbacks))
+            .catch(error    => res.status(400).json({ error }));
 };

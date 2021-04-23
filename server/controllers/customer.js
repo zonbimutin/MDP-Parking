@@ -6,55 +6,53 @@ const Review   = require("../models/review");
 
 exports.createCustomer = (req, res, next) => {
     delete req.body._id;
-    const customer = new Customer({
-        ...req.body
-    });
+    const customer = new Customer({ ...req.body });
 
     customer.save()
-        .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-        .catch(error => res.status(400).json({ error }));
+            .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
+            .catch(error => res.status(400).json({ error }));
 };
 
 exports.editCustomer = (req, res, next) => {
     Customer.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-        .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-        .catch(error => res.status(400).json({ error }));
+            .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
+            .catch(error => res.status(400).json({ error }));
 };
 
 exports.deleteCustomer = (req, res, next) => {
     Customer.deleteOne({ _id: req.params.id })
-        .then(()     => res.status(200).json({message: 'Objet suprimé'}))
-        .catch(error => res.status(400).json({ error }));
+            .then(()     => res.status(200).json({message: 'Objet suprimé'}))
+            .catch(error => res.status(400).json({ error }));
 };
 
 exports.getOneCustomer = (req, res, next) => {
     Customer.findOne({ _id: req.params.id })
-        .then(customer => res.status(200).json(customer))
-        .catch(error   => res.status(404).json({ error }));
+            .then(customer => res.status(200).json(customer))
+            .catch(error   => res.status(404).json({ error }));
 };
 
 exports.getCustomers = (req, res, next) => {
     Customer.find()
-        .then(customers => res.status(200).json(customers))
-        .catch(error    => res.status(400).json({ error }))
+            .then(customers => res.status(200).json(customers))
+            .catch(error    => res.status(400).json({ error }))
 };
 
 exports.getBookings = (req, res, next) => {
     Booking.find()
-        .then(bookings => res.status(200).json(bookings))
-        .catch(error   => res.status(400).json({ error }))
+           .then(bookings => res.status(200).json(bookings))
+           .catch(error   => res.status(400).json({ error }))
 };
 
 exports.getRatings = (req, res, next) => {
     Rating.find()
-        .then(ratings => res.status(200).json(ratings))
-        .catch(error  => res.status(400).json({ error }))
+          .then(ratings => res.status(200).json(ratings))
+          .catch(error  => res.status(400).json({ error }))
 };
 
 exports.getReviews = (req, res, next) => {
     Review.find()
-        .then(reviews => res.status(200).json(reviews))
-        .catch(error  => res.status(400).json({ error }));
+          .then(reviews => res.status(200).json(reviews))
+          .catch(error  => res.status(400).json({ error }));
 };
 
 /* async function index(req, res, next) {

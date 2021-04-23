@@ -1,9 +1,8 @@
-const Booking = require("../models/booking");
-const Parking = require("../models/parking");
-const Rating  = require("../models/rating");
-const Payment = require("../models/payment");
-const Customer = require("../models/customer");
+const Booking  = require("../models/booking");
+const Parking  = require("../models/parking");
 const Rating   = require("../models/rating");
+const Payment  = require("../models/payment");
+const Customer = require("../models/customer");
 
 exports.createBooking = (req, res, next) => {
     delete req.body._id;
@@ -12,56 +11,56 @@ exports.createBooking = (req, res, next) => {
     });
 
     booking.save()
-        .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-        .catch(error => res.status(400).json({ error }));
+           .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
+           .catch(error => res.status(400).json({ error }));
 };
 
 exports.editBooking = (req, res, next) => {
     Booking.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-        .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-        .catch(error => res.status(400).json({ error }));
+           .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
+           .catch(error => res.status(400).json({ error }));
 };
 
 exports.deleteBooking = (req, res, next) => {
     Booking.deleteOne({ _id: req.params.id })
-        .then(()     => res.status(200).json({message: 'Objet suprimé'}))
-        .catch(error => res.status(400).json({ error }));
+           .then(()     => res.status(200).json({message: 'Objet suprimé'}))
+           .catch(error => res.status(400).json({ error }));
 };
 
 exports.getOneBooking = (req, res, next) => {
     Booking.findOne({ _id: req.params.id })
-        .then(booking => res.status(200).json(booking))
-        .catch(error  => res.status(404).json({ error }));
+           .then(booking => res.status(200).json(booking))
+           .catch(error  => res.status(404).json({ error }));
 };
 
 exports.getBookings = (req, res, next) => {
     Booking.find()
-        .then(bookings => res.status(200).json(bookings))
-        .catch(error   => res.status(400).json({ error }))
+           .then(bookings => res.status(200).json(bookings))
+           .catch(error   => res.status(400).json({ error }))
 };
 
 exports.getCustomers = (req, res, next) => {
     Customer.find()
-        .then(customers => res.status(200).json(customers))
-        .catch(error    => res.status(400).json({ error }))
+            .then(customers => res.status(200).json(customers))
+            .catch(error    => res.status(400).json({ error }))
 };
 
 exports.getRatings = (req, res, next) => {
     Rating.find()
-        .then(ratings => res.status(200).json(ratings))
-        .catch(error  => res.status(400).json({ error }))
+          .then(ratings => res.status(200).json(ratings))
+          .catch(error  => res.status(400).json({ error }))
 };
 
 exports.getParkings = (req, res, next) => {
     Parking.find()
-        .then(parkings => res.status(200).json(parkings))
-        .catch(error   => res.status(400).json({ error }));
+           .then(parkings => res.status(200).json(parkings))
+           .catch(error   => res.status(400).json({ error }));
 };
 
 exports.getPayments = (req, res, next) => {
     Payment.find()
-        .then(payments => res.status(200).json(payments))
-        .catch(error   => res.status(400).json({ error }));
+           .then(payments => res.status(200).json(payments))
+           .catch(error   => res.status(400).json({ error }));
 };
 
 /*

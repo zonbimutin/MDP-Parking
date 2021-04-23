@@ -4,43 +4,41 @@ const Review   = require("../models/review");
 
 exports.createReview = (req, res, next) => {
     delete req.body._id;
-    const review = new Review({
-        ...req.body
-    });
+    const review = new Review({ ...req.body });
 
     review.save()
-        .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-        .catch(error => res.status(400).json({ error }));
+          .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
+          .catch(error => res.status(400).json({ error }));
 };
 
 exports.editReview = (req, res, next) => {
     Review.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-        .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-        .catch(error => res.status(400).json({ error }));
+          .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
+          .catch(error => res.status(400).json({ error }));
 };
 
 exports.deleteReview = (req, res, next) => {
     Review.deleteOne({ _id: req.params.id })
-        .then(()     => res.status(200).json({ message: 'Objet suprimé' }))
-        .catch(error => res.status(400).json({ error }));
+          .then(()     => res.status(200).json({ message: 'Objet suprimé' }))
+          .catch(error => res.status(400).json({ error }));
 };
 
 exports.getOneReview = (req, res, next) => {
     Review.findOne({ _id: req.params.id })
-        .then(review => res.status(200).json(review))
-        .catch(error => res.status(404).json({ error }));
+          .then(review => res.status(200).json(review))
+          .catch(error => res.status(404).json({ error }));
 };
 
 exports.getReviews = (req, res, next) => {
     Review.find()
-        .then(reviews => res.status(200).json(reviews))
-        .catch(error  => res.status(400).json({ error }));
+          .then(reviews => res.status(200).json(reviews))
+          .catch(error  => res.status(400).json({ error }));
 };
 
 exports.getCustomers = (req, res, next) => {
     Customer.find()
-        .then(customers => res.status(200).json(customers))
-        .catch(error    => res.status(400).json({ error }))
+            .then(customers => res.status(200).json(customers))
+            .catch(error    => res.status(400).json({ error }))
 };
 
 exports.getParkings = (req, res, next) => {

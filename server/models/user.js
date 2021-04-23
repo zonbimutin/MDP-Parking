@@ -4,10 +4,6 @@ const Host     = require("../models/host");
 const Schema   = mongoose.Schema;
 
 const UserSchema = Schema({
-    customer: Customer,
-
-    host: Host,
-
     firstname: {
         type: String,
         require: true,

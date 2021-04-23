@@ -5,9 +5,7 @@ const Parking = require('../models/parking');
 
 exports.createHost = (req, res, next) => {
     delete req.body._id;
-    const host = new Host({
-        ...req.body
-    });
+    const host = new Host({ ...req.body });
 
     host.save()
         .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
@@ -38,16 +36,16 @@ exports.getHosts = (req, res, next) => {
         .catch(error => res.status(400).json({ error }))
 };
 
-exports.getRatings = (req, res, next) => {
-    Rating.find()
-        .then(ratings => res.status(200).json(ratings))
-        .catch(error  => res.status(400).json({ error }))
-};
-
 exports.getParkings = (req, res, next) => {
     Parking.find()
-        .then(parkings => res.status(200).json(parkings))
-        .catch(error   => res.status(400).json({ error }));
+           .then(parkings => res.status(200).json(parkings))
+           .catch(error   => res.status(400).json({ error }));
+};
+
+exports.getRatings = (req, res, next) => {
+    Rating.find()
+          .then(ratings => res.status(200).json(ratings))
+          .catch(error  => res.status(400).json({ error }))
 };
 
 /* async function index(req, res, next) {

@@ -7,7 +7,7 @@ const HostEarningsSchema = Schema({
         ref: 'Payment',
     },
 
-    earnings_amount: {
+    earningsAmount: {
         type: Date,
         require: true,
     },

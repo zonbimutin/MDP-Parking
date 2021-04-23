@@ -22,10 +22,10 @@ const BookingSchema = Schema({
         require: true,
     },
 
-    date: {
+    status: {
         type: String,
-        require: true,
-    }, 
+        require: true
+    },
 
     updatedAt: {
         type: Date,

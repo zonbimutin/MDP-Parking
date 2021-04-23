@@ -7,14 +7,92 @@ const typeDefs = gql`
         lastname: String
         email: String
         password: String
-        avatar: String
-        isHost: Boolean
-        createAt: String
+        photo: String
+        birthDate: String
+        phone_number: String
+        gender: String
+        accountStatus: String
+        updatedAt: String
+        createdAt: String
     }
+    
     type Token {
         token: String
     }
 
+    type Booking {
+        id: ID
+        idCustomer: ID
+        idParking: ID
+        startBooking: String
+        endBooking: String
+        status: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Customer {
+        id: ID
+        paymentType: String,
+        cardNumber: String,
+        securityCode: String,
+        nameOnCard: String,
+        updatedAt: String,
+        createdAt: String,
+    }
+    
+    type Facility {
+        id: ID
+        name: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Feedback {
+        id: ID
+        idPerson: ID
+        description: String
+        date: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Host {
+        id: ID
+        bankName: String
+        accountType: String
+        accountNumber: String
+        routingNumber: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type HostEarnings {
+        id: ID
+        idPayment: String
+        earningsAmount: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Location {
+        id: ID
+        country: String
+        state: String
+        city: String
+        zipcode: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type ParkiEarnings {
+        id: ID
+        idPayment: ID
+        earningsAmount: String
+        updatedAt: String
+        createdAt: String
+    }
+    
     type Parking {
         id: ID
         idUser: ID
@@ -24,18 +102,55 @@ const typeDefs = gql`
         zipCode: Int
         city: String
         country: String
-        createAt: String
-        
+        updatedAt: String
+        createdAt: String
     }
-
-    type Booking {
+    
+    type ParkingFacilities {
         id: ID
-        idUser: ID
         idParking: ID
-        bookingSatus: String
-        startDate: String
-        endDate: String
-        createAt: String
+        idFacilities: ID
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Payment {
+        id: ID
+        idBooking: String
+        amount: String
+        updatedAt: String
+        createdAt: String 
+    }
+    
+    type Rating {
+        id: ID
+        idBooking: ID
+        idCustomer: ID
+        idHost: ID
+        customerRating: String
+        customerComment: String
+        hostRating: String
+        hostComment: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Refund {
+        id: ID 
+        idPayment: ID
+        refundDate: String
+        updatedAt: String
+        createdAt: String
+    }
+    
+    type Review {
+        id: ID
+        idCustomer: ID
+        idParking: ID
+        comments: String
+        date: String
+        updatedAt: String
+        createdAt: String
     }
 
     input UserInput {
@@ -49,7 +164,56 @@ const typeDefs = gql`
         email: String!
         password: String!
     }
-
+    
+    input BookingInput {
+        idCustomer: ID!
+        idParking: ID!
+        startBooking: String
+        endBooking: String
+        status: String
+    }
+    
+    input CustomerInput {
+        paymentType: String!
+        cardNumber: String!
+        securityCode: String!
+        nameOnCard: String!
+    }
+    
+    input FacilityInput {
+        name: String!
+    }
+    
+    input FeedbackInput {
+        idPerson: ID!
+        description: String!
+        date: String!
+    }
+    
+    input HostInput {
+        bankName: String!
+        accountType: String!
+        accountNumber: String!
+        routingNumber: String!
+    }
+    
+    input HostEarningsInput {
+        idPayment: String!
+        earningsAmount: String!
+    }
+    
+    input LocationInput {
+        country: String!
+        state: String!
+        city: String!
+        zipcode: String!
+    }
+    
+    input ParkiEarningsInput {
+        idPayment: ID!
+        earningsAmount: String!
+    }
+    
     input ParkingInput {
         streetNumber: Int!
         streetName: String!
@@ -58,11 +222,37 @@ const typeDefs = gql`
         city: String
         country: String
     }
-
-    input BookingInput {
+    
+    input ParkingFacilitiesInput {
         idParking: ID!
-        startDate: String!
-        endDate: String!
+        idFacilities: ID!
+    }
+    
+    input PaymentInput {
+        idBooking: String
+        amount: String
+    }
+    
+    input RatingInput {
+        idBooking: ID!
+        idCustomer: ID!
+        idHost: ID!
+        customerRating: String!
+        customerComment: String!
+        hostRating: String!
+        hostComment: String!
+    }
+    
+    input RefundInput {
+        idPayment: ID!
+        refundDate: String!
+    }
+    
+    input ReviewInput {
+        idCustomer: ID!
+        idParking: ID!
+        comments: String!
+        date: String
     }
 
     type Query {

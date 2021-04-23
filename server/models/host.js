@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema   = mongoose.Schema;
 
 const HostSchema = Schema({
-    banName: {
+    bankName: {
         type: String,
         require: true,
     },

@@ -30,7 +30,7 @@ const Trigger = (props) => {
 const UserMenu = () => {
 
     // Auth Hook
-    const { auth } = useAuth();
+    const { auth, logout } = useAuth();
 
     console.log(auth);
 
@@ -47,11 +47,15 @@ const UserMenu = () => {
             button
             className='userMenu__dropdown'
             >
-                <Dropdown.Menu>
+                <Dropdown.Menu className="parki ui card">
 
                     <Dropdown.Item>
                         { auth ? (
-                            <Link to={`/Profile/${auth.id}`}>Profile</Link>
+                            <>
+                                <Link to={`/Profile/${auth.id}`}>Profile</Link>
+                                <a onClick={() => logout()}>Logout</a>
+                            </>
+
                         ) : (
                             <AuthModal trigger={<a>Login</a>} />
                         )}

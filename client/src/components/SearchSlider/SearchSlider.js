@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Image, Container, Placeholder} from 'semantic-ui-react'
+import { useHistory} from 'react-router-dom';
+import { Image, Container, Card } from 'semantic-ui-react'
+import SearchParki from '../SearchParki';
+
 import './SearchSlider.scss'
-import SearchHome from '../Search/SearchHome';
-import Slider from '../Slider';
 
 //Backgound
 import Background from '../../assets/images/bg-home.png';
@@ -10,15 +11,31 @@ import Background from '../../assets/images/bg-home.png';
 
 const SearchSlider = () => {
 
+    const history = useHistory();
+
+    const handleSearchSubmit = (search) => {
+        
+        let location = {
+            pathname: '/search',
+            state: search
+        }
+        history.push(location)
+    }
+
 
 
     return (
         <div className="SearchSlider">
+        
             <div className="SearchSlider__background">
                 <Image src={ Background }/>
             </div>
             <Container className="SearchSlider__Container">
-                <SearchHome/>
+                <Card>
+                    <Card.Content>
+                        <SearchParki handleSearchSubmit={handleSearchSubmit}/>
+                    </Card.Content>
+                </Card>
             </Container>
         </div>
 

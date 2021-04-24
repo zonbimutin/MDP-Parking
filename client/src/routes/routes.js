@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Search from '../pages/Search';
 import Error404 from '../pages/Error404';
 import Profile from '../pages/Profile';
+import Parki from '../pages/Parki';
 
 
 const routes = [
@@ -14,7 +15,7 @@ const routes = [
         layout: LayoutBasic
     },
     {
-        path: '/search/:cityName',
+        path: '/search',
         component: Search,
         exact: true,
         layout: LayoutBasic
@@ -22,6 +23,12 @@ const routes = [
     {
         path: '/profile/:idUser',
         component: Profile,
+        exact: true,
+        layout: LayoutBasic
+    },
+    {
+        path: '/parki/:idParki',
+        component: Parki,
         exact: true,
         layout: LayoutBasic
     },

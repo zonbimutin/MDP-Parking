@@ -1,0 +1,13 @@
+.parki {
+    &.card {
+        border-radius: 3rem !important;
+        padding: 1.5rem ;
+        width: fit-content ;
+        box-shadow: $shadow-card !important;
+        
+        .card-title {
+            font-family: $body-font;
+            color: $primary-color;
+        }
+    }
+}

@@ -16,3 +16,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+
+/**************************************
+    Default Styles
+***************************************/
+@import './scss/default/variables';
+@import './scss/default/mixins';
+@import './scss/default/reset';
+// @import 'default/typography';
+@import './scss/default/extend';
+@import './scss/default/animations';
+// @import './scss/default/shortcode';
+@import './scss/default/spacing';
+
+
+
+@import './scss/components/section';
+@import './scss/components/parkiCard';
+@import './scss/components/parkiButton';
+@import './scss/components/parkiForm';
+@import './scss/components/parkiContainer';

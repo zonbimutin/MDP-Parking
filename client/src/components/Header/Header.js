@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+//useAuth
+import useAuth from '../../hooks/useAuth';
+// semantic ui
 import { Container, Image, Button } from 'semantic-ui-react';
 // Scss Style
 import './Header.scss';
@@ -9,6 +12,8 @@ import UserMenu from './UserMenu';
 import Logo from '../../assets/images/logo-parki.png';
 
 const Header = () => {
+
+    const { auth } = useAuth();
 
     useEffect(() => {
         window.addEventListener('load', function() {
@@ -47,7 +52,14 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className="header__right">
-                    <Link className='ui button' to='/'>Become a host !</Link>
+                    <Link className='ui button' to='/'>Louer ma place !</Link>
+                    {auth && (
+                        <>
+                            <Link className='ui button' to='/'>Historique</Link>
+                            <Link className='ui button' to='/'>Favoris</Link>
+                            <Link className='ui button' to='/'>Messagerie</Link>
+                        </>
+                    )}
                     <UserMenu/>
                 </div>
             </div>

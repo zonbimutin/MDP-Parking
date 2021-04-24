@@ -1,7 +1,7 @@
 import React, {} from 'react'
-import PropTypes from 'prop-types'
+import {List} from 'semantic-ui-react'
 
-import {Card, CardContent} from 'semantic-ui-react'
+import ParkiItem from '../Parki/ParkiItem'
 
 import './ParkisList.scss'
 
@@ -9,17 +9,16 @@ const ParkisList = ({parkis, selectedParki}) => {
 
     return (
         <div className={'ParkisList'}>
-            <Card className={'ParkisList__card'} fluid raised>
-                <CardContent>
-                    {selectedParki ? (selectedParki.id):('')}
-                </CardContent>
-            </Card>
+            <List divided relaxed>
+                {parkis.map((parki, index) => (
+                    <List.Item>
+                        <ParkiItem key={index} parki={parki}/>
+                    </List.Item>
+                ))}
+            </List>
         </div>
     )
 }
 
-ParkisList.propTypes = {
-
-}
 
 export default ParkisList

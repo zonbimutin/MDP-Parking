@@ -1,3 +1,35 @@
 .SearchPage {
-    padding-top: 65px;
+    
+    height: 100%;
+
+    &__container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+
+    &__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        height: 100%;
+        padding: 20px;
+        width: 370px;
+
+        .parki {
+            &.card {
+                height: 100%;
+            }
+        }
+    }
+    &__search {
+        margin-bottom: 1.5rem;
+    }
+
+    &__map {
+        height: 100%;
+    }
+
+   
 }

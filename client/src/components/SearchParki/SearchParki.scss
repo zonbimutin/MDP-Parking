@@ -1,0 +1,29 @@
+@import "../../scss/default/variables";
+@import "../../scss/index.scss";
+
+.SearchParki {
+
+    &__menu {
+        padding: 1rem;
+    }
+
+    &__typeFilter {
+
+        label {
+            color: $primary-color;
+        }
+        .btn-group{
+            padding-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            button {
+                box-shadow: $shadow-card !important;
+                background: white !important;
+            }
+        }
+
+    }
+
+}

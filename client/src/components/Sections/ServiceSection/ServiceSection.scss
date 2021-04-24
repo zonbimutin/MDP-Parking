@@ -1,0 +1,56 @@
+@import "../../../scss/default/variables";
+@import "../../../scss/index.scss";
+
+.ServiceSection {
+    
+    &__title {
+        background-color: $primary-color;
+    }
+
+    &__serviceContainer {
+        
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .Service { 
+
+        width: 100%;
+        margin-bottom: 2rem;
+
+        @media (min-width: $breakpoint-sm-device) {
+            width: 50%;
+        }
+        @media (min-width: $breakpoint-tablet) {
+            width: 25%;
+            margin-bottom: 0;
+        }
+        @media (min-width: $breakpoint-smlg-device) {
+            width: 25%;
+        }
+        @media (min-width: $breakpoint-laptop) {
+            width: 25%;
+        }
+        @media (min-width: $breakpoint-extra) {
+            width: 25%;
+        }
+        
+
+        
+
+        &__image {
+            height: 100px;
+            width: 100px;
+            margin: auto;
+            .placeholder {
+                border-radius: 50%;
+            }
+        }
+
+        &__description {
+            width: 70%;
+            padding: 2rem 0;
+            margin: auto;
+        }
+    }
+}

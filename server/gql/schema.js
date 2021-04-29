@@ -1,6 +1,7 @@
 const { gql } = require('apollo-server');
 
 const typeDefs = gql`
+
     type User {
         id: ID
         host: ID
@@ -12,6 +13,7 @@ const typeDefs = gql`
         avatar: String
         createAt: String
     }
+
     type Token {
         token: String
     }
@@ -23,15 +25,24 @@ const typeDefs = gql`
 
     type Parking {
         id: ID
-        idUser: ID
-        streetNumber: Int
-        streetName: String
+        host: ID
+        address: String
+        coordinates: Coordinates
         parkingNumber: Int
         zipCode: Int
         city: String
         country: String
+        images: [Image]
         createAt: String
-        
+    }
+
+    type Image {
+        img: String
+    }
+
+    type Coordinates {
+        latitud: Float
+        longitud: Float
     }
 
     type Booking {
@@ -62,12 +73,17 @@ const typeDefs = gql`
     }
 
     input ParkingInput {
-        streetNumber: Int!
-        streetName: String!
+        address: String!
+        coordinates: CoordinatesInput!
         parkingNumber: Int
         zipCode: Int
         city: String
         country: String
+    }
+
+    input CoordinatesInput {
+        latitud: Float!
+        longitud: Float!
     }
 
     input BookingInput {

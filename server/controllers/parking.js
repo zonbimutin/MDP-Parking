@@ -4,11 +4,14 @@ async function register( input, ctx ) {
 
     const newParking = input;
 
-    // Add user id from context
-    newParking.idUser = ctx.user.id
+    //TODO: verify host
+    if(!ctx.user.host) throw new Error("User is not a host");
+
+    // Add host id from context
+    newParking.host = ctx.user.host
 
     // format inputs 
-    newParking.streetName = newParking.streetName.toLowerCase();
+    newParking.address = newParking.address.toLowerCase();
 
     // Guardar el parking en la DB
     try {

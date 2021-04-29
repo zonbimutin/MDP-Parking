@@ -58,6 +58,11 @@ const ParkingShema = Schema({
             }
         }
     ],
+    images: [
+        { 
+            img: { data: Buffer, contentType: String }
+        }
+    ],
     createAt: {
         type: Date,
         default: Date.now(),

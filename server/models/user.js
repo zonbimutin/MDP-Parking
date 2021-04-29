@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const UserSchema = Schema({
+    username: {
+      type: String,
+      require: true,
+      trim: true,
+      unique: true
+    },
     firstname: {
       type: String,
       require: true,
@@ -25,9 +31,9 @@ const UserSchema = Schema({
       require: true,
       trim: true,
     },
-    isHost: {
-      type: Boolean,
-      default: false,
+    host: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Host",
     },
     createAt: {
       type: Date,

@@ -3,16 +3,22 @@ const { gql } = require('apollo-server');
 const typeDefs = gql`
     type User {
         id: ID
+        host: ID
+        username: String
         firstname: String
         lastname: String
         email: String
         password: String
         avatar: String
-        isHost: Boolean
         createAt: String
     }
     type Token {
         token: String
+    }
+
+    type Host {
+        id: ID
+        createAt: String
     }
 
     type Parking {
@@ -39,11 +45,17 @@ const typeDefs = gql`
     }
 
     input UserInput {
+        username: String!
         firstname: String!
         lastname: String!
         email: String!
         password: String!
     }
+
+    input HostInput {
+        name: String
+    }
+
     input LoginInput {
         email: String!
         password: String!
@@ -78,6 +90,9 @@ const typeDefs = gql`
         #User
         register(input: UserInput): User
         login(input: LoginInput): Token
+
+        #Host
+        registerHost(input: HostInput): Host
 
         #Parking
         registerParking(input: ParkingInput): Parking

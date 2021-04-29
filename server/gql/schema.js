@@ -1,6 +1,9 @@
 const { gql } = require('apollo-server');
+const GraphQLJSON = require('graphql-type-json');
 
 const typeDefs = gql`
+
+    scalar JSON
 
     type User {
         id: ID
@@ -20,6 +23,7 @@ const typeDefs = gql`
 
     type Host {
         id: ID
+        stripeAccount: JSON
         createAt: String
     }
 

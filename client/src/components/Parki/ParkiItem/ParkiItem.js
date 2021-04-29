@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import {Link} from 'react-router-dom'
 import {Image, Button, Rating, Icon} from 'semantic-ui-react'
+import ReservationModal from '../../modals/ReservationModal'
+import AuthModal from '../../modals/AuthModal'
 import './ParkiItem.scss'
 
-const ParkiItem = ({parki}) => {
+const ParkiItem = ({parki, auth}) => {
 
     const [image, setImage] = useState('/assets/images/bg/paralax/bg-image-2.jpg')
 
     useEffect(() => {
+        console.log(auth)
         fetch('https://picsum.photos/1990/900')
             .then(data => setImage(data.url))
     }, [])
@@ -32,9 +36,16 @@ const ParkiItem = ({parki}) => {
                 </div>
                 <div className="actions">
                     <div className="btn-group">
-                        <button className="parki btn btn-gradient-primary">Reserver</button>
-                        <button className="parki btn btn-gradient-primary icon"><Icon name='chat' /></button>
-                        <button className="parki btn btn-gradient-primary icon"><Icon name='plus' /></button>
+                        { auth ? (
+                            <>
+                                <ReservationModal trigger={<button className="parki btn btn-gradient-primary">Reserver</button>} />
+                                <Link className={'parki btn btn-gradient-primary icon'} to={`/parki/${parki.id}`}><Icon name='chat' /></Link>
+                            </>
+                        ) : (
+                            <AuthModal trigger={<button className="parki btn btn-gradient-primary">Reserver</button>} />
+                        )}
+
+                        <Link className={'parki btn btn-gradient-primary icon'} to={`/parki/${parki.id}`}><Icon name='plus' /></Link>
                     </div>
                 </div>
             </div>

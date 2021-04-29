@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl'
 import {Button, Image} from 'semantic-ui-react'
 
+import useAuth from '../../../hooks/useAuth'
+
 import marker from '../../../assets/images/marker.png'
 import markerSelected from '../../../assets/images/markerSelected.png'
 
@@ -11,6 +13,8 @@ import './Mapbox.scss'
 
 
 const Mapbox = ({parkis, selectedParki , handleSelection, currentLocation}) => {
+
+    const { auth } = useAuth()
 
     const [viewport, setViewport] = useState({
         latitude: 45.899780,
@@ -63,7 +67,7 @@ const Mapbox = ({parkis, selectedParki , handleSelection, currentLocation}) => {
                     >
                         {parki == selectedParki && 
                             <div className="Mapbox__cardDeatail parki ui card">
-                                <ParkiItem parki={parki}/>
+                                <ParkiItem auth={auth} parki={parki}/>
                             </div>
                         }
                         <div className={"Mapbox__marker"}>

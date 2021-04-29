@@ -19,11 +19,16 @@
             width: 100%;
 
             button {
-                box-shadow: $shadow-card !important;
+                box-shadow: $shadow-button !important;
                 background: white !important;
             }
         }
 
     }
+
+    &__submitButton {
+        box-shadow: $shadow-button !important;
+    }
+
 
 }

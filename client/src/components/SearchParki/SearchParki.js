@@ -136,7 +136,7 @@ const SearchParki = ({handleSearchSubmit, searchData}) => {
                         <button class="ui icon button"><i aria-hidden="true" class="world icon"></i></button>
                     </div>
                 </div>
-                <button type='submit' className='parki btn btn-gradient-primary btn-lg btn-full'>Rechercher</button>
+                <button type='submit' className='SearchParki__submitButton parki btn btn-gradient-primary btn-lg btn-full'>Rechercher</button>
             </Form>
         </div>
     )

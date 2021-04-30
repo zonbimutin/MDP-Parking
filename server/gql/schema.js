@@ -5,6 +5,13 @@ const typeDefs = gql`
 
     scalar JSON
 
+    ##### types #####    
+    #Token
+    type Token {
+        token: String
+    }
+    
+    #User
     type User {
         id: ID
         host: ID
@@ -16,17 +23,16 @@ const typeDefs = gql`
         avatar: String
         createAt: String
     }
-
-    type Token {
-        token: String
-    }
-
+    
+    
+    #Host
     type Host {
         id: ID
         stripeAccount: JSON
         createAt: String
     }
 
+    #Parking
     type Parking {
         id: ID
         host: ID
@@ -39,16 +45,17 @@ const typeDefs = gql`
         images: [Image]
         createAt: String
     }
-
+    
     type Image {
         img: String
     }
-
+    
     type Coordinates {
         latitud: Float
         longitud: Float
     }
-
+    
+    #Booking
     type Booking {
         id: ID
         idUser: ID
@@ -59,6 +66,9 @@ const typeDefs = gql`
         createAt: String
     }
 
+    ##### Inputs #####    
+    
+    #User
     input UserInput {
         username: String!
         firstname: String!
@@ -66,16 +76,18 @@ const typeDefs = gql`
         email: String!
         password: String!
     }
-
-    input HostInput {
-        name: String
-    }
-
+    
     input LoginInput {
         email: String!
         password: String!
     }
 
+    #Host
+    input HostInput {
+        name: String
+    }
+    
+    #Parking
     input ParkingInput {
         address: String!
         coordinates: CoordinatesInput!
@@ -84,29 +96,35 @@ const typeDefs = gql`
         city: String
         country: String
     }
-
+    
     input CoordinatesInput {
         latitud: Float!
         longitud: Float!
     }
-
+    
+    #Booking
     input BookingInput {
-        idParking: ID!
+        parkingId: ID!
         startDate: String!
         endDate: String!
     }
 
+    ##### Queries #####    
+    
     type Query {
+
         # User
         getUser(input: Int): User
-
+        
         # Parking
-
         getParkings: [Parking]
-
+        
     }
+    
+    ##### Mutations #####  
 
     type Mutation {
+        
         #User
         register(input: UserInput): User
         login(input: LoginInput): Token

@@ -16,16 +16,15 @@ async function register( input, ctx ) {
 
     // Create Stripe account
     const account = await stripe.accounts.create({
-        type: 'custom',
-        country: 'US',
-        email: user.email,
-        capabilities: {
-          card_payments: {requested: true},
-          transfers: {requested: true},
-        },
+        type: 'express',
+        // country: 'FR',
+        // email: user.email,
+        // capabilities: {
+        //   card_payments: {requested: true},
+        //   transfers: {requested: true},
+        // },
     });
     if(!account) throw new Error("Cannot create stripe account");
-    console.log(account)
 
     // create Host
     try {
@@ -37,8 +36,8 @@ async function register( input, ctx ) {
         host.save();
         // Update user host
         await User.findByIdAndUpdate(id, { host: host._id });
-        console.log(user)
         user.save();
+
         return host;
 
     } catch (error) {

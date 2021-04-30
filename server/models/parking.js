@@ -37,27 +37,6 @@ const ParkingShema = Schema({
         enum: ['annecy'],
         default: 'annecy'
     },
-    comments: [
-        {
-            user: {
-                type: mongoose.Schema.Types.ObjectId,
-                require: true,
-                ref: "User",
-            },
-            comment: {
-                type: String, 
-                require: true
-            },
-            note: {
-                type: Number,
-                enum: [1,2,3,4,5]
-            },
-            createAt: {
-                type: Date,
-                default: Date.now(),
-            }
-        }
-    ],
     images: [
         { 
             img: { data: Buffer, contentType: String }

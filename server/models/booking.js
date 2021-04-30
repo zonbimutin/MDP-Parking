@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const BookingSchema = Schema({
 
-    idUser: {
+    userId: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
         ref: "User"
     },
-    idParking: {
+    parkingId: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
         ref: "Parking"
@@ -16,7 +16,7 @@ const BookingSchema = Schema({
     bookingStatus: {
         type: String,
         enum: ["active", "canceled", "validation"],
-        default: "validation"
+        default: "active"
     },
     startDate: {
         type: Date,

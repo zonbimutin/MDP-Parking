@@ -4,9 +4,11 @@ const jwt = require("jsonwebtoken");
 
 
 function createToken(user, SECRET_KEY, expiresIn){
-    const {id, firstname, lastname, email} = user;
+    const {id, username, firstname, lastname, email, host} = user;
     const payload = {
         id,
+        host,
+        username,
         firstname,
         lastname,
         email,
@@ -14,26 +16,24 @@ function createToken(user, SECRET_KEY, expiresIn){
     return jwt.sign(payload, SECRET_KEY, { expiresIn });
 }
 
-
 async function register( input ) {
     const newUser = input;
     // format inputs 
     newUser.email = newUser.email.toLowerCase();
+    newUser.username = newUser.username.toLowerCase();
 
-    const { email, password } = newUser;
+    const { email, password, username } = newUser;
 
     // Revisamos que el email no este en uso
-
     const foundEmail = await User.findOne({ email });
-    if(foundEmail) throw new Error('El email esta en uso');
+    if(foundEmail) throw new Error('Email already exists');
+    
+    const foundUsername = await User.findOne({ username })
+    if(foundUsername) throw new Error('Username already exists');
 
     // Encriptar password
     const salt = await bcryptjs.genSaltSync(10);
     newUser.password = await bcryptjs.hash(password, salt);
-
-    //TODO: crear UserStripe 
-
-    //TODO: guardar UserStripe en User
 
     // Guardar el user en la DB
     try {
@@ -41,7 +41,7 @@ async function register( input ) {
         user.save();
         return user;
     } catch (error) {
-        throw new Error('No se pudo crear el usuario')
+        throw new Error('Cannot create user!')
     }
 }
 
@@ -51,11 +51,11 @@ async function login( input ){
 
     // Verificar que el email existe
     const userFound = await User.findOne({email: email.toLowerCase()})
-    if(!userFound) throw new Error("Email o contraseña no validos");
+    if(!userFound) throw new Error("Email or password invalid");
 
     // Verificar que en password es correcto
     const passwordSuccess = await bcryptjs.compare(password, userFound.password);
-    if(!passwordSuccess) throw new Error("Email o contraseña no validos");
+    if(!passwordSuccess) throw new Error("Email or password invalid");
 
     // Retornar el token js
     

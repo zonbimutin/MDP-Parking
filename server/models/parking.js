@@ -2,22 +2,21 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ParkingShema = Schema({
-    idUser: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
         ref: "User",
     },
+    address: {
+        type: String,
+        require: true
+    },
+    coordinates: {
+        longitud: {type: Number, require: true},
+        latitud: {type: Number, require: true}
+    },
     parkingNumber: {
         type: Number
-    },
-    streetNumber: {
-        type: Number,
-        require: true,
-        trim: true,
-    },
-    streetName: {
-        type: String,
-        require: true,
     },
     zipCode: {
         type: Number,
@@ -38,10 +37,31 @@ const ParkingShema = Schema({
         enum: ['annecy'],
         default: 'annecy'
     },
+    images: [
+        { 
+            data: Buffer, 
+            contentType: String 
+        }
+    ],
+    parkingType: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            require: true,
+            ref: "ParkingType",
+
+        }
+    ],
+    bookings: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            require: true,
+            ref: "Booking",
+        }
+    ],
     createAt: {
         type: Date,
         default: Date.now(),
-      },
+    }
 
 });
 

@@ -3,12 +3,12 @@ const Parking = require("../models/parking");
 
 async function addBooking( input , ctx ) {
 
-    const { startDate, endDate, parkingId } = input
+    const {dates, parkingId } = input
 
 
     // Converting date to timestamp
-    let timeStartDate = new Date(startDate).getTime()
-    let timeEndDate = new Date(endDate).getTime()
+    let timeStartDate = new Date(dates.from).getTime()
+    let timeEndDate = new Date(dates.to).getTime()
 
     // verify valid dates
     if(!(timeStartDate && timeEndDate)) throw new Error('Dates are not valid');
@@ -46,11 +46,19 @@ async function addBooking( input , ctx ) {
           endDate: input.endDate,
         });
         booking.save();
+
+        foundParking.bookings.push(booking._id)
+        foundParking.save()
+
         return booking;
       } catch (error) {
         console.log(error);
         throw new Error('Cannot create reservation')
     }
+}
+
+async function getActiveBookings({from, to}){
+    
 }
 
 module.exports = {

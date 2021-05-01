@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ParkingShema = Schema({
-    host: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
-        ref: "Host",
+        ref: "User",
     },
     address: {
         type: String,
@@ -39,7 +39,23 @@ const ParkingShema = Schema({
     },
     images: [
         { 
-            img: { data: Buffer, contentType: String }
+            data: Buffer, 
+            contentType: String 
+        }
+    ],
+    parkingType: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            require: true,
+            ref: "ParkingType",
+
+        }
+    ],
+    bookings: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            require: true,
+            ref: "Booking",
         }
     ],
     createAt: {

@@ -5,7 +5,9 @@ const typeDefs = gql`
 
     scalar JSON
 
-    ##### types #####    
+    ##### types #####
+
+
     #Token
     type Token {
         token: String
@@ -35,19 +37,23 @@ const typeDefs = gql`
     #Parking
     type Parking {
         id: ID
-        host: ID
+        user: User
         address: String
         coordinates: Coordinates
         parkingNumber: Int
         zipCode: Int
+        bookings: [Booking]
+        parkingType: [ParkingType]
         city: String
         country: String
         images: [Image]
         createAt: String
     }
+
     
     type Image {
-        img: String
+        data: String
+        contentType: String
     }
     
     type Coordinates {
@@ -64,6 +70,13 @@ const typeDefs = gql`
         startDate: String
         endDate: String
         createAt: String
+    }
+
+    type ParkingType {
+        id: ID
+        label: String
+        img: String
+        description: String
     }
 
     ##### Inputs #####    
@@ -101,12 +114,28 @@ const typeDefs = gql`
         latitud: Float!
         longitud: Float!
     }
+
+    input SearchParking {
+        dates: DatesRange
+        types: [ID]
+    }
+
+    input DatesRange {
+        from: String
+        to: String
+    }
     
     #Booking
     input BookingInput {
         parkingId: ID!
-        startDate: String!
-        endDate: String!
+        dates: DatesRange!
+    }
+
+    #ParkingType
+    input ParkingTypeInput {
+        label: String!
+        img: String!
+        description: String
     }
 
     ##### Queries #####    
@@ -114,10 +143,13 @@ const typeDefs = gql`
     type Query {
 
         # User
-        getUser(input: Int): User
+        getUser(id: ID): User
         
         # Parking
         getParkings: [Parking]
+        getParking(id: ID): Parking
+        searchParkings(search: SearchParking): [Parking]
+
         
     }
     
@@ -137,6 +169,9 @@ const typeDefs = gql`
 
         #Booking
         addBooking(input: BookingInput): Booking
+
+        #ParkingType
+        addParkingType(input: ParkingTypeInput): ParkingType
 
     }
 `;

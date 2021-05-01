@@ -1,0 +1,48 @@
+.parki {
+    &.btn {
+        font-family: $body-font ;
+        cursor: pointer;
+        display: inline-block;
+        min-height: 1em;
+        outline: 0;
+        border: none;
+        vertical-align: baseline;
+        color: white;
+        margin: 0 .25em 0 0;
+        padding: 0.4em .8em 0.4em;
+        text-transform: none;
+        text-shadow: none;
+        font-weight: 500;
+        font-size: 1rem;
+        line-height: 1em;
+        font-style: normal;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 2rem;
+        box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
+        -webkit-user-select: none;
+        user-select: none;
+        transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
+        will-change: '';
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    &.icon {
+        padding: .4em .4em .4em;
+        i {
+            margin-right: 0;
+        }
+    }
+
+    &.btn-lg {
+        font-size: 1.5rem;
+    }
+    
+    &.btn-gradient-primary {
+        background: $gradient-primary ;
+    }
+
+    &.btn-full {
+        width: 100%;
+    }
+}

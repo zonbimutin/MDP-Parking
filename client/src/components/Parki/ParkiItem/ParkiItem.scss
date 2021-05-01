@@ -1,0 +1,48 @@
+@import "../../../scss/default/variables";
+
+.ParkiItem {
+    display: flex;
+    width: 100%;
+
+    
+    &__image {
+        flex: 0 0 100px;
+        height: 100px;
+        img {
+            object-fit: cover;
+            height: 100% !important;
+            border-radius: 2rem !important;
+            box-shadow: $shadow-image;
+        }
+    }
+    &__info {
+        padding-left: 1rem;
+        width: 100%;
+        
+        & > div {
+            margin-bottom: .3rem;
+            
+        }
+
+
+        .detail {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            .description {
+                margin-bottom: 0 !important;
+            }
+        }
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0;
+            .btn-group {
+                .btn:last-child {
+
+                    margin-right: 0 !important;
+                }
+            }
+        }
+    }
+}

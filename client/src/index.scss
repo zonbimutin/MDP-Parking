@@ -2,14 +2,40 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: $body-font !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a {
+  font-family: $body-font !important;
+}
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+
+/**************************************
+    Default Styles
+***************************************/
+@import './scss/default/variables';
+@import './scss/default/mixins';
+@import './scss/default/reset';
+// @import 'default/typography';
+@import './scss/default/extend';
+@import './scss/default/animations';
+// @import './scss/default/shortcode';
+@import './scss/default/spacing';
+
+
+
+@import './scss/components/section';
+@import './scss/components/parkiCard';
+@import './scss/components/parkiButton';
+@import './scss/components/parkiForm';
+@import './scss/components/parkiContainer';

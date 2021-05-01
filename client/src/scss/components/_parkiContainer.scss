@@ -1,0 +1,23 @@
+.parki {
+    &.container {
+
+        width: 100%;
+        padding-right: 12.5px;
+        padding-left: 12.5px;
+        margin-right: auto;
+        margin-left: auto;
+
+        @media (min-width: $breakpoint-tablet) {
+            padding: 0 25px;
+        }
+        @media (min-width: $breakpoint-smlg-device) {
+            max-width: 1140px;
+        }
+        @media (min-width: $breakpoint-laptop) {
+            max-width: 1340px;
+        }
+        @media (min-width: $breakpoint-extra) {
+            max-width: 1140px;
+        }
+    }
+}

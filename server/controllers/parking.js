@@ -2,7 +2,7 @@ const Parking = require('../models/parking');
 
 async function register( input, ctx ) {
 
-    
+    console.log(ctx.user)
 
     const newParking = input;
 

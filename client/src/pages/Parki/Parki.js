@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
-import ParkiRegister from '../../components/Parki/ParkiRegister'
+import ParkiDetail from '../../components/Parki/ParkiDetail'
 
 import './Parki.scss';
 
@@ -12,7 +12,7 @@ const Parki = () => {
         <div className="parki container">
             <h1>Parki</h1>
             <h1>{params.idParki}</h1>
-            <ParkiRegister/>
+            <ParkiDetail/>
         </div>
     )
 }

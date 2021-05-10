@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 
 // GraphQL 
 import { useMutation } from "@apollo/client";
@@ -14,8 +14,9 @@ import { toast } from "react-toastify";
 
 import './ParkiRegister'
 
-const ParkiRegister = () => {
+const ParkiRegister = () => {  
 
+    const [image, setImage] = useState(null)
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('')
     const [country, setCountry] = useState('')
@@ -31,6 +32,20 @@ const ParkiRegister = () => {
         location: new window.google.maps.LatLng(45.899780, 6.128350),
         radius: 2000,
         types: ['address']
+    }
+
+    const handleImageChange = (event) => {
+        const newImage = event.target.files[0];
+        console.log(event.target.files[0])
+        const reader = new FileReader();
+        reader.readAsDataURL(newImage);
+        reader.onload = e => {
+            console.log(e)
+            setImage({
+                data: e.target.result,
+                contentType: newImage.type
+            })
+        };
     }
 
 
@@ -61,7 +76,8 @@ const ParkiRegister = () => {
             coordinates: {
                 longitud: coordinates.lng,
                 latitud: coordinates.lat
-            }
+            },
+            images: [image]
         }
 
         try {
@@ -80,6 +96,10 @@ const ParkiRegister = () => {
         }
 
     }
+
+    useEffect(() => {
+        console.log(image)
+    }, [image])
 
 
     // Hook Formik
@@ -175,7 +195,10 @@ const ParkiRegister = () => {
                     </Form.Group>
  
                     <Form.TextArea label='About' placeholder='Tell us more about you...' />
-                    <input type='file' />
+                    <input type='file' onChange={handleImageChange} />
+                    {image && 
+                        <img src={image.data}/>
+                    }
                     <Form.Checkbox label='I agree to the Terms and Conditions' />
                     <Button type="submit" >Submit</Button>
                 </Form>

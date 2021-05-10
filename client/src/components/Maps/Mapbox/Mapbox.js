@@ -62,8 +62,8 @@ const Mapbox = ({parkis, selectedParki , handleSelection, currentLocation}) => {
                 { parkis.map(parki => (
                     <Marker 
                         key={parki.id} 
-                        longitude={parki.coordinates.lon} 
-                        latitude={parki.coordinates.lat}
+                        longitude={parki.coordinates.longitud} 
+                        latitude={parki.coordinates.latitud}
                     >
                         {parki == selectedParki && 
                             <div className="Mapbox__cardDeatail parki ui card">

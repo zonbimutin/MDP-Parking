@@ -108,6 +108,7 @@ const typeDefs = gql`
         zipCode: Int
         city: String
         country: String
+        images: [ImageInput]
     }
     
     input CoordinatesInput {
@@ -123,6 +124,11 @@ const typeDefs = gql`
     input DatesRange {
         from: String
         to: String
+    }
+
+    input ImageInput {
+        data: String
+        contentType: String
     }
     
     #Booking

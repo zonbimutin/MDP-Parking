@@ -1,5 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory} from 'react-router-dom';
+
+//hooks
+import useSearch from '../../hooks/useSearch'
 import PlacesAutocomplete,{ geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import DayRangePickerForm from '../DayRangePickerForm';
 import DayRangePickerInput from '../DayRangePickerInput';
@@ -21,7 +24,10 @@ const getInitialSelectedDaysState = () => {
 }
 
 
-const SearchParki = ({handleSearchSubmit, searchData}) => {
+const SearchParki = () => {
+
+    const {search, setSearch} = useSearch()
+    const history = useHistory();
 
     const [selectedDays, setSelectedDays] = useState(getInitialSelectedDaysState());
     const [address, setAddress] = useState('');
@@ -30,10 +36,6 @@ const SearchParki = ({handleSearchSubmit, searchData}) => {
         lng: null
     })
 
-    const cityOptions = [
-        { key: 'an', value: '74', text: 'Annecy' },
-    ]
-
     const searchOptions = {
         location: new window.google.maps.LatLng(45.899780, 6.128350),
         radius: 2000,
@@ -41,16 +43,17 @@ const SearchParki = ({handleSearchSubmit, searchData}) => {
     }
 
 
+
     const handleSubmit = () => {
         
-        let search = {
+        let newSearch = {
             address: address,
             coordinates: coordinates,
             selectedDays: selectedDays,
             city: 'annecy'
         }
-
-        handleSearchSubmit(search)
+        setSearch(newSearch)
+        history.push('/search')
     }
 
     const handleSelect = async value => {
@@ -71,13 +74,12 @@ const SearchParki = ({handleSearchSubmit, searchData}) => {
     }
 
     useEffect(() => {
-        if(searchData){
-            console.log(searchData)
-            const {selectedDays, address} = searchData
-            setSelectedDays(selectedDays)
-            setAddress(address)
+        if(search){
+            setSelectedDays(search.selectedDays)
+            setAddress(search.address)
+            setCoordinates(search.coordinates)
         }
-    }, [])
+    }, [search])
 
     return (
         <div className={'SearchParki'}>
@@ -113,7 +115,8 @@ const SearchParki = ({handleSearchSubmit, searchData}) => {
                                         return ( 
                                             <div key={suggestion.index} {...getSuggestionItemProps(suggestion, {className: `SearchParki__item item ${suggestion.active ? 'active' : ''}` })}>
                                                 {suggestion.description}
-                                            </div>)
+                                            </div>
+                                        )
                                     })}
                                 </div>
                             </div>

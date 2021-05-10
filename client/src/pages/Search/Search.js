@@ -1,45 +1,56 @@
 import React, {useState,useEffect} from 'react';
-import { useLocation, useParams } from 'react-router-dom'
+//hooks
+import useSearch from '../../hooks/useSearch'
+// GraphQL
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { SEARCH } from "../../gql/parking";
+
 import * as Data from './parki.json'
 import Mapbox from '../../components/Maps/Mapbox'
 import ParkisList from '../../components/ParkisList'
 import SearchParki from '../../components/SearchParki'
-import { Card, Accordion, Icon } from 'semantic-ui-react'
+import { Card, Accordion, Icon, Dimmer, Loader } from 'semantic-ui-react'
 
 
 import './Search.scss'
 
 
 const Search = () => {
-    
-    const [parkis, setParkis] = useState(Data.parkis)
+
+    //hooks
+    const {search, setSearch} = useSearch()
+
+    //Apollo
+    const [getParkings, { loading, data }] = useLazyQuery(SEARCH);
+  
+
+    const [parkis, setParkis] = useState([])
     const [selectedParki, setselectedParki] = useState(null)
     const [currentLocation, setCurrentLocation] = useState(null)
     const [showSearch, setShowSearch] = useState(false)
-    const searchParams = useParams()
-    const location = useLocation()
 
     const handleSelection = parki => {
         setselectedParki(parki)
     }
 
-    const handleSearchSubmit = (data) => {
-        console.log(data)
-        let coordinates = {...data.coordinates}
-        setCurrentLocation(coordinates)
-    }
+    useEffect(() => {
+        if(search) {
+            setCurrentLocation(search.coordinates)
+            getParkings({
+                variables: { search: {dates: search.selectedDays} },
+            })
+        }
+    }, [search])
 
-    const handleAccordionClick = () => {
-
-    }
 
     useEffect(() => {
-        if (location.state.coordinates) {
-            const {coordinates} = location.state
-            setCurrentLocation(coordinates)
+        if (data) {
+            setParkis(data.searchParkings)
+            console.log(data.searchParkings)
+        } else {
+          setParkis([]);
         }
-
-    }, [])
+      }, [data]);
 
     return (
         <div className={'SearchPage'}>
@@ -56,12 +67,12 @@ const Search = () => {
                                     Recherche
                                 </Accordion.Title>
                                 <Accordion.Content active={showSearch}>
-                                    <SearchParki handleSearchSubmit={handleSearchSubmit} searchData={location.state}/>
+                                    <SearchParki/>
                                 </Accordion.Content>
                             </Accordion>
                         </div>
                         <div className={'SearchPage_list'}>
-                            <ParkisList parkis={parkis}  selectedParki={selectedParki} handleSelection={parki => handleSelection(parki)}/>
+                            <ParkisList parkis={parkis} loading={loading}  selectedParki={selectedParki} handleSelection={parki => handleSelection(parki)}/>
                         </div>
                     </Card>
                 </div>

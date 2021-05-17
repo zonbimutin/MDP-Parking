@@ -7,6 +7,10 @@ const typeDefs = gql`
 
     ##### types #####
 
+    #Response 
+    type Response {
+        response: String
+    }
 
     #Token
     type Token {
@@ -150,6 +154,7 @@ const typeDefs = gql`
 
         # User
         getUser(id: ID): User
+        getWishlist: [Parking]
         
         # Parking
         getParkings: [Parking]
@@ -166,6 +171,7 @@ const typeDefs = gql`
         #User
         register(input: UserInput): User
         login(input: LoginInput): Token
+        addIntoWishlist(id: ID) : Response
 
         #Host
         registerHost(input: HostInput): Host

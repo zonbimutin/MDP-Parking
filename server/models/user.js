@@ -33,11 +33,9 @@ const UserSchema = Schema({
     },
     wishlist: [
       {
-        parkingId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Parking",
-          unique: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Parking",
+        unique: true
       }
     ],
     host: {

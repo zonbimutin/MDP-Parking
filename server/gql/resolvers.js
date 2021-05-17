@@ -9,6 +9,7 @@ const resolvers = {
     Query: {
         // User
         getUser: () => userController.getUser(),
+        getWishlist: (_,{}, ctx) => userController.getWishlist(ctx),
 
         // Parking
         getParkings: (_,{}) => parkingController.getAll(),
@@ -20,6 +21,7 @@ const resolvers = {
         // User
         register: (_, { input }) => userController.register( input ),
         login: (_, { input }) => userController.login( input ),
+        addIntoWishlist: (_,{ id }, ctx) => userController.addIntoWishlist(id, ctx),
 
         //Host
         registerHost: (_,{ input }, ctx) => hostController.register( input , ctx ),

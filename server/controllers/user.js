@@ -1,4 +1,5 @@
 const User = require("./../models/user");
+const Parking = require("./../models/parking");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -15,6 +16,8 @@ function createToken(user, SECRET_KEY, expiresIn){
     };
     return jwt.sign(payload, SECRET_KEY, { expiresIn });
 }
+
+// Mutation
 
 async function register( input ) {
     const newUser = input;
@@ -65,6 +68,40 @@ async function login( input ){
 
 }
 
+async function addIntoWishlist(idParking, ctx){
+
+    const {id} = ctx.user
+
+    const parking = await Parking.findById(idParking)
+    if(!parking) throw new Error('Parking not finded')
+
+    try {
+
+        let user = await User.findOne({_id: id})
+        if(user.wishlist.indexOf(idParking) > -1) throw new Error('Paking ya esta en la lista')
+        user.wishlist.push(parking._id)
+        user.save()
+        return 'Saved correctly'
+
+    } catch (error) {
+        throw new Error('Cannot save this parking')
+    }
+}
+
+
+
+// Queries
+
+async function getWishlist(ctx){
+    const {id} = ctx.user
+    try {
+        const user = await User.findById(id).populate('wishlist')
+        return user.wishlist
+    } catch (error) {
+        console.log(error.message)
+    }
+}
+
 function getUser(){
     return null;
 }
@@ -73,4 +110,6 @@ module.exports = {
     register,
     getUser,
     login,
+    getWishlist,
+    addIntoWishlist
 }

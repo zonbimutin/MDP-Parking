@@ -4,7 +4,7 @@ const bcryptjs = require("bcryptjs");
 const jwt      = require("jsonwebtoken");
 
 
-function createToken(user, SECRET_KEY, expiresIn){
+const createToken = (user, SECRET_KEY, expiresIn) => {
     const {id, firstname, lastname, email} = user;
     const payload = {
         id,
@@ -14,7 +14,6 @@ function createToken(user, SECRET_KEY, expiresIn){
     };
     return jwt.sign(payload, SECRET_KEY, { expiresIn });
 }
-
 
 async function register( input ) {
     const newUser = input;
@@ -26,7 +25,8 @@ async function register( input ) {
     // Revisamos que el email no este en uso
 
     const foundEmail = await User.findOne({ email });
-    if(foundEmail) throw new Error('El email esta en uso');
+    if(foundEmail)
+        throw new Error('L\'email est en cours d\'utilisation');
 
     // Encriptar password
     const salt = await bcryptjs.genSaltSync(10);
@@ -36,13 +36,13 @@ async function register( input ) {
 
     //TODO: guardar UserStripe en User
 
-    // Guardar el user en la DB
+    // Save the user in the database
     try {
         const user = new User(newUser);
         user.save();
         return user;
     } catch (error) {
-        throw new Error('No se pudo crear el usuario')
+        throw new Error('L\'utilisateur ne peut pas être créé');
     }
 }
 
@@ -50,13 +50,13 @@ async function login( input ){
 
     const { email, password } = input;
 
-    // Verificar que el email existe
+    // Verify that the email exists
     const userFound = await User.findOne({email: email.toLowerCase()})
-    if(!userFound) throw new Error("Email o contraseña no validos");
+    if(!userFound) throw new Error("Email ou mot de passe invalide");
 
-    // Verificar que en password es correcto
+    // Check that the password exists
     const passwordSuccess = await bcryptjs.compare(password, userFound.password);
-    if(!passwordSuccess) throw new Error("Email o contraseña no validos");
+    if(!passwordSuccess) throw new Error("Email ou mot de passe invalide");
 
     // Retornar el token js
     

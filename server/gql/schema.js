@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     type User {
-        id: ID
+        id: Int # ID
         firstname: String
         lastname: String
         email: String
@@ -21,9 +21,9 @@ const typeDefs = gql`
     }
 
     type Booking {
-        id: ID
-        idCustomer: ID
-        idParking: ID
+        id: Int # ID
+        idCustomer: Int # ID
+        idParking: Int # ID
         startBooking: String
         endBooking: String
         status: String
@@ -32,7 +32,7 @@ const typeDefs = gql`
     }
     
     type Customer {
-        id: ID
+        id: Int # ID
         paymentType: String,
         cardNumber: String,
         securityCode: String,
@@ -42,15 +42,15 @@ const typeDefs = gql`
     }
     
     type Facility {
-        id: ID
+        id: Int # ID
         name: String
         updatedAt: String
         createdAt: String
     }
     
     type Feedback {
-        id: ID
-        idPerson: ID
+        id: Int # ID
+        idPerson: Int # ID
         description: String
         date: String
         updatedAt: String
@@ -58,7 +58,7 @@ const typeDefs = gql`
     }
     
     type Host {
-        id: ID
+        id: Int # ID
         bankName: String
         accountType: String
         accountNumber: String
@@ -68,7 +68,7 @@ const typeDefs = gql`
     }
     
     type HostEarnings {
-        id: ID
+        id: Int # ID
         idPayment: String
         earningsAmount: String
         updatedAt: String
@@ -76,7 +76,7 @@ const typeDefs = gql`
     }
     
     type Location {
-        id: ID
+        id: Int # ID
         country: String
         state: String
         city: String
@@ -86,16 +86,16 @@ const typeDefs = gql`
     }
     
     type ParkiEarnings {
-        id: ID
-        idPayment: ID
+        id: Int # ID
+        idPayment: Int # ID
         earningsAmount: String
         updatedAt: String
         createdAt: String
     }
     
     type Parking {
-        id: ID
-        idUser: ID
+        id: Int # ID
+        idUser: Int # ID
         streetNumber: Int
         streetName: String
         parkingNumber: Int
@@ -107,15 +107,15 @@ const typeDefs = gql`
     }
     
     type ParkingFacilities {
-        id: ID
-        idParking: ID
-        idFacilities: ID
+        id: Int # ID
+        idParking: Int # ID
+        idFacilities: Int # ID
         updatedAt: String
         createdAt: String
     }
     
     type Payment {
-        id: ID
+        id: Int # ID
         idBooking: String
         amount: String
         updatedAt: String
@@ -123,10 +123,10 @@ const typeDefs = gql`
     }
     
     type Rating {
-        id: ID
-        idBooking: ID
-        idCustomer: ID
-        idHost: ID
+        id: Int # ID
+        idBooking: Int # ID
+        idCustomer: Int # ID
+        idHost: Int # ID
         customerRating: String
         customerComment: String
         hostRating: String
@@ -136,17 +136,17 @@ const typeDefs = gql`
     }
     
     type Refund {
-        id: ID 
-        idPayment: ID
+        id: Int # ID 
+        idPayment: Int # ID
         refundDate: String
         updatedAt: String
         createdAt: String
     }
     
     type Review {
-        id: ID
-        idCustomer: ID
-        idParking: ID
+        id: Int # ID
+        idCustomer: Int # ID
+        idParking: Int # ID
         comments: String
         date: String
         updatedAt: String
@@ -166,8 +166,8 @@ const typeDefs = gql`
     }
     
     input BookingInput {
-        idCustomer: ID!
-        idParking: ID!
+        idCustomer: Int! # ID!
+        idParking: Int! # ID!
         startBooking: String
         endBooking: String
         status: String
@@ -185,7 +185,7 @@ const typeDefs = gql`
     }
     
     input FeedbackInput {
-        idPerson: ID!
+        idPerson: Int! # ID!
         description: String!
         date: String!
     }
@@ -210,7 +210,7 @@ const typeDefs = gql`
     }
     
     input ParkiEarningsInput {
-        idPayment: ID!
+        idPayment: Int! # ID!
         earningsAmount: String!
     }
     
@@ -224,8 +224,8 @@ const typeDefs = gql`
     }
     
     input ParkingFacilitiesInput {
-        idParking: ID!
-        idFacilities: ID!
+        idParking: Int! # ID!
+        idFacilities: Int! # ID!
     }
     
     input PaymentInput {
@@ -234,9 +234,9 @@ const typeDefs = gql`
     }
     
     input RatingInput {
-        idBooking: ID!
-        idCustomer: ID!
-        idHost: ID!
+        idBooking: Int! # ID!
+        idCustomer: Int! # ID!
+        idHost: Int! # ID!
         customerRating: String!
         customerComment: String!
         hostRating: String!
@@ -244,23 +244,25 @@ const typeDefs = gql`
     }
     
     input RefundInput {
-        idPayment: ID!
+        idPayment: Int! # ID!
         refundDate: String!
     }
     
     input ReviewInput {
-        idCustomer: ID!
-        idParking: ID!
+        idCustomer: Int! # ID!
+        idParking: Int! # ID!
         comments: String!
         date: String
     }
 
     type Query {
         # User
-        getUser(input: Int): User
+        getUser(input: Int): [User]
+        getUsers: [User]
 
         # Parking
         getParkings: [Parking]
+        getParking: [Parking]
         getParkingsReviews: [Parking]
         getParkingsBookings: [Parking]
         getParkingsHosts: [Parking]

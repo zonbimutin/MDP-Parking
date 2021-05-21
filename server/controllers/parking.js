@@ -15,30 +15,15 @@ async function register( input, ctx ) {
     // format inputs 
     newParking.streetName = newParking.streetName.toLowerCase();
 
-    // Guardar el parking en la DB
+    // Save the parking space in the database
     try {
         const parking = new Parking(newParking);
         parking.save();
         return parking;
     } catch (error) {
-        throw new Error('No se pudo crear el parking')
+        throw new Error('Le parking n\'a pas pu être créé')
     }
 }
-
-/* 
-async function getAll(){    
-    const parkingFound = await Parking.find();
-    console.log(parkingFound);
-    return parkingFound;
-}
-
-module.exports = {
-    register,
-    getAll,
-    getParkingCustomer,
-    newParkingCustomer,
-}
-*/
 
 exports.createParking = (req, res, next) => {
     delete req.body._id;

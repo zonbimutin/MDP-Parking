@@ -17,15 +17,18 @@ const reviewController            = require("./../controllers/review");
 const resolvers = {
     Query: {
         // User
-        getUser: () => userController.getUser(),
+        getUser: ()       => userController.getUser(),
+        getUsers: (_, {}) => userController.getUsers(),
 
         // Parking
-        getParkings                 : (_,{})  => parkingController.getParkings(),
-        getParkingsReviews          : (_,{})  => parkingController.getReviews(),
-        getParkingsBookings         : (_,{})  => parkingController.getBookings(),
-        getParkingsHosts            : (_,{})  => parkingController.getHosts(),
-        getParkingsLocation         : (_,{})  => parkingController.getLocations(),
-        getParkingsParkingFacilities: (_,{})  => parkingController.getParkingFacilities(),
+        getParkings                 : (_, {}) => parkingController.getParkings(),
+        getParking                  : (_, {}) => parkingController.getParking(),
+        getParkingsReviews          : (_, {}) => parkingController.getReviews(),
+        getParkingsBookings         : (_, {}) => parkingController.getBookings(),
+        getParkingsHosts            : (_, {}) => parkingController.getHosts(),
+        getParkingsLocation         : (_, {}) => parkingController.getLocations(),
+        getParkingsParkingFacilities: (_, {}) => parkingController.getParkingFacilities(),
+        getReviews                  : (_, {}) => parkingController.getReviews(),
 
         // Booking
         getBookings         : (_, {}) => bookingController.getBookings(),

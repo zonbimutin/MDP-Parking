@@ -2,7 +2,7 @@ const { gql } = require('apollo-server');
 
 const typeDefs = gql`
     type User {
-        id: Int # ID
+        id: Int
         firstname: String
         lastname: String
         email: String
@@ -21,9 +21,9 @@ const typeDefs = gql`
     }
 
     type Booking {
-        id: Int # ID
-        idCustomer: Int # ID
-        idParking: Int # ID
+        id: Int
+        idCustomer: Int
+        idParking: Int
         startBooking: String
         endBooking: String
         status: String
@@ -262,7 +262,7 @@ const typeDefs = gql`
 
         # Parking
         getParkings: [Parking]
-        getParking: [Parking]
+        getOneParking: [Parking]
         getParkingsReviews: [Parking]
         getParkingsBookings: [Parking]
         getParkingsHosts: [Parking]
@@ -270,6 +270,7 @@ const typeDefs = gql`
         getParkingsParkingFacilities: [Parking]
 
         # Booking
+        getOneBooking: [Booking]
         getBookings: [Booking]
         getBookingsCustomers: [Booking]
         getBookingsRatings: [Booking]
@@ -277,41 +278,50 @@ const typeDefs = gql`
         getBookingsPayments: [Booking]
 
         # Customers
+        getOneCustomer: [Customer]
         getCustomers: [Customer]
         getCustomersBookings: [Customer]
         getCustomersRatings: [Customer]
         getCustomersReview: [Customer]
 
         # Facilities
+        getOneFacility: [Facility]
         getFacilities: [Facility]
         getFacilitiesParkings: [Facility]
 
         # Feedbacks
-        getFeedBacks: [Feedback]
+        getOneFeedback: [Feedback]
+        getFeedbacks  : [Feedback]
 
         # Host Earnings
-        getHostEarnings: [HostEarnings]
+        getOneHostEarning: [HostEarnings]
+        getHostEarnings   : [HostEarnings]
         getHostEarningsPayments: [HostEarnings]
 
         # Host
+        getOneHost: [Host]
         getHosts: [Host]
         getHostsParkings: [Host]
         getHostsRatings: [Host]
 
         # Location
+        getOneLocation: [Location]
         getLocations: [Location]
         getLocationsparkings: [Location]
 
         # Parki Earnings
+        getOneParkiEarning: [ParkiEarnings]
         getParkiEarnings: [ParkiEarnings]
         getParkiEarningsPayments: [ParkiEarnings]
 
         # Parking Facilities
+        getOneParkingFacility: [ParkingFacilities]
         getParkingFacilities: [ParkingFacilities]
         getParkingFacilitiesParkings: [ParkingFacilities]
         getParkingFacilitiesFacilities: [ParkingFacilities]
 
         # Payment
+        getOnePayment: [Payment]
         getPayments: [Payment]
         getPaymentsBookings: [Payment]
         getPaymentsRefunds: [Payment]
@@ -319,16 +329,19 @@ const typeDefs = gql`
         getPaymentsHostEarnings: [Payment]
 
         # Rating
+        getOneRating: [Rating]
         getRatings: [Rating]
         getRatingsCustomers: [Rating]
         getRatingsHosts: [Rating]
         getRatingsBookings: [Rating]
 
         # Refund
+        getOneRefund: [Refund]
         getRefunds: [Refund]
         getRefundsPayments: [Refund]
 
         # Review
+        getOneReview: [Review]
         getReviews: [Review]
         getReviewsCustomers: [Review]
         getReviewsParkings: [Review]

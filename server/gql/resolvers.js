@@ -21,78 +21,91 @@ const resolvers = {
         getUsers: (_, {}) => userController.getUsers(),
 
         // Parking
-        getParkings                 : (_, {}) => parkingController.getParkings(),
-        getParking                  : (_, {}) => parkingController.getParking(),
-        getParkingsReviews          : (_, {}) => parkingController.getReviews(),
-        getParkingsBookings         : (_, {}) => parkingController.getBookings(),
-        getParkingsHosts            : (_, {}) => parkingController.getHosts(),
-        getParkingsLocation         : (_, {}) => parkingController.getLocations(),
-        getParkingsParkingFacilities: (_, {}) => parkingController.getParkingFacilities(),
+        getParkings                  : (_, {}) => parkingController.getParkings(),
+        getOneParking                : (_, {}) => parkingController.getOneParking(),
+        getParkingsReviews           : (_, {}) => parkingController.getReviews(),
+        getParkingsBookings          : (_, {}) => parkingController.getBookings(),
+        getParkingsHosts             : (_, {}) => parkingController.getHosts(),
+        getParkingsLocation          : (_, {}) => parkingController.getLocations(),
+        getParkingsParkingFacilities : (_, {}) => parkingController.getParkingFacilities(),
         getReviews                  : (_, {}) => parkingController.getReviews(),
 
         // Booking
-        getBookings         : (_, {}) => bookingController.getBookings(),
-        getBookingsCustomers: (_, {}) => bookingController.getCustomers(),
-        getBookingsRatings  : (_, {}) => bookingController.getRatings(),
-        getBookingsParkings : (_, {}) => bookingController.getParkings(),
-        getBookingsPayments : (_, {}) => bookingController.getPayments(),
+        getOneBooking        : (_, {}) => bookingController.getOneBooking(),
+        getBookings          : (_, {}) => bookingController.getBookings(),
+        getBookingsCustomers : (_, {}) => bookingController.getCustomers(),
+        getBookingsRatings   : (_, {}) => bookingController.getRatings(),
+        getBookingsParkings  : (_, {}) => bookingController.getParkings(),
+        getBookingsPayments  : (_, {}) => bookingController.getPayments(),
 
         // Customers
-        getCustomers        : (_, {})  => customerController.getCustomers(),
-        getCustomersBookings: (_, {})  => customerController.getBookings(),
-        getCustomersRatings : (_, {})  => customerController.getRatings(),
-        getCustomersReview  : (_, {})  => customerController.getReviews(),
+        getOneCustomer       : (_, {}) => customerController.getOneCustomer(),
+        getCustomers         : (_, {}) => customerController.getCustomers(),
+        getCustomersBookings : (_, {}) => customerController.getBookings(),
+        getCustomersRatings  : (_, {}) => customerController.getRatings(),
+        getCustomersReview   : (_, {}) => customerController.getReviews(),
 
         // Facilities
-        getFacilities        : (_, {}) => facilityController.getFacilities(),
-        getFacilitiesParkings: (_, {}) => facilityController.getParkingFacilities(),
+        getOneFacility        : (_, {}) => facilityController.getOneFacility(),
+        getFacilities         : (_, {}) => facilityController.getFacilities(),
+        getFacilitiesParkings : (_, {}) => facilityController.getParkingFacilities(),
 
         // Feedbacks
-        getFeedBacks: (_, {}) => feedbackController.getFeedbacks(),
+        getOneFeedback : (_, {}) => feedbackController.getOneFeedback(),
+        getFeedbacks   : (_, {}) => feedbackController.getFeedbacks(),
 
         // Host Earnings
-        getHostEarnings        : (_, {}) => hostEarningsController.getHostEarnings(),
-        getHostEarningsPayments: (_, {}) => hostEarningsController.getPayments(),
+        getOneHostEarning       : (_, {}) => hostEarningsController.getOneHostEarnings(),
+        getHostEarnings         : (_, {}) => hostEarningsController.getHostEarnings(),
+        getHostEarningsPayments : (_, {}) => hostEarningsController.getPayments(),
 
         // Host
-        getHosts        : (_, {}) => hostController.getHosts(),
-        getHostsParkings: (_, {}) => hostController.getParkings(),
-        getHostsRatings : (_, {}) => hostController.getRatings(),
+        getOneHost       : (_, {}) => hostController.getOneHost(),
+        getHosts         : (_, {}) => hostController.getHosts(),
+        getHostsParkings : (_, {}) => hostController.getParkings(),
+        getHostsRatings  : (_, {}) => hostController.getRatings(),
 
         // Location
-        getLocations        : (_, {}) => locationController.getLocations(),
-        getLocationsparkings: (_, {}) => locationController.getParkings(),
+        getOneLocation       : (_, {}) => locationController.getOneLocation(), 
+        getLocations         : (_, {}) => locationController.getLocations(),
+        getLocationsparkings : (_, {}) => locationController.getParkings(),
 
         // Parki Earnings
-        getParkiEarnings        : (_, {}) => parkiEarningsController.getParkiEarnings(),
-        getParkiEarningsPayments: (_, {}) => parkiEarningsController.getPayments(),
+        getOneParkiEarning       : (_, {}) => parkiEarningsController.getOneParkiEarnings(),
+        getParkiEarnings         : (_, {}) => parkiEarningsController.getParkiEarnings(),
+        getParkiEarningsPayments : (_, {}) => parkiEarningsController.getPayments(),
 
         // Parking Facilities
-        getParkingFacilities          : (_, {}) => parkingFacilitiesController.getParkingFacilities(),
-        getParkingFacilitiesParkings  : (_, {}) => parkingFacilitiesController.getParkings(),
-        getParkingFacilitiesFacilities: (_, {}) => parkingFacilitiesController.getFacilities(),
+        getOneParkingFacility          : (_, {}) => parkingFacilitiesController.getOneParkingFacilities(),
+        getParkingFacilities           : (_, {}) => parkingFacilitiesController.getParkingFacilities(),
+        getParkingFacilitiesParkings   : (_, {}) => parkingFacilitiesController.getParkings(),
+        getParkingFacilitiesFacilities : (_, {}) => parkingFacilitiesController.getFacilities(),
 
         // Payment
-        getPayments             : (_, {}) => paymentController.getPayments(),
-        getPaymentsBookings     : (_, {}) => paymentController.getBookings(),
-        getPaymentsRefunds      : (_, {}) => paymentController.getRefunds(),
-        getPaymentsParkiEarnings: (_, {}) => paymentController.getParkiEarnings(),
-        getPaymentsHostEarnings : (_, {}) => paymentController.getHostEarnings(),
+        getOnePayment            : (_, {}) => paymentController.getOnePayment(),
+        getPayments              : (_, {}) => paymentController.getPayments(),
+        getPaymentsBookings      : (_, {}) => paymentController.getBookings(),
+        getPaymentsRefunds       : (_, {}) => paymentController.getRefunds(),
+        getPaymentsParkiEarnings : (_, {}) => paymentController.getParkiEarnings(),
+        getPaymentsHostEarnings  : (_, {}) => paymentController.getHostEarnings(),
 
         // Rating
-        getRatings         : (_, {}) => ratingController.getRatings(),
-        getRatingsCustomers: (_, {}) => ratingController.getCustomers(),
-        getRatingsHosts    : (_, {}) => ratingController.getHosts(),
-        getRatingsBookings : (_, {}) => ratingController.getBookings(),
+        getOneRating        : (_, {}) => ratingController.getOneRating(),
+        getRatings          : (_, {}) => ratingController.getRatings(),
+        getRatingsCustomers : (_, {}) => ratingController.getCustomers(),
+        getRatingsHosts     : (_, {}) => ratingController.getHosts(),
+        getRatingsBookings  : (_, {}) => ratingController.getBookings(),
 
         // Refund
-        getRefunds        : (_, {}) => refundController.getRefunds(),
-        getRefundsPayments: (_, {}) => refundController.getPayments(),
+        getOneRefund       : (_, {}) => refundController.getOneRefund(),
+        getRefunds         : (_, {}) => refundController.getRefunds(),
+        getRefundsPayments : (_, {}) => refundController.getPayments(),
 
         // Review
-        getReviews         : (_, {}) => reviewController.getReviews(),
-        getReviewsCustomers: (_, {}) => reviewController.getCustomers(),
-        getParkings        : (_, {}) => reviewController.getParkings(),
+        getOneReview        : (_, {}) => reviewController.getOneReview(),
+        getReviews          : (_, {}) => reviewController.getReviews(),
+        getReviewsCustomers : (_, {}) => reviewController.getCustomers(),
+        getParkings         : (_, {}) => reviewController.getParkings(),
     },
     Mutation: {
         // User

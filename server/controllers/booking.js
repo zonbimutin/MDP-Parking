@@ -3,142 +3,110 @@ const Parking  = require("../models/parking");
 const Rating   = require("../models/rating");
 const Payment  = require("../models/payment");
 const Customer = require("../models/customer");
+const rating = require("../models/rating");
 
-exports.createBooking = (req, res, next) => {
-    delete req.body._id;
-    const booking = new Booking({
-        ...req.body
-    });
+async function createBooking (input, ctx) {
+    const { dates, parkingId } = input;
 
-    booking.save()
-           .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-           .catch(error => res.status(400).json({ error }));
-};
+    // Converting date to timestamp
+    let timeStartDate = new Date(dates.from).getTime();
+    let timeEndDate = new Date(dates.to).getTime();
 
-exports.editBooking = (req, res, next) => {
-    Booking.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-           .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-           .catch(error => res.status(400).json({ error }));
-};
+    // verify valid dates
+    if(!(timeStartDate && timeEndDate)) throw new Error('Dates are not valid');
+    if(timeStartDate > timeEndDate) throw new Error('wrong date range');
 
-exports.deleteBooking = (req, res, next) => {
-    Booking.deleteOne({ _id: req.params.id })
-           .then(()     => res.status(200).json({message: 'Objet suprimé'}))
-           .catch(error => res.status(400).json({ error }));
-};
+    // verify Parking exist
+    const foundParking = await Parking.findOne({ _id: parkingId });
+    if(!foundParking) throw new Error('Parking not exist');
 
-exports.getOneBooking = (req, res, next) => {
-    Booking.findOne({ _id: req.params.id })
-           .then(booking => res.status(200).json(booking))
-           .catch(error  => res.status(404).json({ error }));
-};
+    // verify active bookings
+    const acBookings = await Booking.find({parkingId: parkingId, bookingStatus: "active"});
 
-exports.getBookings = (req, res, next) => {
-    Booking.find()
-           .then(bookings => res.status(200).json(bookings))
-           .catch(error   => res.status(400).json({ error }))
-};
+    if(acBookings) {
+        acBookings.forEach(function(booking){
+            if(booking.endDate >= timeStartDate && booking.endDate <= timeEndDate) 
+                throw new Error('Conflict with booking dates');
+            
+            if(booking.startDate >= timeStartDate && booking.startDate <= timeEndDate) 
+                throw new Error('Conflict with booking dates');
+            
+            if(booking.startDate >= timeStartDate && booking.endDate <= timeEndDate)
+                throw new Error('Conflict with booking dates');
+        })
+    }
 
-exports.getCustomers = (req, res, next) => {
-    Customer.find()
-            .then(customers => res.status(200).json(customers))
-            .catch(error    => res.status(400).json({ error }))
-};
+    // Create booking
+    try {
+        const booking = new Booking({
+            parkingId: input.parkingId,
+            userId: ctx.user.id,
+            startDate: input.startDate,
+            endDate: input.endDate,
+        });
+        
+        booking.save();
+        foundParking.bookings.push(booking._id)
+        foundParking.save()
+        return booking;
 
-exports.getRatings = (req, res, next) => {
-    Rating.find()
-          .then(ratings => res.status(200).json(ratings))
-          .catch(error  => res.status(400).json({ error }))
-};
-
-exports.getParkings = (req, res, next) => {
-    Parking.find()
-           .then(parkings => res.status(200).json(parkings))
-           .catch(error   => res.status(400).json({ error }));
-};
-
-exports.getPayments = (req, res, next) => {
-    Payment.find()
-           .then(payments => res.status(200).json(payments))
-           .catch(error   => res.status(400).json({ error }));
-};
-
-/*
-async function index(req, res, next) {
-    const bookings = await Booking.find({});
-    res.status(200).json(bookings);
+      } catch (error) {
+        console.log(error);
+        throw new Error('Cannot create reservation')
+    }
 }
 
-async function newBooking (req, res, next) {
-    const newBooking = new Booking(req.body);
-    const booking = await newBooking.save();
-    res.status(201).json(booking);
+async function editBooking (id) {
+
+    const booking = await Booking.updateOne();
+    return booking;
 }
 
-async function getBooking (req, res, next) {
-    const { bookingId } = req.params;
-    const booking = await Booking.findById(bookingId);
-    res.status(200).json(booking);
+async function deleteBooking (id) {
+
+    const booking = await Booking.deleteOne();
+    return booking;
 }
 
-async function replaceBooking (req, res, next) {
-    const { bookingId } = req.params;
-    const newBooking = req.body;
-    const result = await Booking.findByIdAndUpdate(bookingId, newBooking);
-    res.status(200).json({ success: true });
+async function getOneBooking (id) {
+    const booking = await Booking.findOne();
+    return booking;
 }
 
-async function updateBooking (req, res, next) {
-    const { bookingId } = req.params;
-    const newBooking = req.body;
-    const result = await Booking.findByIdAndUpdate(bookingId, newBooking);
-    res.status(200).json({ success: true });
+async function getBookings (){
+    const booking = await Booking.find();
+    return booking;
 }
 
-async function getBookingParking (req, res, next) {
-    const { bookingId } = req.params;
-    const booking = await Booking.findById(bookingId);
-    console.log('booking', booking);
+async function getCustomers () {
+    const customers = await Customer.find();
+    return customers;
 }
 
-async function newBookingParking (req, res, next) {
-    const { parkingId } = req.params;
-    const newbooking = new Booking(req.body);
-    const parking = await Parking.findById(parkingId);
+async function getRatings () {
 
-    newBooking.parking = parking;
-    await newBooking.save();
-    parking.bookings.push(newBooking);
-    await parking.save();
-    res.status(201).json(newBooking);
+    const ratings = await Rating.find();
+    return ratings;
 }
 
-async function getBookingRating (req, res, next) {
-    const { bookingId } = req.params;
-    const booking = await Booking.findById(bookingId);
-    console.log('booking', booking);
+async function getParkings () {
+    const parkings = await Parking.find();
+    return parkings;
 }
 
-async function newBookingRating (req, res, next) {host
-    const { ratingId } = req.params;
-    const newbooking = new Booking(req.body);
-    const rating = await Rating.findById(ratingId);
-
-    newBooking.parking = rating;
-    await newBooking.save();
-    rating.bookings.push(newBooking);
-    await rating.save();
-    res.status(201).json(newBooking);
+async function getPayments () {
+    const payments = await Payment.find();
+    return payments;
 }
 
 module.exports = {
-    index,
-    newBooking,
-    getBooking,
-    replaceBooking,
-    updateBooking,
-    getBookingParking,
-    newBookingParking,
-    getBookingRating,
-    newBookingRating,
-} */
+    createBooking,
+    editBooking,
+    deleteBooking,
+    getOneBooking,
+    getBookings,
+    getCustomers,
+    getRatings,
+    getParkings,
+    getPayments,
+};

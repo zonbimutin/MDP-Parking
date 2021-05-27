@@ -1,41 +1,41 @@
 const Location = require("../models/location");
 const Parking  = require("../models/parking");
 
-exports.createLocation = (req, res, next) => {
-    delete req.body._id;
-    const location = new Location({ ...req.body });
+async function createLocation (input, ctx) {
+    const location = await Location();
+    return location;
+}
 
-    location.save()
-            .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-            .catch(error => res.status(400).json({ error }));
-};
+async function editLocation (id) {
+    const location = await Location;
+    return location;
+}
 
-exports.editLocation = (req, res, next) => {
-    Location.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-            .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-            .catch(error => res.status(400).json({ error }));
-};
+async function deleteLocation (id) {
+    const location = await Location.deleteOne();
+    return location;
+}
 
-exports.deleteLocation = (req, res, next) => {
-    Location.deleteOne({ _id: req.params.id })
-            .then(()     => res.status(200).json({message: 'Objet suprimé'}))
-            .catch(error => res.status(400).json({ error }));
-};
+async function getOneLocation (id) {
+    const location = await Location.findOne();
+    return location;
+}
 
-exports.getOneLocation = (req, res, next) => {
-    Location.findOne({ _id: req.params.id })
-            .then(location => res.status(200).json(location))
-            .catch(error   => res.status(404).json({ error }));
-};
+async function getLocations () {
+    const location = await Location.find();
+    return location;
+}
 
-exports.getLocations = (req, res, next) => {
-    Location.find()
-            .then(locations => res.status(200).json(locations))
-            .catch(error    => res.status(400).json({ error }))
-};
+async function getParkings () {
+    const parkings = await Parking.find();
+    return parkings;
+}
 
-exports.getParkings = (req, res, next) => {
-    Parking.find()
-           .then(parkings => res.status(200).json(parkings))
-           .catch(error   => res.status(400).json({ error }));
-};
+module.exports = {
+    createLocation,
+    editLocation,
+    deleteLocation,
+    getOneLocation,
+    getLocations,
+    getParkings,
+}

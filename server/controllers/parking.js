@@ -5,89 +5,85 @@ const Booking           = require("../models/booking");
 const Location          = require("../models/location");
 const ParkingFacilities = require("../models/parking_space_facilities");
 
-async function register( input, ctx ) {
-
+async function register(input, ctx) {
     const newParking = input;
 
-    // Add user id from context
-    newParking.idUser = ctx.user.id
+    //TODO: verify host
+    if(!ctx.user.host) throw new Error("L'utilisateur n'est pas considéré comme un hôte");
+
+    // Add host id from context
+    newParking.user = ctx.user.id
 
     // format inputs 
-    newParking.streetName = newParking.streetName.toLowerCase();
+    newParking.address = newParking.address.toLowerCase();
 
-    // Save the parking space in the database
+    // Keep parking in database
     try {
         const parking = new Parking(newParking);
         parking.save();
         return parking;
     } catch (error) {
-        throw new Error('Le parking n\'a pas pu être créé')
+        throw new Error('Erreur, le parking n\'a pas pu être créé');
     }
 }
 
-exports.createParking = (req, res, next) => {
-    delete req.body._id;
-    const parking = new Parking({ ...req.body });
+async function editParking () {
 
-    parking.save()
-           .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-           .catch(error => res.status(400).json({ error }));
-};
+    const parking = await Parking.updateOne();
+    return parking;
+}
 
-exports.editParking = (req, res, next) => {
-    Parking.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-           .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-           .catch(error => res.status(400).json({ error }));
-};
+async function deleteParking () {
 
-exports.deleteParking = (req, res, next) => {
-    Parking.deleteOne({ _id: req.params.id })
-           .then(()     => res.status(200).json({message: 'Objet suprimé'}))
-           .catch(error => res.status(400).json({ error }));
-};
+    const parking = await Parking.deleteOne();
+    return parking;
+}
 
-exports.getOneParking = (req, res, next) => {
-    Parking.findOne({ _id: req.params.id })
-           .then(facility => res.status(200).json(facility))
-           .catch(error   => res.status(404).json({ error }));
-};
+async function getOneParking (id) {
 
-exports.getParkings = (req, res, next) => {
-    Parking.find()
-           .then(parkings => res.status(200).json(parkings))
-           .catch(error   => res.status(400).json({ error }));
-};
+    const parking = await Parking.findOne();
+    return parking;
+}
 
-exports.getReviews = (req, res, next) => {
-    Review.find()
-          .then(reviews => res.status(200).json(reviews))
-          .catch(error  => res.status(400).json({ error }));
-};
+async function getParkings () {
+    const parkingFound = await Parking.find();
+    return parkingFound;
+}
 
-exports.getBookings = (req, res, next) => {
-    Booking.find()
-           .then(bookings => res.status(200).json(bookings))
-           .catch(error   => res.status(400).json({ error }))
-};
+async function getReviews () {
+    const reviews = await Review.find();
+    return reviews;
+}
 
-exports.getHosts = (req, res, next) => {
-    Host.find()
-        .then(hosts  => res.status(200).json(hosts))
-        .catch(error => res.status(400).json({ error }))
-};
+async function getBookings () {
+    const bookings = await Booking.find();
+    return bookings;
+}
 
-exports.getLocations = (req, res, next) => {
-    Location.find()
-            .then(locations => res.status(200).json(locations))
-            .catch(error    => res.status(400).json({ error }))
-};
+async function getHosts () {
+    const hosts = await Host.find();
+    return hosts;
+}
 
-exports.getParkingFacilities = (req, res, next) => {
-    ParkingFacilities.find()
-                     .then(parkingFacilities => res.status(200).json(parkingFacilities))
-                     .catch(error    => res.status(400).json({ error }));
-};
+async function getLocations () {
+    const locations = await Location.find();
+    return locations;
+}
+
+async function getParkingFacilities () {
+    const parkingFacilities = await ParkingFacilities.find();        
+    return parkingFacilities;
+}
 
 module.exports = {
     register,
-}
+    editParking,
+    deleteParking,
+    getOneParking,
+    getParkings,
+    getReviews,
+    getBookings,
+    getHosts,
+    getLocations,
+    getParkingFacilities,
+};

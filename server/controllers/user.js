@@ -25,6 +25,7 @@ async function register( input ) {
     // Revisamos que el email no este en uso
 
     const foundEmail = await User.findOne({ email });
+    
     if(foundEmail)
         throw new Error('L\'email est en cours d\'utilisation');
 

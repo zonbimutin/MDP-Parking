@@ -1,41 +1,41 @@
 const HostEarnings = require("../models/host_earnings");
 const Payment      = require("../models/payment");
 
-exports.createHostEarnings = (req, res, next) => {
-    delete req.body._id;
-    const payment = new HostEarnings({ ...req.body });
+async function createHostEarnings (input, ctx) {
+    const hostEarning = await HostEarnings();
+    return facility;
+}
 
-    payment.save()
-           .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-           .catch(error => res.status(400).json({ error }));
-};
+async function editHostEarnings (id) {
+    const hostEarning = await HostEarnings();
+    return hostEarning;
+}
 
-exports.editHostEarnings = (req, res, next) => {
-    HostEarnings.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-                .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-                .catch(error => res.status(400).json({ error }));
-};
+async function deleteHostEarnings (id) {
+    const hostEarning = await HostEarnings.deleteOne();
+    return hostEarning;
+}
 
-exports.deleteHostEarnings = (req, res, next) => {
-    HostEarnings.deleteOne({ _id: req.params.id })
-                .then(()     => res.status(200).json({message: 'Objet suprimé'}))
-                .catch(error => res.status(400).json({ error }));
-};
+async function getOneHostEarnings (id) {
+    const hostEarning = await HostEarnings.findOne();
+    return hostEarning;
+}
 
-exports.getOneHostEarnings = (req, res, next) => {
-    HostEarnings.findOne({ _id: req.params.id })
-                .then(hostEarning => res.status(200).json(hostEarning))
-                .catch(error      => res.status(404).json({ error }));
-};
+async function getHostEarnings () {
+    const hostEarnings = await HostEarnings.find();
+    return hostEarnings;
+}
 
-exports.getHostEarnings = (req, res, next) => {
-    HostEarnings.find()
-                .then(hostEarnings => res.status(200).json(hostEarnings))
-                .catch(error       => res.status(400).json({ error }));
-};
+async function getPayments () {
+    const payments = await Payment.find();
+    return payments;
+}
 
-exports.getPayments = (req, res, next) => {
-    Payment.find()
-           .then(payments => res.status(200).json(payments))
-           .catch(error    => res.status(400).json({ error }));
-};
+module.exports = {
+    createHostEarnings,
+    editHostEarnings,
+    deleteHostEarnings,
+    getOneHostEarnings,
+    getHostEarnings,
+    getPayments,
+}

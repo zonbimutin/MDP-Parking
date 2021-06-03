@@ -95,8 +95,13 @@ async function addIntoWishlist(idParking, ctx){
 async function getWishlist(ctx){
     const {id} = ctx.user
     try {
-        const user = await User.findById(id).populate('wishlist')
-        return user.wishlist
+        const user = await User.findById(id)
+        if(!(user.wishlist.length > 0)) return user.wishlist
+
+        const parkings = await Parking.find({_id: {$in: user.wishlist}}).populate('user')
+        console.log(parkings)
+        return parkings
+
     } catch (error) {
         console.log(error.message)
     }

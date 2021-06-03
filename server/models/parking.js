@@ -34,7 +34,6 @@ const ParkingShema = Schema({
     city: {
         type: String,
         require: true,
-        enum: ['annecy'],
         default: 'annecy'
     },
     images: [

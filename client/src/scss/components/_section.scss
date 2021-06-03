@@ -1,7 +1,9 @@
 .section {
     &__title {
         color: $primary-color;
-        margin-bottom: 50px;
-        margin-top: 50px !important;
+        margin: 8rem 0 !important;
+        font-size: 4rem;
+        text-align: center;
+        font-family: 'Didact Gothic', sans-serif;;
     }
 }

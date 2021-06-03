@@ -55,9 +55,9 @@ const Header = () => {
                     <Link className='ui button' to='/'>Louer ma place !</Link>
                     {auth && (
                         <>
-                            <Link className='ui button' to='/'>Historique</Link>
-                            <Link className='ui button' to='/'>Favoris</Link>
-                            <Link className='ui button' to='/'>Messagerie</Link>
+                            <Link className='ui button' to='/history'>Historique</Link>
+                            <Link className='ui button' to='/favorites'>Favoris</Link>
+                            <Link className='ui button' to='/messages'>Messagerie</Link>
                         </>
                     )}
                     <UserMenu/>

@@ -132,11 +132,11 @@ const SearchParki = () => {
                 <div className="SearchParki__typeFilter parki form-group">
                     <label>Type de place :</label>
                     <div className="btn-group">
-                        <button class="ui icon button"><i aria-hidden="true" class="world icon"></i></button>
-                        <button class="ui icon button"><i aria-hidden="true" class="world icon"></i></button>
-                        <button class="ui icon button"><i aria-hidden="true" class="world icon"></i></button>
-                        <button class="ui icon button"><i aria-hidden="true" class="world icon"></i></button>
-                        <button class="ui icon button"><i aria-hidden="true" class="world icon"></i></button>
+                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
+                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
+                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
+                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
+                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
                     </div>
                 </div>
                 <button type='submit' className='SearchParki__submitButton parki btn btn-gradient-primary btn-lg btn-full'>Rechercher</button>

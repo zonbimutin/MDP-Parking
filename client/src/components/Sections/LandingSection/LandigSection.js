@@ -13,7 +13,7 @@ const LandigSection = () => {
 
     useEffect(() => {
 
-        fetch('https://picsum.photos/1990/900')
+        fetch('/assets/images/parki/landing.png')
             .then(data => setBgImage(data.url))
       
     }, [])

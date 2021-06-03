@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 //useAuth
 import useAuth from '../../hooks/useAuth';
@@ -14,6 +14,8 @@ import Logo from '../../assets/images/logo-parki.png';
 const Header = () => {
 
     const { auth } = useAuth();
+
+    const [logo, setLogo] = useState('')
 
     useEffect(() => {
         window.addEventListener('load', function() {
@@ -42,13 +44,20 @@ const Header = () => {
     
       });
 
+    useEffect(() => {
+
+        fetch('/assets/images/parki/logo.svg')
+            .then(data => setLogo(data.url))
+      
+    }, [])
+
 
     return (
         <div className="header header--fixed">
             <div className="header__container">
                 <div className="header__logo">
                     <Link to="/">
-                        <Image src={Logo} alt="Parki" />
+                        <Image src={logo ? logo : Logo} alt="Parki" />
                     </Link>
                 </div>
                 <div className="header__right">

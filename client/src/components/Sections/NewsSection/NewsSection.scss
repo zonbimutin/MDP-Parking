@@ -5,8 +5,8 @@
     &__newsItem {
         padding: 1rem;
 
-        .card:last-child {
-        }
+
+
         .NewsItem {
             
             
@@ -15,12 +15,44 @@
             height: 300px;
             padding: 0 !important;
             overflow: hidden;
+
+            &__image {
+                height: 100%;
+
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
             
             &__infoBox {
                 position: absolute !important;
                 bottom: 0;
                 left: 0;
                 width: 100%;
+                height: 45%;
+                display: flex;
+                &.box-grey {
+
+                    & > div {
+                        background-color:#F2F2F2;
+                    }
+                    .infobox {
+                        &__info {
+                            flex: 1 1 auto;
+                            color: $font-dark;
+    
+                            .title {
+                                font-weight: 900;
+                                padding: 1rem 0;
+                                color: $primary-color !important;
+                            }
+                        }
+                        &__actions {
+                            flex: 0 0 none;
+                        }
+                    }
+                }
                 
                 & > div {
                     border-radius: 1rem 1rem 0 0 !important;
@@ -50,6 +82,7 @@
     }
     .slick-slider {
         padding: 0 1rem;
+        margin-bottom: 3rem;
     }
     .slick-arrow {
         width: 40px !important;

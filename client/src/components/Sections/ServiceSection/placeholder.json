@@ -1,24 +1,24 @@
 {
     "data": [
         {
-            "lable": "",
-            "description": "",
-            "icon": ""
+            "title": "Communauté collaborative",
+            "description": "Ensemble trouvons des parking plus facilement !",
+            "icon": "/assets/images/parki/icons/icon-1.svg"
         },
         {
-            "lable": "",
-            "description": "",
-            "icon": ""
+            "title": "Economiser de l’argent",
+            "description": "Économies jusqu’à 70 % sur vos parkings !",
+            "icon": "/assets/images/parki/icons/icon-2.svg"
         },
         {
-            "lable": "",
-            "description": "",
-            "icon": ""
+            "title": "Gain de temps",
+            "description": "Réservez en avance et garez-vous l’esprit tranquille !",
+            "icon": "/assets/images/parki/icons/icon-3.svg"
         },
         {
-            "lable": "",
-            "description": "",
-            "icon": ""
+            "title": "Inscription gratuite",
+            "description": "Entrez gratuitement dans la communauté Parki !",
+            "icon": "/assets/images/parki/icons/icon-4.svg"
         }
     ]
 }

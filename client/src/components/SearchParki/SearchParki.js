@@ -123,12 +123,7 @@ const SearchParki = () => {
                         )
                     }
                 </PlacesAutocomplete>
-
-                <DayRangePickerInput
-                    selectedDays={selectedDays}
-                    handleDayClick={handleDayClick}
-                    handleResetClick={handleResetClick}
-                />
+                <DayRangePickerForm handleDayClick={handleDayClick} selectedDays={selectedDays}/>
                 <div className="SearchParki__typeFilter parki form-group">
                     <label>Type de place :</label>
                     <div className="btn-group">

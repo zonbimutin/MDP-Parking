@@ -10,7 +10,7 @@ const Footer = () => {
            <div>
                 <div className="Footer__title">Nous Suivre</div>
                 <span>Pour ne rien rater !</span>
-                <Input/>
+                <Input action={{ icon: 'search' }} placeholder='Search...' />
            </div>
            <div>
                <div className="Footer__title">Nous Suivre</div>

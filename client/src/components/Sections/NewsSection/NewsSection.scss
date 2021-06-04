@@ -2,6 +2,10 @@
 
 .NewsSection {
 
+    &__container {
+        padding: 0 25px;
+    }
+
     &__newsItem {
         padding: 1rem;
 

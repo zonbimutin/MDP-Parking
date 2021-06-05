@@ -7,17 +7,17 @@ async function createLocation (input, ctx) {
 }
 
 async function editLocation (id) {
-    const location = await Location;
+    const location = await Location.findByIdAndUpdate(id).populate("idParking");
     return location;
 }
 
 async function deleteLocation (id) {
-    const location = await Location.deleteOne();
+    const location = await Location.findByIdAndDelete(id).populate("idParking");
     return location;
 }
 
 async function getOneLocation (id) {
-    const location = await Location.findOne();
+    const location = await Location.findOne(id).populate("idParking");
     return location;
 }
 

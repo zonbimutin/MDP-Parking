@@ -5,12 +5,14 @@ const Parking = require('../models/parking');
 
 async function createHost(input, ctx) {
     // Verify user
-    const { id } = ctx.user
-    let user = await User.findOne({_id: id})
+    const { id } = ctx.user;
+    let user = await User.findOne({_id: id});
 
-    if(!user) throw new Error("Erreur, l'utilisateur est invalide");
+    if(!user)
+        throw new Error("Erreur, l'utilisateur est invalide");
     // Verify user host 
-    if(user.host) throw new Error("L'utilisateur est un hote");
+    if(user.host)
+        throw new Error("L'utilisateur est un hote");
 
     // Create Stripe account
     const account = await stripe.accounts.create({
@@ -23,7 +25,8 @@ async function createHost(input, ctx) {
         // },
     });
     
-    if(!account) throw new Error("Erreur, impossible de créer un compte stripe");
+    if(!account)
+        throw new Error("Erreur, impossible de créer un compte stripe");
 
     // create Host
     try {
@@ -44,17 +47,17 @@ async function createHost(input, ctx) {
 }
 
 async function editHost (id) {
-    const host = await Host;
+    const host = await Host.findByIdAndUpdate(id).populate("idUser");
     return host;
 }
 
 async function deleteHost (id) {
-    const host = await Host.deleteOne();
+    const host = await Host.findByIdAndDelete(id).populate("idUser");
     return host;
 }
 
 async function getOneHost (id) {
-    const host = await Host.findOne();
+    const host = await Host.findById(id).populate("idUser");
     return host;
 }
 
@@ -64,12 +67,12 @@ async function getHosts () {
 }
 
 async function getRatings () {
-    const ratings = await Rating.find();
+    const ratings = await Rating.find().populate("idBooking");
     return ratings;
 }
 
 async function getParkings () {
-    const parkings = await Parking.find();
+    const parkings = await Parking.find().populate("idParking");
     return parkings;
 }
 

@@ -27,51 +27,48 @@ async function register(input, ctx) {
     }
 }
 
-async function editParking () {
-
-    const parking = await Parking.updateOne();
+async function editParking (id) {
+    const parking = await Parking.findByIdAndUpdate(id).populate("idHost");
     return parking;
 }
 
-async function deleteParking () {
-
-    const parking = await Parking.deleteOne();
+async function deleteParking (id) {
+    const parking = await (await Parking.findByIdAndDelete(id).populate("idHost")).populated("idCustomer").populate("idReview");
     return parking;
 }
 
 async function getOneParking (id) {
-
-    const parking = await Parking.findOne();
+    const parking = await Parking.findById(id).populate("idHost").populate("idCustomer");
     return parking;
 }
 
 async function getParkings () {
-    const parkingFound = await Parking.find();
+    const parkingFound = await Parking.find().populate("idHost").populate("idCustomer");
     return parkingFound;
 }
 
 async function getReviews () {
-    const reviews = await Review.find();
+    const reviews = await Review.find().populate("idParking").populate("idCustomer");
     return reviews;
 }
 
 async function getBookings () {
-    const bookings = await Booking.find();
+    const bookings = await Booking.find().populate("idParking").populate("idCustomer");
     return bookings;
 }
 
 async function getHosts () {
-    const hosts = await Host.find();
+    const hosts = await Host.find().populate("idParking");
     return hosts;
 }
 
 async function getLocations () {
-    const locations = await Location.find();
+    const locations = await Location.find().populate("idParking");
     return locations;
 }
 
 async function getParkingFacilities () {
-    const parkingFacilities = await ParkingFacilities.find();        
+    const parkingFacilities = await ParkingFacilities.find().populate("idParking");        
     return parkingFacilities;
 }
 

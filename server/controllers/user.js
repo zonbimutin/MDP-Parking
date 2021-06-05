@@ -66,17 +66,17 @@ async function login( input ){
 }
 
 async function editUser (id) {
-    const user = await User.updateOne();
+    const user = await User.findByIdAndUpdate(id);
     return user;
 }
 
 async function deleteUser (id) {
-    const user = await User.deleteOne();
+    const user = await User.findByIdAndDelete(id);
     return user;
 }
 
 async function getUser (id) {
-    const user = await User.findOne();
+    const user = await User.findById(id);
     return user;
 }
 
@@ -85,8 +85,8 @@ async function getUsers () {
     return users;
 }
 
-async function getFeedbacks () {
-    const feedbacks = await Feedback.find();
+async function getFeedbacks (userId) {
+    const feedbacks = await Feedback.find({ userId }).populate("idPerson");
     return feedbacks;
 }
 

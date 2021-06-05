@@ -10,32 +10,32 @@ async function createPayment (input, ctx) {
 };
 
 async function editPayment (id) {
-    const payment = await Payment.updateOne();
+    const payment = await Payment.findByIdAndUpdate(id).populate("idCustomer");
     return payment;
 }
 
 async function deletePayment (id) {
-    const payment = await Payment.deleteOne();
+    const payment = await Payment.findByIdAndDelete(id).populate("idCustomer");
     return payment;
 }
 
 async function getOnePayment (id) {
-    const payment = await Payment.findOne();
+    const payment = await Payment.findById(id).populate("idCustomer");
     return payment;
 }
 
 async function getPayments () {
-    const payments = await Payment.find();
+    const payments = await Payment.find().populate("idCustomer");
     return payments;
 }
 
 async function getBookings (){
-    const booking = await Booking.find();
+    const booking = await Booking.find().populate("idCustomer");
     return booking;
 }
 
 async function getRefunds () {
-    const refunds = await Refund.find();
+    const refunds = await Refund.find().populate("idCustomer");
     return refunds;
 }
 

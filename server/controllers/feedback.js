@@ -6,22 +6,22 @@ async function createFeedback (input, ctx) {
 }
 
 async function editFeedback (id) {
-    const feedback = await Feedback.updateOne();
+    const feedback = await Feedback.findByIdAndUpdate(id).populate("idPerson");
     return feedback;
 }
 
 async function deleteFeedback (id) {
-    const feedback = await Feedback.deleteOne();
+    const feedback = await Feedback.findByIdAndDelete(id).populate("idPerson");
     return feedback;
 }
 
 async function getOneFeedback (id) {
-    const feedback = await Feedback.findOne();
+    const feedback = await Feedback.findOne(id).populate("idPerson");
 }
 
 async function getFeedbacks () {
-    const feedback = await Feedback.find();
-    return feedback;
+    const feedbacks = await Feedback.find().populate("idPerson");
+    return feedbacks;
 }
 
 module.exports = {

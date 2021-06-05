@@ -8,27 +8,27 @@ async function createFacility (input, ctx) {
 }
 
 async function editFacility (id) {
-    const facility = await Facility.updateOne();
+    const facility = await Facility.findByIdAndUpdate(id).populate("idParking");
     return facility;
 }
 
 async function deleteFacility (id) {
-    const facility = await Facility.find();
+    const facility = await Facility.findByIdAndDelete(id).populate("idParking");
     return facility;
 }
 
 async function getOneFacility (id) {
-    const facility = await Facility.findOne(id);
+    const facility = await Facility.findById(id).populate("idParking");
     return facility;
 }
 
 async function getFacilities () {
-    const facilities = await Facility.find();
+    const facilities = await Facility.find().populate("idParking");
     return facilities;
 }
 
-async function getParkingFacilities () {
-    const parkingFacilities = await ParkingFacilities.find();        
+async function getParkingFacilities (idParking) {
+    const parkingFacilities = await ParkingFacilities.find({ idParking }).populate("idParking");        
     return parkingFacilities;
 }
 

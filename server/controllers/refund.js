@@ -7,27 +7,27 @@ async function createRefund (input, ctx) {
 }
 
 async function editRefund (id) {
-    const refund = await Refund.updateOne();
+    const refund = await Refund.findByIdAndUpdate(id).populate("idPayment");
     return refund;
 }
 
 async function deleteRefund (id) {
-    const refund = await Refund.deleteOne();
+    const refund = await Refund.findByIdAndDelete(id).populate("idPayment");
     return refund;
 }
 
 async function getOneRefund (id) {
-    const refund = await Refund.findOne();
+    const refund = await Refund.findById(id).populate("idPayment");
     return refund;
 }
 
 async function getRefunds () {
-    const refunds = await Refund.find();
+    const refunds = await Refund.find().populate("idPayment");
     return refunds;
 }
 
 async function getPayments () {
-    const payments = await Payment.find();
+    const payments = await Payment.find().populate("idBooking");
     return payments;
 }
 

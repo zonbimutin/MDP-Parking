@@ -7,27 +7,27 @@ async function createParkiEarnings (input, ctx) {
 }
 
 async function editParkiEarnings (id) {
-    const parkiEarning = await ParkiEarnings.updateOne();
+    const parkiEarning = await ParkiEarnings.findByIdAndUpdate(id).populate("idPayment");
     return parkiEarning;
 }
 
 async function deleteParkiEarnings (id) {
-    const parkiEarning = await ParkiEarnings.deleteOne();
+    const parkiEarning = await ParkiEarnings.findByIdAndDelete(id).populate("idPayment");
     return parkiEarning;
 }
 
 async function getOneParkiEarnings (id) {
-    const parkiEarning = await ParkiEarnings.findOne();
+    const parkiEarning = await ParkiEarnings.findById(id).populate("idPayment");
     return parkiEarning;
 }
 
 async function getParkiEarnings () {
-    const parkiEarning = await ParkiEarnings.find();
+    const parkiEarning = await ParkiEarnings.find().populate("idPayment");
     return parkiEarning;
 }
 
 async function getPayments () {
-    const payments = await Payment.find();
+    const payments = await Payment.find().populate("idBooking");
     return payments;
 }
 

@@ -5,7 +5,8 @@ const Payment  = require("../models/payment");
 const Customer = require("../models/customer");
 const rating   = require("../models/rating");
 
-async function createBooking (input, ctx) {
+async function createBooking (input, ctx)
+{
     const { dates, parkingId } = input;
 
     // Converting date to timestamp
@@ -55,43 +56,46 @@ async function createBooking (input, ctx) {
     }
 }
 
+async function getActiveBookings({from, to}) {
+}
+
 async function editBooking (id) {
-    const booking = await Booking.updateOne();
+    const booking = await Booking.findByIdAndUpdate({id}).populate("idCustomer");
     return booking;
 }
 
 async function deleteBooking (id) {
-    const booking = await Booking.deleteOne();
+    const booking = await Booking.findByIdAndDelete({id}).populate("idCustomer");
     return booking;
 }
 
 async function getOneBooking (id) {
-    const booking = await Booking.findOne();
+    const booking = await Booking.findById({id}).populate("idCustomer");
     return booking;
 }
 
-async function getBookings (){
-    const booking = await Booking.find();
+async function getBookings () {
+    const booking = await Booking.find().populate("idBooking");
     return booking;
 }
 
 async function getCustomers () {
-    const customers = await Customer.find();
+    const customers = await Customer.find().populate("idBooking");
     return customers;
 }
 
 async function getRatings () {
-    const ratings = await Rating.find();
+    const ratings = await Rating.find().populate("idBooking");
     return ratings;
 }
 
 async function getParkings () {
-    const parkings = await Parking.find();
+    const parkings = await Parking.find().populate("idBooking");
     return parkings;
 }
 
 async function getPayments () {
-    const payments = await Payment.find();
+    const payments = await Payment.find().populate("idBooking");
     return payments;
 }
 

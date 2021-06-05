@@ -9,22 +9,22 @@ async function createRating (input, ctx) {
 }
 
 async function editRating (id) {
-    const rating = await Rating.updateOne();
+    const rating = await Rating.findByIdAndUpdate(id).populate("idHost").populate("idCustomer");
     return rating;
 }
 
 async function deleteRating (id) {
-    const rating = await Rating.deleteOne();
+    const rating = await Rating.findByIdAndDelete(id).populate("idHost").populate("idCustomer");
     return rating;
 }
 
 async function getOneRating (id) {
-    const rating = await Rating.findOne();
+    const rating = await Rating.findById(id).populate("idHost").populate("idCustomer");
     return rating;
 }
 
 async function getRatings () {
-    const ratings = await Rating.find();
+    const ratings = await Rating.find().populate("idHost").populate("idCustomer");
     return ratings;
 }
 
@@ -39,7 +39,7 @@ async function getHosts () {
 }
 
 async function getBookings (){
-    const booking = await Booking.find();
+    const booking = await Booking.find().populate("idParking");
     return booking;
 }
 

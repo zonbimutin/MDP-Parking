@@ -8,22 +8,22 @@ async function createReview (input, ctx) {
 }
 
 async function editReview (id) {
-    const review = await Review.updateOne();
+    const review = await Review.findByIdAndUpdate(id).populate("idParking").populate('idCustomer');
     return review;
 }
 
 async function deleteReview (id) {
-    const review = await Review.deleteOne();
+    const review = await Review.findByIdAndDelete(id).populate("idParking").populate('idCustomer');
     return review;
 }
 
 async function getOneReview (id) {
-    const review = await Review.findOne();
+    const review = await Review.findById(id).populate("idParking").populate('idCustomer');
     return review;
 }
 
 async function getReviews () {
-    const review = await Review.find();
+    const review = await Review.find().populate("idParking").populate('idCustomer');
     return review;
 }
 

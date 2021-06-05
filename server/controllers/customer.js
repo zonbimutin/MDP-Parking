@@ -50,17 +50,17 @@ async function createCustomer (input, ctx) {
 }
 
 async function editCustomer (id) {
-    const customers = await Customer.find();
+    const customers = await Customer.findByIdAndUpdate(id);
     return customers;
 }
 
 async function deleteCustomer (id) {
-    const customers = await Customer.find();
+    const customers = await Customer.findByIdAndDelete(id);
     return customers;
 }
 
-async function getOneCustomer () {
-    const customers = await Customer.findOne(id);
+async function getOneCustomer (id) {
+    const customers = await Customer.findById(id);
     return customers;
 }
 
@@ -70,17 +70,17 @@ async function getCustomers () {
 }
 
 async function getBookings (){
-    const booking = await Booking.find();
+    const booking = await Booking.find().populate("idBooking");
     return booking;
 }
 
 async function getRatings () {
-    const ratings = await Rating.find();
+    const ratings = await Rating.find().populate("idRating");
     return ratings;
 }
 
 async function getReviews () {
-    const reviews = await Review.find();
+    const reviews = await Review.find().populate("idReview");
     return reviews;
 }
 

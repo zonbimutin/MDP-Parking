@@ -23,7 +23,7 @@ async function register(input, ctx) {
         parking.save();
         return parking;
     } catch (error) {
-        throw new Error('Erreur, le parking n\'a pas pu être créé');
+        throw new Error("Erreur, le parking n'a pas pu être créé");
     }
 }
 

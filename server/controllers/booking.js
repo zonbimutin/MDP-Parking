@@ -3,7 +3,7 @@ const Parking  = require("../models/parking");
 const Rating   = require("../models/rating");
 const Payment  = require("../models/payment");
 const Customer = require("../models/customer");
-const rating = require("../models/rating");
+const rating   = require("../models/rating");
 
 async function createBooking (input, ctx) {
     const { dates, parkingId } = input;
@@ -13,12 +13,12 @@ async function createBooking (input, ctx) {
     let timeEndDate = new Date(dates.to).getTime();
 
     // verify valid dates
-    if(!(timeStartDate && timeEndDate)) throw new Error('Dates are not valid');
-    if(timeStartDate > timeEndDate) throw new Error('wrong date range');
+    if(!(timeStartDate && timeEndDate)) throw new Error("Erreur, les dates ne sont pas valides");
+    if(timeStartDate > timeEndDate) throw new Error("Erreur, Mauvaise plage de dates");
 
     // verify Parking exist
     const foundParking = await Parking.findOne({ _id: parkingId });
-    if(!foundParking) throw new Error('Parking not exist');
+    if(!foundParking) throw new Error("Erreur, le parking n'existe pas");
 
     // verify active bookings
     const acBookings = await Booking.find({parkingId: parkingId, bookingStatus: "active"});
@@ -26,14 +26,14 @@ async function createBooking (input, ctx) {
     if(acBookings) {
         acBookings.forEach(function(booking){
             if(booking.endDate >= timeStartDate && booking.endDate <= timeEndDate) 
-                throw new Error('Conflict with booking dates');
+                throw new Error("Erreur, il y a un conflit avec les dates de réservation");
             
             if(booking.startDate >= timeStartDate && booking.startDate <= timeEndDate) 
-                throw new Error('Conflict with booking dates');
+                throw new Error("Erreur, il y a un conflit avec les dates de réservation");
             
             if(booking.startDate >= timeStartDate && booking.endDate <= timeEndDate)
-                throw new Error('Conflict with booking dates');
-        })
+                throw new Error("Erreur, il y a un conflit avec les dates de réservation");
+        });
     }
 
     // Create booking
@@ -46,24 +46,21 @@ async function createBooking (input, ctx) {
         });
         
         booking.save();
-        foundParking.bookings.push(booking._id)
-        foundParking.save()
+        foundParking.bookings.push(booking._id);
+        foundParking.save();
         return booking;
-
       } catch (error) {
         console.log(error);
-        throw new Error('Cannot create reservation')
+        throw new Error("Erreur, impossible de créer une réservation");
     }
 }
 
 async function editBooking (id) {
-
     const booking = await Booking.updateOne();
     return booking;
 }
 
 async function deleteBooking (id) {
-
     const booking = await Booking.deleteOne();
     return booking;
 }
@@ -84,7 +81,6 @@ async function getCustomers () {
 }
 
 async function getRatings () {
-
     const ratings = await Rating.find();
     return ratings;
 }

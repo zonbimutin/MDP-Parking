@@ -4,8 +4,8 @@
   "description": "Server of parking app ",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "dev": "nodemon ./index.js"
   },
   "author": "Felipe Alarcon",
   "license": "ISC",
@@ -17,6 +17,13 @@
     "mongoose": "^5.12.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "jest": "^23.6.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__utils"
+    ]
   }
 }

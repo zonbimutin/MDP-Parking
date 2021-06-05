@@ -3,12 +3,12 @@ const Host    = require("../models/host");
 const Rating  = require("../models/rating");
 const Parking = require('../models/parking');
 
-async function createHost() {
+async function createHost(input, ctx) {
     // Verify user
     const { id } = ctx.user
     let user = await User.findOne({_id: id})
 
-    if(!user) throw new Error("Utilisateur invalide");
+    if(!user) throw new Error("Erreur, l'utilisateur est invalide");
     // Verify user host 
     if(user.host) throw new Error("L'utilisateur est un hote");
 
@@ -30,7 +30,7 @@ async function createHost() {
         // Create host
         const host = new Host();
         // Set Stripe account
-        host.stripeAccount = account
+        host.stripeAccount = account;
         // Save host
         host.save();
         // Update user host
@@ -38,9 +38,8 @@ async function createHost() {
         user.save();
 
         return host;
-
     } catch (error) {
-        throw new Error('No se pudo crear el parking')
+        throw new Error("Erreur, Le parking n'a pas pu être créé");
     } 
 }
 

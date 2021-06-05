@@ -4,6 +4,46 @@ const Rating   = require("../models/rating");
 const Booking  = require("../models/booking");
 const Review   = require("../models/review");
 
+async function createHost(input, ctx) {
+    // Verify user
+    const { id } = ctx.user
+    let user = await User.findOne({_id: id})
+
+    if(!user) throw new Error("Erreur, utilisateur invalide");
+    // Verify user host 
+    if(user.host) throw new Error("L'utilisateur est un hote");
+
+    // Create Stripe account
+    const account = await stripe.accounts.create({
+        type: 'express',
+        // country: 'FR',
+        // email: user.email,
+        // capabilities: {
+        //   card_payments: {requested: true},
+        //   transfers: {requested: true},
+        // },
+    });
+    
+    if(!account) throw new Error("Erreur, impossible de créer un compte stripe");
+
+    // create Host
+    try {
+        // Create host
+        const host = new Host();
+        // Set Stripe account
+        host.stripeAccount = account;
+        // Save host
+        host.save();
+        // Update user host
+        await User.findByIdAndUpdate(id, { host: host._id });
+        user.save();
+
+        return host;
+    } catch (error) {
+        throw new Error("Erreur, le parking n'a pas pu être créé");
+    } 
+}
+
 async function createCustomer (input, ctx) {
     const customer = await Customer;
     return customer;

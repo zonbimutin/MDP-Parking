@@ -22,20 +22,19 @@ async function register( input ) {
 
     const { email, password } = newUser;
 
-    // Revisamos que el email no este en uso
-
+    // We check that the email is not in use
     const foundEmail = await User.findOne({ email });
     
     if(foundEmail)
         throw new Error('L\'email est en cours d\'utilisation');
 
-    // Encriptar password
+    // Encrypting the password
     const salt = await bcryptjs.genSaltSync(10);
     newUser.password = await bcryptjs.hash(password, salt);
 
-    //TODO: crear UserStripe 
+    //TODO: create UserStripe 
 
-    //TODO: guardar UserStripe en User
+    //TODO: keep UserStripe in User
 
     // Save the user in the database
     try {
@@ -53,11 +52,11 @@ async function login( input ){
 
     // Verify that the email exists
     const userFound = await User.findOne({email: email.toLowerCase()})
-    if(!userFound) throw new Error("Email ou mot de passe invalide");
+    if(!userFound) throw new Error("Erreur, email ou mot de passe invalide");
 
     // Check that the password exists
     const passwordSuccess = await bcryptjs.compare(password, userFound.password);
-    if(!passwordSuccess) throw new Error("Email ou mot de passe invalide");
+    if(!passwordSuccess) throw new Error("Erreur, email ou mot de passe invalide");
 
     // Retornar el token js
     
@@ -66,56 +65,37 @@ async function login( input ){
     };
 }
 
-/*async function getFeedback(req, res, next) {
-    const { feedback } = req.params;
-    const user = await User.find(feedback);
-    res.status(200).json(user);
+async function editUser (id) {
+    const user = await User.updateOne();
+    return user;
 }
 
-function getUser(){
-    return null;
-}*/
+async function deleteUser (id) {
+    const user = await User.deleteOne();
+    return user;
+}
+
+async function getUser (id) {
+    const user = await User.findOne();
+    return user;
+}
+
+async function getUsers () {
+    const users = await User.find();
+    return users;
+}
+
+async function getFeedbacks () {
+    const feedbacks = await Feedback.find();
+    return feedbacks;
+}
 
 module.exports = {
     register,
     login,
-}
-
-exports.createUser = (req, res, next) => {
-    delete req.body._id;
-    const review = new Review({ ...req.body });
-
-    User.save()
-        .then(()     => res.status(201).json({ message: 'Objet enrtegistré' }))
-        .catch(error => res.status(400).json({ error }));
-};
-
-exports.editUser = (req, res, next) => {
-    User.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-        .then(()     => { res.status(200).json({ message: 'Objet modifié' }) })
-        .catch(error => res.status(400).json({ error }));
-};
-
-exports.deleteUser = (req, res, next) => {
-    User.deleteOne({ _id: req.params.id })
-        .then(()     => res.status(200).json({ message: 'Objet suprimé' }))
-        .catch(error => res.status(400).json({ error }));
-};
-
-exports.getUser = (req, res, next) => {
-    User.findOne({ _id: req.params.id })
-        .then(user   => res.status(200).json(user))
-        .catch(error => res.status(404).json({ error }));
-};
-
-exports.getUsers = (req, res, next) => {
-    User.find()
-        .then(users  => res.status(200).json(users))
-        .catch(error => res.status(400).json({ error }));
-};
-
-exports.getFeedbacks = (req, res, next) => {
-    Feedback.find()
-            .then(feedbacks => res.status(200).json(feedbacks))
-            .catch(error    => res.status(400).json({ error }));
+    editUser,
+    deleteUser,
+    getUser,
+    getUsers,
+    getFeedbacks
 };

@@ -42,8 +42,8 @@ async function addBooking( input , ctx ) {
         const booking = new Booking({
           parkingId: input.parkingId,
           userId: ctx.user.id,
-          startDate: input.startDate,
-          endDate: input.endDate,
+          startDate: timeStartDate,
+          endDate: timeEndDate,
         });
         booking.save();
 

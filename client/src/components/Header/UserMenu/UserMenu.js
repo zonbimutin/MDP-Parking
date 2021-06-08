@@ -47,7 +47,7 @@ const UserMenu = () => {
             button
             className='userMenu__dropdown'
             >
-                <Dropdown.Menu className="parki ui card">
+                <Dropdown.Menu className="parki ui card userMenu__menu">
 
                     <Dropdown.Item>
                         { auth ? (

@@ -8,6 +8,7 @@ import { GET_PARKING } from "../../gql/parking";
 import {Dimmer, Loader} from 'semantic-ui-react'
 
 import ParkiDetail from '../../components/Parki/ParkiDetail'
+import Footer from '../../components/Footer'
 
 import './Parki.scss';
 
@@ -34,17 +35,18 @@ const Parki = () => {
     }, [data]);
 
     return (
-        <div className="parki container">
+        <div className="Parki">
             {loading ? (
-                    <Dimmer active >
-                        <Loader />
-                    </Dimmer>
-                ) : (
-                    <>
-                        <ParkiDetail parki={parki}/>
-                    </>
-                )
+				<Dimmer active inverted>
+					<Loader inverted>Loading</Loader>
+				</Dimmer>
+				) : (
+					<>
+						<ParkiDetail parki={parki}/>
+					</>
+					)
             }
+            <Footer/>
         </div>
     )
 }

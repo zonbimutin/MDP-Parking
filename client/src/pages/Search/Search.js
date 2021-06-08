@@ -1,9 +1,12 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 //hooks
 import useSearch from '../../hooks/useSearch'
 // GraphQL
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { SEARCH } from "../../gql/parking";
+
+// Scroll
+import PerfectScrollbar from 'perfect-scrollbar'
 
 import * as Data from './parki.json'
 import Mapbox from '../../components/Maps/Mapbox'
@@ -17,6 +20,10 @@ import './Search.scss'
 
 const Search = () => {
 
+    //scroll
+    const scrollRef = useRef(null)
+    const ps = useRef(null)
+
     //hooks
     const {search, setSearch} = useSearch()
 
@@ -29,6 +36,7 @@ const Search = () => {
     const [currentLocation, setCurrentLocation] = useState(null)
     const [showSearch, setShowSearch] = useState(false)
 
+
     const handleSelection = parki => {
         setselectedParki(parki)
     }
@@ -36,8 +44,12 @@ const Search = () => {
     useEffect(() => {
         if(search) {
             setCurrentLocation(search.coordinates)
+            let typesIds = search.selectedTypes.map(type => type.id)
             getParkings({
-                variables: { search: {dates: search.selectedDays} },
+                variables: { search: {
+                    dates: search.selectedDays,
+                    types: typesIds
+                } },
             })
         }
     }, [search])
@@ -46,11 +58,19 @@ const Search = () => {
     useEffect(() => {
         if (data) {
             setParkis(data.searchParkings)
-            console.log(data.searchParkings)
         } else {
           setParkis([]);
         }
       }, [data]);
+
+    useEffect(() => {
+        ps.current = new PerfectScrollbar(scrollRef.current);
+    }, [])
+
+
+    useEffect(() => {
+        ps.current.update()
+    }, [parkis])
 
     return (
         <div className={'SearchPage'}>
@@ -71,7 +91,7 @@ const Search = () => {
                                 </Accordion.Content>
                             </Accordion>
                         </div>
-                        <div className={'SearchPage_list'}>
+                        <div className={'SearchPage__list'} ref={scrollRef}>
                             <ParkisList parkis={parkis} loading={loading}  selectedParki={selectedParki} handleSelection={parki => handleSelection(parki)}/>
                         </div>
                     </Card>

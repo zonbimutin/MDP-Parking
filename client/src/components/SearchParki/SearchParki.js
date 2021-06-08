@@ -23,13 +23,47 @@ const getInitialSelectedDaysState = () => {
     };
 }
 
+const getParkingTypes = () => {
+    return [
+        {
+            'id': '60bb174a6dc41f7a0a54862b',
+            label: 'Couvert',
+            img: 'interior',
+        },
+        {
+            'id': '60bb175d6dc41f7a0a54862c',
+            label: 'No Couvert',
+            img: 'exterior'
+        },
+        {
+            'id': '60bb17156dc41f7a0a54862a',
+            label: 'Handicape',
+            img: 'handicape'
+        },
+        {
+            'id': '60bb176f6dc41f7a0a54862d',
+            label: 'Electrique',
+            img: 'electric'
+        },
+        {
+            'id': '608d126d585e840bc84b170b',
+            label: 'Grand place',
+            img: 'large'
+        },
+    ]
+}
+
 
 const SearchParki = () => {
 
     const {search, setSearch} = useSearch()
     const history = useHistory();
 
+    const [parkingTypes, setParkingTypes] = useState(getParkingTypes())
+
     const [selectedDays, setSelectedDays] = useState(getInitialSelectedDaysState());
+    const [selectedTypes, setSelectedTypes] = useState([])
+
     const [address, setAddress] = useState('');
     const [coordinates, setCoordinates] = useState({
         lat: null,
@@ -50,7 +84,8 @@ const SearchParki = () => {
             address: address,
             coordinates: coordinates,
             selectedDays: selectedDays,
-            city: 'annecy'
+            city: 'annecy',
+            selectedTypes: selectedTypes
         }
         setSearch(newSearch)
         history.push('/search')
@@ -73,11 +108,38 @@ const SearchParki = () => {
         setSelectedDays(getInitialSelectedDaysState())
     }
 
+    const handleSelectType = (e, type) => {
+        e.stopPropagation()
+        e.preventDefault()
+        
+        let index = selectedTypes.findIndex(find => find.id == type.id)
+        let newSelected = [...selectedTypes]
+
+        if(index > -1){
+            newSelected.splice(index,1)
+            setSelectedTypes(newSelected)
+
+        } else {
+            newSelected.push(type)
+            setSelectedTypes(newSelected)
+        }
+    }
+
     useEffect(() => {
         if(search){
             setSelectedDays(search.selectedDays)
             setAddress(search.address)
             setCoordinates(search.coordinates)
+
+            let newSelectedTypes = []
+            search.selectedTypes.forEach(type => {
+                let index = parkingTypes.findIndex(find => find.id == type.id)
+                if(index > -1) {
+                    newSelectedTypes.push(parkingTypes[index])
+                }
+            });
+
+            setSelectedTypes(newSelectedTypes)
         }
     }, [search])
 
@@ -127,11 +189,12 @@ const SearchParki = () => {
                 <div className="SearchParki__typeFilter parki form-group">
                     <label>Type de place :</label>
                     <div className="btn-group">
-                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
-                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
-                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
-                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
-                        <button className="ui icon button"><i aria-hidden="true" className="world icon"></i></button>
+                        {parkingTypes.map((type, index) => {
+                            let selected = selectedTypes.indexOf(type) > -1
+                            return (
+                                <button key={index} className={ selected ? "ui icon button selected" : "ui icon button"} onClick={((e) => handleSelectType(e,type))}><img src={"/assets/images/parki/types/" + type.img + ".svg"}></img></button>
+                            )
+                        })}
                     </div>
                 </div>
                 <button type='submit' className='SearchParki__submitButton parki btn btn-gradient-primary btn-lg btn-full'>Rechercher</button>

@@ -1,18 +1,42 @@
+@import "../../scss/default/variables";
+@import "../../scss/index.scss";
+
 .DayRangePickerForm {
+	.DayPicker {
+        width: 100%;
+    }
+
+	.DayPicker-Month {
+		width: 100%;
+
+	}
+
+	.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+
+	}
     
-    .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
-        background-color: #f0f8ff !important;
-        color: #4a90e2;
-      }
-      .Selectable .DayPicker-Day {
-        border-radius: 0 !important;
-      }
-      .Selectable .DayPicker-Day--start {
-        border-top-left-radius: 50% !important;
-        border-bottom-left-radius: 50% !important;
-      }
-      .Selectable .DayPicker-Day--end {
-        border-top-right-radius: 50% !important;
-        border-bottom-right-radius: 50% !important;
-      }
+	.Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+		background-color: $primary-color-claire !important;
+		
+		color: $font-dark !important;
+	}
+	.Selectable .DayPicker-Day {
+		border-radius: 0 !important;
+	}
+	.Selectable .DayPicker-Day--start {
+		border-top-left-radius: 1.4rem !important;
+		border-bottom-left-radius: 1.4rem !important;
+		background: $gradient-primary-vertical-inverted !important;
+	}
+	.Selectable .DayPicker-Day--end {
+		border-top-right-radius: 1.4rem !important;
+		border-bottom-right-radius: 1.4rem !important;
+		background: $gradient-primary-vertical !important;
+	}
+
+	.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+		background: $gradient-primary-vertical !important;
+		color: white !important;
+		border-radius: 1.4rem !important;
+	}
 }

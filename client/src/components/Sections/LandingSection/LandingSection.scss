@@ -3,9 +3,8 @@
 .LandingSection {
 
     position: relative;
-    padding-top: 80px;
-    padding-bottom: 200px;
-    height: 90vh;
+    padding-top: 60px;
+    padding-bottom: 70px;
 
     &__bgImage{
         position: absolute;
@@ -21,7 +20,7 @@
 
     }
    &__searchForm {
-       padding: 50px 2rem !important;
+       padding: 0 2rem !important;
        .card {
            padding: 2.5rem !important;
            .card-title {

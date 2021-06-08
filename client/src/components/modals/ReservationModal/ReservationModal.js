@@ -5,9 +5,10 @@ import Reservation from '../../Reservation'
 
 import './ReservationModal.scss'
 
-const ReservationModal = ({trigger}) => {
+const ReservationModal = ({trigger, parki}) => {
 
     const [open, setOpen] = useState(false);
+    console.log(parki)
 
     return (
         <Modal
@@ -19,7 +20,7 @@ const ReservationModal = ({trigger}) => {
             >
         
             <Modal.Content >
-                <Reservation closeModal={setOpen}/>
+                <Reservation parki={parki} closeModal={setOpen}/>
             </Modal.Content>
 
         </Modal>

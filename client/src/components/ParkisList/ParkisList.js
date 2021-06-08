@@ -7,7 +7,7 @@ import ParkiItem from '../Parki/ParkiItem'
 
 import './ParkisList.scss'
 
-const ParkisList = ({parkis, selectedParki, loading}) => {
+const ParkisList = ({parkis, selectedParki, loading, handleSelection}) => {
 
     const { auth } = useAuth()
 
@@ -19,11 +19,17 @@ const ParkisList = ({parkis, selectedParki, loading}) => {
                 </Dimmer>
             }
             <List divided relaxed>
-                {parkis.map((parki, index) => (
-                    <List.Item key={index} >
-                        <ParkiItem auth={auth} parki={parki}/>
-                    </List.Item>
-                ))}
+                {parkis.map((parki, index) => {
+                    let selected = selectedParki == parki ? true : false
+
+                    return (
+                        <List.Item key={index}  onClick={() => handleSelection(parki)}>
+                            <ParkiItem auth={auth} parki={parki} selected={selected}/>
+                        </List.Item>
+                    )
+                    
+
+                })}
             </List>
         </div>
     )

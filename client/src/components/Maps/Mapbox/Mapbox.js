@@ -40,6 +40,18 @@ const Mapbox = ({parkis, selectedParki , handleSelection, currentLocation}) => {
         }
     }, [currentLocation])
 
+    useEffect(() => {
+        if(selectedParki){
+            let newView = {
+                ...viewport,
+                latitude: selectedParki.coordinates.latitud,
+                longitude: selectedParki.coordinates.longitud
+            }
+            setViewport(newView)
+        }
+    }, [selectedParki])
+
+
     return (
         <div className={"Mapbox"}>
             <ReactMapGL 
@@ -59,22 +71,40 @@ const Mapbox = ({parkis, selectedParki , handleSelection, currentLocation}) => {
                         </div>
                     </Marker>
                 }
-                { parkis.map(parki => (
+
+                { parkis.map(parki => {
+                    if(parki != selectedParki){
+                        return (
+                            <Marker 
+                                key={parki.id} 
+                                longitude={parki.coordinates.longitud} 
+                                latitude={parki.coordinates.latitud}
+                            >
+                                <div className={"Mapbox__marker"}>
+                                    <Image onClick={() => handleSelection(parki)} src={parki == selectedParki ? markerSelected : marker} />
+                                </div>
+                            </Marker>
+                        )
+                    }
+                }
+                )}
+
+                {selectedParki && 
                     <Marker 
-                        key={parki.id} 
-                        longitude={parki.coordinates.longitud} 
-                        latitude={parki.coordinates.latitud}
+                        key={selectedParki.id} 
+                        longitude={selectedParki.coordinates.longitud} 
+                        latitude={selectedParki.coordinates.latitud}
                     >
-                        {parki == selectedParki && 
-                            <div className="Mapbox__cardDeatail parki ui card">
-                                <ParkiItem auth={auth} parki={parki}/>
-                            </div>
-                        }
-                        <div className={"Mapbox__marker"}>
-                            <Image onClick={() => handleSelection(parki)} src={parki == selectedParki ? markerSelected : marker} size='small' />
+                 
+                        <div className="Mapbox__cardDeatail">
+                            <div className="Mapbox__cardDeatail__price"><span>€</span><span>35</span></div>
+                        </div>
+                        <div className={"Mapbox__marker Mapbox__marker--selected"}>
+                            <Image onClick={() => handleSelection(selectedParki)} src={markerSelected} />
                         </div>
                     </Marker>
-                ))}
+                }
+
                 
             </ReactMapGL>
         </div>

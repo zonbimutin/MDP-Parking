@@ -183,10 +183,12 @@ $breakpoint-smlg-device: 1200px;
 $breakpoint-laptop: 1400px;
 $breakpoint-extra: 1919px;
 
-$smlg-device: 'only screen and (max-width: 1199px)';
-$extra-device: 'only screen and (min-width: 1600px) and (max-width: 1919px)';
-$laptop-device: 'only screen and (min-width: 1200px) and (max-width: 1599px)';
-$lg-layout: 'only screen and (min-width: 992px) and (max-width: 1199px)';
+
+$extra-device: 'only screen and (min-width: 1920px)';
+$lg-laptop-device: 'only screen and (min-width: 1700px) and (max-width: 1919px)';
+$md-laptop-device: 'only screen and (min-width: 1500px) and (max-width: 1699px)';
+$sm-laptop-device: 'only screen and (min-width: 1280px) and (max-width: 1499px)';
+$lg-layout: 'only screen and (min-width: 992px) and (max-width: 1279px)';
 $md-layout:'only screen and (min-width: 768px) and (max-width: 991px)';
 $sm-layout:'only screen and (max-width: 767px)';
 $large-mobile: 'only screen and (max-width: 575px)';

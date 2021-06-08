@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import Slider from "react-slick";
 
-import {Button, Card, Image} from 'semantic-ui-react'
+import {Button, Card, Image, Icon} from 'semantic-ui-react'
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -29,8 +29,10 @@ const News = ({news, index, isSecondary}) => {
 							<div className='title'>Un bon plan  pour arrondir les fin du mois</div>
 							<div className='detail'>Vous habitez en ville et disposez d'un parking libre de temps en temps ? Louez-le</div>
 						</div>
-						<div className='infobox_actions'>
-							<Button icon><i className="fas fa-plus"></i></Button>
+						<div className='infobox__actions'>
+              <Button icon className="parki btn-gradient-primary">
+                <Icon name='plus' />
+              </Button>
 						</div>
 					</div>
 				</div>

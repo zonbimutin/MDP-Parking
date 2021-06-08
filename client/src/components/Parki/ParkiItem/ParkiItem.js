@@ -5,7 +5,7 @@ import ReservationModal from '../../modals/ReservationModal'
 import AuthModal from '../../modals/AuthModal'
 import './ParkiItem.scss'
 
-const ParkiItem = ({parki, auth}) => {
+const ParkiItem = ({parki, auth, selected}) => {
 
     const history = useHistory();
     const [image, setImage] = useState('/assets/images/bg/paralax/bg-image-2.jpg')
@@ -24,9 +24,11 @@ const ParkiItem = ({parki, auth}) => {
     }
     
     return (
-        <div className="ParkiItem">
+        <div className={selected ? "ParkiItem ParkiItem--selected" : "ParkiItem"}>
             <div className='ParkiItem__image'>
-                <Image size='medium' rounded src={image} />
+                <div>
+                    <Image  rounded src={image} />
+                </div>
             </div>
             <div className="ParkiItem__info">
                 <div className="ParkiItem__host">
@@ -38,10 +40,15 @@ const ParkiItem = ({parki, auth}) => {
                 <div className="rating">
                     <Rating maxRating={5} defaultRating={3} icon='star' />
                 </div>
+
+                {selected && 
+                    <div className="description">Je loue ma place de parking à la semaine Situé à Annecy centre, À l’abri dans un parking fermer.
+                    </div>
+                }
                 <div className="detail">
-                    <p className="description">{parki.address}</p>
-                    <div className="price">{`${35} €`}</div>
-                </div>
+                        <p className="address">{parki.address}</p>
+                        <div className="price">{`${35} €`}</div>
+                    </div>
                 <div className="actions">
                     <div className="btn-group">
                         { auth ? (

@@ -77,7 +77,25 @@
                         }
                     }
                     &__actions {
-                        flex: 0 0 none;
+                        flex: 0 0 auto;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        padding-left: 1rem;
+
+                        button {
+                            border-radius: 0.7rem;
+                            color: white;
+
+                            &:hover {
+                                opacity: 1 !important;
+                                background: $gradient-primary;
+                                background-image: $gradient-primary !important;
+                                transform: scale(1.1);
+                            }
+
+                        }
+                        
                     }
                 }
             }

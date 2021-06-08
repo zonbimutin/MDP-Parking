@@ -19,6 +19,16 @@ code {
     monospace;
 }
 
+a, a > i {
+  color: $primary-color !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transform: scale(1.01);
+}
+
 
 
 

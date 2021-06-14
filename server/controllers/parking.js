@@ -5,7 +5,7 @@ async function register( input, ctx ) {
     const newParking = input;
 
     //TODO: verify host
-    if(!ctx.user.host) throw new Error("User is not a host");
+    if(!ctx.user.host) throw new Error("Vous ne pouvez pas publier ce parking");
 
     // Add host id from context
     newParking.user = ctx.user.id
@@ -19,7 +19,7 @@ async function register( input, ctx ) {
         parking.save();
         return parking;
     } catch (error) {
-        throw new Error('No se pudo crear el parking')
+        throw new Error('Vous ne pouvez pas publier ce parking')
     }
 }
 

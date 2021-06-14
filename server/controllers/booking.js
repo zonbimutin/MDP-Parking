@@ -1,6 +1,22 @@
 const Booking = require("../models/booking");
 const Parking = require("../models/parking");
 
+async function getUserBookings(ctx){
+
+    try {
+
+        const {id} = ctx.user
+        const bookings = await Booking.find({userId: id}).populate('userId').populate('parkingId')
+        if(!bookings) throw new Error('Parking not found')
+    
+        return bookings;
+
+    } catch (error) {
+        console.log(error);
+        throw new Error(`La reservation n'existe pas`)
+    }
+}
+
 async function addBooking( input , ctx ) {
 
     const {dates, parkingId } = input
@@ -57,10 +73,52 @@ async function addBooking( input , ctx ) {
     }
 }
 
-async function getActiveBookings({from, to}){
+async function getBooking(id, ctx){
     
+    try {
+
+        if(!ctx.user.id) throw new Error(`La reservation n'existe pas `)
+        
+        const booking = await  Booking.findOne({_id: id, userId: ctx.user.id}).populate('parkingId')
+        if(!booking) throw new Error(`La reservation n'existe pas `)
+
+        return booking;
+
+    } catch (error) {
+        console.log(error.message)
+    }
+    
+}
+
+async function cancelBooking(id, ctx){
+    
+    try {
+
+        if(!ctx.user.id) throw new Error(`La reservation n'existe pas `)
+        
+        const booking = await  Booking.findOne({_id: id, userId: ctx.user.id})
+
+        if(!booking) throw new Error(`La reservation n'existe pas `)
+
+        if(booking.bookingStatus == 'canceled') throw new Error('La reservation est déjà annulé')
+
+        booking.bookingStatus = 'canceled'
+
+        console.log(booking)
+
+        booking.save()
+
+        return booking;
+
+    } catch (error) {
+        console.log(error.message)
+    }
+
 }
 
 module.exports = {
     addBooking,
+    getUserBookings,
+    getBooking,
+    cancelBooking
 }

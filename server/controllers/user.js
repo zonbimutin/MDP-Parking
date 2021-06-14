@@ -73,20 +73,52 @@ async function addIntoWishlist(idParking, ctx){
     const {id} = ctx.user
 
     const parking = await Parking.findById(idParking)
+    if(!parking) throw new Error('Vous ne pouvez pas enregistrer ce parking')
+
+    try {
+
+        let user = await User.findOne({_id: id})
+        if(user.wishlist.indexOf(idParking) > -1) throw new Error('Vous avez déjà enregistré ce parking')
+        user.wishlist.push(parking._id)
+        user.save()
+        return 'Vous avez bien enregistré ce parking'
+
+    } catch (error) {
+        throw new Error(error.message)
+    }
+}
+
+async function removeFromWishlist(idParking, ctx){
+
+    const {id} = ctx.user
+
+    const parking = await Parking.findById(idParking)
     if(!parking) throw new Error('Parking not finded')
 
     try {
 
         let user = await User.findOne({_id: id})
-        if(user.wishlist.indexOf(idParking) > -1) throw new Error('Paking ya esta en la lista')
-        user.wishlist.push(parking._id)
+
+        let index = user.wishlist.indexOf(idParking)
+        if(index < 0) throw new Error('vous ne pouvez pas supprimer ce parking')
+
+        console.log(index)
+
+        let newWishlist = user.wishlist
+        newWishlist.splice(index,1)
+
+        user.wishlist = newWishlist
+
         user.save()
-        return 'Saved correctly'
+
+        return 'Le parking a été supprimé'
 
     } catch (error) {
-        throw new Error('Cannot save this parking')
+        throw new Error(error.message)
     }
 }
+
+
 
 
 
@@ -116,5 +148,6 @@ module.exports = {
     getUser,
     login,
     getWishlist,
-    addIntoWishlist
+    addIntoWishlist,
+    removeFromWishlist
 }

@@ -70,7 +70,17 @@ const typeDefs = gql`
         id: ID
         idUser: ID
         idParking: ID
-        bookingSatus: String
+        bookingStatus: String
+        startDate: String
+        endDate: String
+        createAt: String
+    }
+
+    type BookingPopulate {
+        id: ID
+        userId: User
+        parkingId: Parking
+        bookingStatus: String
         startDate: String
         endDate: String
         createAt: String
@@ -155,6 +165,10 @@ const typeDefs = gql`
         # User
         getUser(id: ID): User
         getWishlist: [Parking]
+
+        # Booking
+        getUserBookings: [BookingPopulate]
+        getBooking(id: ID): BookingPopulate
         
         # Parking
         getParkings: [Parking]
@@ -172,6 +186,7 @@ const typeDefs = gql`
         register(input: UserInput): User
         login(input: LoginInput): Token
         addIntoWishlist(id: ID) : Response
+        removeFromWishlist(id: ID) : Response
 
         #Host
         registerHost(input: HostInput): Host
@@ -181,6 +196,7 @@ const typeDefs = gql`
 
         #Booking
         addBooking(input: BookingInput): Booking
+        cancelBooking(id: ID): Booking
 
         #ParkingType
         addParkingType(input: ParkingTypeInput): ParkingType

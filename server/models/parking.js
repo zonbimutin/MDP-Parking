@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const Schema   = mongoose.Schema;
 
+<<<<<<< HEAD
 const ParkingShema = Schema({
     user: {
+=======
+const ParkingSchema = Schema({
+    idLocation: {
+>>>>>>> server
         type: mongoose.Schema.Types.ObjectId,
-        require: true,
-        ref: "User",
+        ref: 'Location',
     },
+<<<<<<< HEAD
     address: {
         type: String,
         require: true
@@ -17,26 +22,29 @@ const ParkingShema = Schema({
     },
     parkingNumber: {
         type: Number
+=======
+
+    idHost: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Host',
     },
-    zipCode: {
-        type: Number,
-        min: 5,
-        trim: true,
-        default: 74000,
-        require: true,
-    },
-    country: {
-        type: String,
-        enum: ['france'],
-        default: 'france',
-        require: true,
-    },
-    city: {
+
+    streetNumber: {
         type: String,
         require: true,
-        enum: ['annecy'],
-        default: 'annecy'
+>>>>>>> server
     },
+
+    streetName: {
+        type: String,
+        require: true,
+    },
+
+    availability: {
+        type: Boolean,
+        require: true,
+    },
+<<<<<<< HEAD
     images: [
         { 
             data: Buffer, 
@@ -62,7 +70,18 @@ const ParkingShema = Schema({
         type: Date,
         default: Date.now(),
     }
+=======
 
+    updatedAt: {
+        type: Date,
+        default: Date.now()
+    },
+>>>>>>> server
+
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    },
 });
 
-module.exports = mongoose.model("Parking", ParkingShema);
+module.exports = mongoose.model("Parking", ParkingSchema);

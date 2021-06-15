@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const Customer = require("../models/customer");
+const Host     = require("../models/host");
+const Schema   = mongoose.Schema;
 
 const UserSchema = Schema({
     username: {
@@ -9,28 +11,25 @@ const UserSchema = Schema({
       unique: true
     },
     firstname: {
-      type: String,
-      require: true,
+        type: String,
+        require: true,
     },
+
     lastname: {
-      type: String,
-      require: true,
+        type: String,
+        require: true,
     },
+
     email: {
-      type: String,
-      require: true,
-      trim: true,
-      unique: true,
+        type: String,
+        require: true,
     },
-    avatar: {
-      type: String,
-      trim: true,
-    },
+
     password: {
-      type: String,
-      require: true,
-      trim: true,
+        type: String,
+        require: true,
     },
+<<<<<<< HEAD
     wishlist: [
       {
         parkingId: {
@@ -43,11 +42,43 @@ const UserSchema = Schema({
     host: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Host",
+=======
+
+    photo: {
+        type: String,
+        require: true,
+>>>>>>> server
     },
-    createAt: {
-      type: Date,
-      default: Date.now(),
+
+    birthDate: {
+        type: Date,
     },
-  });
-  
-  module.exports = mongoose.model("User", UserSchema);
+
+    phone_number: {
+        type: String,
+        require: true,
+    },
+
+    gender: {
+        type: String,
+        enum: ["Homme", "Femme"],
+    },
+
+    accountStatus: {
+        type: String,
+        enum: ["Active", "Inactive"],
+        default: "ACTIVE",
+    },
+
+    updatedAt: {
+        type: Date,
+        default: Date.now(),
+    },
+
+    createdAt: {
+        type: Date,
+        default: Date.now(),
+    },
+});
+
+module.exports = mongoose.model("User", UserSchema);

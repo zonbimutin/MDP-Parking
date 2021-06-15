@@ -12,16 +12,17 @@ mongoose.connect(process.env.BBDD, {
     useFindAndModify: true,
     useCreateIndex: true
 
-}, (err, _) => {
+},
+(err, _) => {
     if(err){
-        console.log('connection incorrecta correcta');
+        console.log('Connexion impossible');
     } 
     else {
         server();
     }
 });
 
-function server() {
+const server = () => {
     const serverApollo = new ApolloServer({
         typeDefs,
         resolvers,
@@ -40,7 +41,7 @@ function server() {
               } catch (error) {
                 console.log("#### ERROR ####");
                 console.log(error);
-                throw new Error("Token invalido");
+                throw new Error("Token invalide");
               }
             }
           },

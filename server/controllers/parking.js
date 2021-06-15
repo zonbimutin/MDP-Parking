@@ -1,13 +1,24 @@
-const Parking = require('../models/parking');
+const Parking           = require('../models/parking');
+const Review            = require("../models/review");
+const Host              = require("../models/host");
+const Booking           = require("../models/booking");
+const Location          = require("../models/location");
+const ParkingFacilities = require("../models/parking_space_facilities");
 
-async function register( input, ctx ) {
-
+<<<<<<< HEAD
     
 
     const newParking = input;
 
     //TODO: verify host
     if(!ctx.user.host) throw new Error("User is not a host");
+=======
+async function register(input, ctx) {
+    const newParking = input;
+
+    //TODO: verify host
+    if(!ctx.user.host) throw new Error("L'utilisateur n'est pas considéré comme un hôte");
+>>>>>>> server
 
     // Add host id from context
     newParking.user = ctx.user.id
@@ -15,22 +26,59 @@ async function register( input, ctx ) {
     // format inputs 
     newParking.address = newParking.address.toLowerCase();
 
-    // Guardar el parking en la DB
+    // Keep parking in database
     try {
         const parking = new Parking(newParking);
         parking.save();
         return parking;
     } catch (error) {
-        throw new Error('No se pudo crear el parking')
+        throw new Error("Erreur, le parking n'a pas pu être créé");
     }
 }
 
-async function getAll(){
-    
-    const parkingFound = await Parking.find();
-    console.log(parkingFound);
-    return parkingFound;
+async function editParking (id) {
+    const parking = await Parking.findByIdAndUpdate(id).populate("idHost");
+    return parking;
+}
 
+async function deleteParking (id) {
+    const parking = await (await Parking.findByIdAndDelete(id).populate("idHost")).populated("idCustomer").populate("idReview");
+    return parking;
+}
+
+async function getOneParking (id) {
+    const parking = await Parking.findById(id).populate("idHost").populate("idCustomer");
+    return parking;
+}
+
+async function getParkings () {
+    const parkingFound = await Parking.find().populate("idHost").populate("idCustomer");
+    return parkingFound;
+}
+
+async function getReviews () {
+    const reviews = await Review.find().populate("idParking").populate("idCustomer");
+    return reviews;
+}
+
+async function getBookings () {
+    const bookings = await Booking.find().populate("idParking").populate("idCustomer");
+    return bookings;
+}
+
+async function getHosts () {
+    const hosts = await Host.find().populate("idParking");
+    return hosts;
+}
+
+async function getLocations () {
+    const locations = await Location.find().populate("idParking");
+    return locations;
+}
+
+async function getParkingFacilities () {
+    const parkingFacilities = await ParkingFacilities.find().populate("idParking");        
+    return parkingFacilities;
 }
 
 async function searchParkings(search) {
@@ -127,7 +175,20 @@ async function getParking(id){
 
 module.exports = {
     register,
+<<<<<<< HEAD
     getAll,
     getParking,
     searchParkings
 }
+=======
+    editParking,
+    deleteParking,
+    getOneParking,
+    getParkings,
+    getReviews,
+    getBookings,
+    getHosts,
+    getLocations,
+    getParkingFacilities,
+};
+>>>>>>> server

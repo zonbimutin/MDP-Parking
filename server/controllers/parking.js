@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const Parking           = require('../models/parking');
 const Review            = require("../models/review");
 const Host              = require("../models/host");
@@ -7,10 +8,16 @@ const ParkingFacilities = require("../models/parking_space_facilities");
 
 <<<<<<< HEAD
     
+=======
+const Parking = require('../models/parking');
+
+async function register( input, ctx ) {
+>>>>>>> client
 
     const newParking = input;
 
     //TODO: verify host
+<<<<<<< HEAD
     if(!ctx.user.host) throw new Error("User is not a host");
 =======
 async function register(input, ctx) {
@@ -19,6 +26,9 @@ async function register(input, ctx) {
     //TODO: verify host
     if(!ctx.user.host) throw new Error("L'utilisateur n'est pas considéré comme un hôte");
 >>>>>>> server
+=======
+    if(!ctx.user.host) throw new Error("Vous ne pouvez pas publier ce parking");
+>>>>>>> client
 
     // Add host id from context
     newParking.user = ctx.user.id
@@ -32,7 +42,11 @@ async function register(input, ctx) {
         parking.save();
         return parking;
     } catch (error) {
+<<<<<<< HEAD
         throw new Error("Erreur, le parking n'a pas pu être créé");
+=======
+        throw new Error('Vous ne pouvez pas publier ce parking')
+>>>>>>> client
     }
 }
 

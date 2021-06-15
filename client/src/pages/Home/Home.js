@@ -7,6 +7,7 @@ import Background from '../../assets/images/bg-home.jpg';
 
 // Sections
 import LandigSection from '../../components/Sections/LandingSection'
+import VideoSection from '../../components/Sections/VideoSection'
 import ServiceSection from '../../components/Sections/ServiceSection'
 import NewsSection from '../../components/Sections/NewsSection'
 import Footer from '../../components/Footer'
@@ -18,6 +19,7 @@ const Home = () => {
     return (
         <div className="Home">
             <LandigSection/>
+            <VideoSection/>
             <ServiceSection/>
             <NewsSection/>
             <Footer/>

@@ -21,5 +21,33 @@
             }
         }
     }
+
+    &__menu {
+        
+        cursor: auto;
+        position: absolute;
+        display: none;
+        outline: 0;
+        top: 100%;
+        min-width: max-content;
+        margin: 0;
+        padding: 0 0;
+        background: #fff;
+        font-size: 1em;
+        text-shadow: none;
+        text-align: left;
+        box-shadow: 0 2px 3px 0 rgb(34 36 38 / 15%);
+        border: 1px solid rgba(34,36,38,.15);
+        border-radius: .28571429rem;
+        transition: opacity .1s ease;
+        z-index: 11;
+        will-change: transform,opacity;
+
+        min-width: 200px !important;
+        border-radius: 1rem !important;
+        .item {
+            min-width: 200px !important;
+        }
+    }
 }
 

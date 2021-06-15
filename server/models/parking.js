@@ -43,6 +43,10 @@ const ParkingSchema = Schema({
     availability: {
         type: Boolean,
         require: true,
+<<<<<<< HEAD
+=======
+        default: 'annecy'
+>>>>>>> client
     },
 <<<<<<< HEAD
     images: [

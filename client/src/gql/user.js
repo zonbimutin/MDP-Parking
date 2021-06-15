@@ -1,5 +1,6 @@
 import { gql } from "@apollo/client";
 
+// Mutations
 export const REGISTER = gql`
   mutation register($input: UserInput) {
     register(input: $input) {
@@ -19,3 +20,20 @@ export const LOGIN = gql`
     }
   }
 `;
+
+
+// Queries
+export const GET_WISHLIST = gql`
+  query getWishlist {
+    getWishlist {
+      id
+      user {
+        id
+        firstname
+        lastname
+        avatar
+      }
+      address
+    }
+  }
+`

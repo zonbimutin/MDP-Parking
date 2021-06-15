@@ -3,8 +3,8 @@
 .LandingSection {
 
     position: relative;
-    padding-top: 80px;
-    padding-bottom: 200px;
+    padding-top: 60px;
+    padding-bottom: 70px;
 
     &__bgImage{
         position: absolute;
@@ -20,9 +20,13 @@
 
     }
    &__searchForm {
-       padding: 50px 0;
+       padding: 0 2rem !important;
        .card {
-           width: 300px !important;
+           padding: 2.5rem !important;
+           .card-title {
+               font-size: 1.5rem !important;
+               font-family: $body-font;
+           }
        }
    } 
 }

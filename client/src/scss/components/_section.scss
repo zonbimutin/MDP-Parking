@@ -1,7 +1,11 @@
 .section {
+    margin-bottom: 8rem;
     &__title {
         color: $primary-color;
-        margin-bottom: 50px;
-        margin-top: 50px !important;
+        margin-bottom: 8rem !important;
+        font-size: 4rem;
+        text-align: center;
+        font-family: 'Rockinsoda', sans-serif;
+        letter-spacing: 0.5rem;
     }
 }

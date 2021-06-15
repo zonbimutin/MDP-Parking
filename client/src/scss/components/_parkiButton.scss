@@ -19,7 +19,7 @@
         text-align: center;
         text-decoration: none;
         border-radius: 2rem;
-        box-shadow: 0 0 0 1px transparent inset, 0 0 0 0 rgb(34 36 38 / 15%) inset;
+        box-shadow: $shadow-card !important;
         -webkit-user-select: none;
         user-select: none;
         transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
@@ -40,6 +40,13 @@
     
     &.btn-gradient-primary {
         background: $gradient-primary ;
+
+        &:hover {
+            opacity: 1 !important;
+            background: $gradient-primary;
+            background-image: $gradient-primary !important;
+            transform: scale(1.1);
+        }
     }
 
     &.btn-full {

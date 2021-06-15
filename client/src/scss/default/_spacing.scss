@@ -156,7 +156,7 @@
     }
 }
 
-@media #{$laptop-device} {
+@media #{$sm-laptop-device} {
     @for $i from 1 through 20 {
         .ptb_lp--#{5 * $i} {
             padding: 5px *$i 0;

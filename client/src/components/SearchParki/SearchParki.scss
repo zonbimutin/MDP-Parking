@@ -3,6 +3,7 @@
 
 .SearchParki {
 
+
     &__menu {
         padding: 1rem;
     }
@@ -21,6 +22,20 @@
             button {
                 box-shadow: $shadow-button !important;
                 background: white !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 45px !important;
+                width: 45px !important;
+                border-radius: 0.8rem;
+
+                &.selected {
+                    background: $gradient-primary !important;
+                    img {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+
             }
         }
 

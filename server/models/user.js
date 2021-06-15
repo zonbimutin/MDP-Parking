@@ -32,11 +32,9 @@ const UserSchema = Schema({
 <<<<<<< HEAD
     wishlist: [
       {
-        parkingId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Parking",
-          unique: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Parking",
+        unique: true
       }
     ],
     host: {

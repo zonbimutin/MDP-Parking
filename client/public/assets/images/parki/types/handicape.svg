@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20.755" height="22.134" viewBox="0 0 20.755 22.134">
+  <g id="bouton-_handicap" data-name="bouton- handicap" transform="translate(-209.972 -520.041)">
+    <circle id="Ellipse_42" data-name="Ellipse 42" cx="3.576" cy="3.576" r="3.576" transform="translate(213.035 520.041)" fill="#1ea6b1"/>
+    <path id="Path_201" data-name="Path 201" d="M216.093,557.83a6.122,6.122,0,1,1,6.122-6.121A6.129,6.129,0,0,1,216.093,557.83Zm0-11.156a5.034,5.034,0,1,0,5.035,5.035A5.04,5.04,0,0,0,216.093,546.674Z" transform="translate(0 -15.655)" fill="#1ea6b1"/>
+    <path id="Path_202" data-name="Path 202" d="M218.619,545.067a.618.618,0,0,1-.376-.127l-4.774-3.637,4.476-5.223a.621.621,0,1,1,.943.809l-3.62,4.223,3.727,2.84a.621.621,0,0,1-.377,1.115Z" transform="translate(-2.143 -9.696)" fill="#1ea6b1" stroke="#fff" stroke-miterlimit="10" stroke-width="0.5"/>
+    <path id="Path_203" data-name="Path 203" d="M244.881,560.76,242,552.891l-3.333.87a.621.621,0,1,1-.314-1.2l4.426-1.155,2.852,7.784,1.38-.476a.621.621,0,1,1,.4,1.175Z" transform="translate(-17.106 -19.219)" fill="#1ea6b1"/>
+    <path id="Path_204" data-name="Path 204" d="M223.528,539l-2.159,2.53,2.868-.135-.3-2.969Z" transform="translate(-6.984 -11.266)" fill="#1ea6b1"/>
+  </g>
+</svg>

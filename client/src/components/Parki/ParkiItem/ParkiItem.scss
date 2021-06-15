@@ -1,16 +1,23 @@
 @import "../../../scss/default/variables";
+@import "../../../scss/index.scss";
 
 .ParkiItem {
     display: flex;
     width: 100%;
+    cursor: pointer;
 
+    &--selected {
+        cursor: default !important;
+        background-color: $primary-color-claire;
+        border-radius: 1rem;
+    }
     
     &__image {
-        flex: 0 0 100px;
-        height: 100px;
+        flex: 0 0 80px;
         img {
             object-fit: cover;
-            height: 100% !important;
+            width: 100% !important;
+            aspect-ratio: 1;
             border-radius: 2rem !important;
             box-shadow: $shadow-image;
         }

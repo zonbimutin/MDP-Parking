@@ -26,8 +26,18 @@ const reviewController            = require("./../controllers/review");
 const resolvers = {
     Query: {
         // User
+<<<<<<< HEAD
         getUser: ()       => userController.getUser(),
         getUsers: (_, {}) => userController.getUsers(),
+=======
+        getUser: () => userController.getUser(),
+        getWishlist: (_,{}, ctx) => userController.getWishlist(ctx),
+
+        //booking
+        getUserBookings: (_,{}, ctx) => bookingController.getUserBookings(ctx),
+        getBooking: (_,{id}, ctx) => bookingController.getBooking(id, ctx),
+
+>>>>>>> client
 
         // Parking
 <<<<<<< HEAD
@@ -127,6 +137,8 @@ const resolvers = {
 <<<<<<< HEAD
         register: (_, { input }) => userController.register( input ),
         login: (_, { input }) => userController.login( input ),
+        addIntoWishlist: (_,{ id }, ctx) => userController.addIntoWishlist(id, ctx),
+        removeFromWishlist: (_,{ id }, ctx) => userController.removeFromWishlist(id, ctx),
 
         //Host
         registerHost: (_,{ input }, ctx) => hostController.register( input , ctx ),
@@ -136,6 +148,7 @@ const resolvers = {
 
         //Booking
         addBooking: (_, { input }, ctx) => bookingController.addBooking( input , ctx ),
+        cancelBooking: (_, { id }, ctx) => bookingController.cancelBooking( id , ctx ),
 
         //ParkingType
         addParkingType: (_, { input } ) => parkingTypeController.addParkingType(input),

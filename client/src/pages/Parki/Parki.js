@@ -1,15 +1,52 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+// Router
 import { useParams } from 'react-router-dom';
+// GraphQL
+import { useLazyQuery, useQuery } from "@apollo/client";
+import { GET_PARKING } from "../../gql/parking";
+//SemanticUi
+import {Dimmer, Loader} from 'semantic-ui-react'
+
+import ParkiDetail from '../../components/Parki/ParkiDetail'
+import Footer from '../../components/Footer'
 
 import './Parki.scss';
 
 const Parki = () => {
     const params = useParams();
-    console.log(params);
+
+    const [id, setId] = useState(null);
+    const [parki, setParki] = useState(null)
+    const { data, loading } = useQuery(GET_PARKING, {
+      variables: { id },
+    });
+
+    useEffect(() => {
+        setId(params.idParki)
+    }, [])
+  
+    useEffect(() => {
+      if (data) {
+        console.log(data)
+        setParki(data.getParking)
+      } else {
+        // setResults([]);
+      }
+    }, [data]);
+
     return (
-        <div>
-            <h1>Parki</h1>
-            <h1>{params.idParki}</h1>
+        <div className="Parki">
+            {loading ? (
+				<Dimmer active inverted>
+					<Loader inverted>Loading</Loader>
+				</Dimmer>
+				) : (
+					<>
+						<ParkiDetail parki={parki}/>
+					</>
+					)
+            }
+            <Footer/>
         </div>
     )
 }

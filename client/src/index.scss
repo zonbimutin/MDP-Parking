@@ -1,5 +1,7 @@
 @import './scss/index.scss';
 
+
+
 body {
   margin: 0;
   font-family: $body-font !important;
@@ -15,6 +17,16 @@ a {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+a, a > i {
+  color: $primary-color !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+  opacity: 1 !important;
+  transform: scale(1.01);
 }
 
 

@@ -7,6 +7,10 @@ const typeDefs = gql`
 
     ##### types #####
 
+    #Response 
+    type Response {
+        response: String
+    }
 
     #Token
     type Token {
@@ -165,7 +169,17 @@ const typeDefs = gql`
         id: ID
         idUser: ID
         idParking: ID
-        bookingSatus: String
+        bookingStatus: String
+        startDate: String
+        endDate: String
+        createAt: String
+    }
+
+    type BookingPopulate {
+        id: ID
+        userId: User
+        parkingId: Parking
+        bookingStatus: String
         startDate: String
         endDate: String
         createAt: String
@@ -315,6 +329,7 @@ const typeDefs = gql`
         zipCode: Int
         city: String
         country: String
+        images: [ImageInput]
     }
     
 <<<<<<< HEAD
@@ -331,6 +346,11 @@ const typeDefs = gql`
     input DatesRange {
         from: String
         to: String
+    }
+
+    input ImageInput {
+        data: String
+        contentType: String
     }
     
     #Booking
@@ -390,6 +410,11 @@ const typeDefs = gql`
 
         # User
         getUser(id: ID): User
+        getWishlist: [Parking]
+
+        # Booking
+        getUserBookings: [BookingPopulate]
+        getBooking(id: ID): BookingPopulate
         
         # Parking
         getParkings: [Parking]
@@ -492,6 +517,8 @@ const typeDefs = gql`
         #User
         register(input: UserInput): User
         login(input: LoginInput): Token
+        addIntoWishlist(id: ID) : Response
+        removeFromWishlist(id: ID) : Response
 
         #Host
         registerHost(input: HostInput): Host
@@ -501,6 +528,7 @@ const typeDefs = gql`
 
         #Booking
         addBooking(input: BookingInput): Booking
+        cancelBooking(id: ID): Booking
 
 <<<<<<< HEAD
         #ParkingType

@@ -5,9 +5,16 @@
     font-family: 'Century Gotham';
     src: url('../assets/fonts/CenturyGotham/CenturyGothic.ttf');
 }
+@font-face {
+    font-family: 'Rockinsoda';
+    src: url('../assets/fonts/rockinsoda/Rockinsoda.ttf');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Monoton&family=Open+Sans:ital,wght@0,700;1,400;1,600&display=swap');
 
 $body-font: 'Century Gotham', sans-serif;
 $heading-font: 'Franklin Gothic Book', sans-serif;
+$heading-font-langing: 'Rocinsoda', sans-serif;
 
 
 // Heading Font List

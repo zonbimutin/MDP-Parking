@@ -1,3 +1,4 @@
+@import "../../scss/default/variables";
 @import "../../scss/index.scss";
 
 .header{
@@ -12,41 +13,24 @@
         top: 0;
         z-index: 999;
         width: 100%;
-        background: $primary-color;
+        background: #fff;
         transition: 0.3s;
+        box-shadow: $shadow-button;
         
         .header__container {
             display: flex !important;
             justify-content: space-between;
             align-items: center;
             width: 100% !important;
-            margin-left: 1rem;
-            margin-right: 1rem;
+            margin: 0 2rem;
         }
     }
 
     &--sticky {
         position: fixed;
         top: 0;
-        background: #ffffff;
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         z-index: 999;
-
-        .header__right {
-
-    
-            & > a {
-
-                color: $font-dark !important;
-    
-                &:hover {
-                    background-color: rgba(255,255,255,0.2) !important;
-                }
-                
-            }
-        }
-
-
     }
 
     &__logo {
@@ -68,11 +52,12 @@
             font-family: $body-font !important;
             background-color: transparent !important;
             font-size: 1.2rem;
-            color: $font-light !important;
+            color: $primary-color !important;
             transition: all ease-out;
 
             &:hover {
-                background-color: rgba(255,255,255,0.2) !important;
+                background-color: $primary-color !important;
+                color: $font-light !important;
             }
             
         }

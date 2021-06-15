@@ -15,11 +15,11 @@
         z-index: 4;
         height: 100%;
         padding: 20px;
-        width: 370px;
 
         .parki {
             &.card {
                 height: 100%;
+                width: 350px;
             }
         }
     }
@@ -29,6 +29,11 @@
 
     &__map {
         height: 100%;
+    }
+
+    &__list {
+        position: relative;
+        overflow: hidden;
     }
 
    

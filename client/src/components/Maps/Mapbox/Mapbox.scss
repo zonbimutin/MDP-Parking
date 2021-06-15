@@ -1,23 +1,39 @@
+@import "../../../scss/default/variables";
+@import "../../../scss/index.scss";
+
 .Mapbox {
     
     height: 100%;
     position: relative;
 
     &__marker {
-        height: 30px;
+        height: 0;
         width: 30px;
-        transform: translate(-50%, -120%);
         cursor: pointer;
+        img {
+            height: auto;
+            width: 100%;
+            position: absolute !important;
+            bottom: 0;
+            left: -50%;
+        }
+    }
+    &__marker--selected {
+        width: 40px;
     }
     &__cardDeatail {
         position: absolute !important;
-        top: calc(-100% - 18px);
-        transform: translate(-50%, -100%);
-
-        height: 100px;
-        width: 300px !important;
-        max-width: max-content !important;
-        height: fit-content;
-        padding: 1.5rem !important;
+        bottom: 55px;
+        transform: translateX(-50%);
+        padding: 0.2rem 1rem !important;
+        border-radius: 1rem;
+        background: $gradient-primary-vertical !important;
+        box-shadow: $shadow-button;
+        
+        &__price {
+            color: white !important;
+            font-size: 1.3rem;
+            font-weight: 900;
+        }
     }
 }

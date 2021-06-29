@@ -25,7 +25,12 @@
         transition: opacity .1s ease,background-color .1s ease,color .1s ease,box-shadow .1s ease,background .1s ease;
         will-change: '';
         -webkit-tap-highlight-color: transparent;
+
+        &:hover {
+            color: white !important;
+        }
     }
+
 
     &.icon {
         padding: .4em .4em .4em;
@@ -51,5 +56,16 @@
 
     &.btn-full {
         width: 100%;
+    }
+
+    &.button {
+        &.btn-hover-gradient-primary {
+            &:hover {
+                background: $gradient-primary ;
+                opacity: 1 !important;
+                background: $gradient-primary;
+                background-image: $gradient-primary !important;
+            }
+        }
     }
 }

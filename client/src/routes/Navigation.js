@@ -1,9 +1,25 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
+//hooks
+import useAuth from '../hooks/useAuth'
 import { map } from 'lodash';
 import { BrowserRouter, Switch, Route  } from 'react-router-dom';
 import routes from './routes';
+import routesHost from './routesHost';
 
 const Navigation = () => {
+
+    const {auth} = useAuth()
+
+    const [hostRoutes, setHostRoutes] = useState([])
+
+    useEffect(() => {
+        if(auth && !!auth.host){
+            console.log("heyyy")
+            setHostRoutes(routesHost)
+        }
+    }, [auth])
+
+
     return (
         <BrowserRouter>
             <Switch>
@@ -21,6 +37,7 @@ const Navigation = () => {
                 )) }
 
             </Switch>
+
         </BrowserRouter>
 
     )

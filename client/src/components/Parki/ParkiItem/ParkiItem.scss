@@ -8,7 +8,7 @@
 
     &--selected {
         cursor: default !important;
-        background-color: $primary-color-claire;
+        // background-color: $primary-color-claire;
         border-radius: 1rem;
     }
     
@@ -22,25 +22,87 @@
             box-shadow: $shadow-image;
         }
     }
+
+    &__container {
+        width: 100%;
+    }
+    
+    &__host {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        span {
+            font-size: 1.3rem;
+            line-height: 0;
+        }
+    }
+
     &__info {
         padding-left: 1rem;
         width: 100%;
         
         & > div {
-            margin-bottom: .3rem;
+            margin-bottom: .5rem;
             
         }
 
 
         .detail {
             display: flex;
+            flex-direction: column;
             width: 100%;
             justify-content: space-between;
-            .description {
-                margin-bottom: 0 !important;
+
+            & > * {
+                margin-bottom: 0.5rem;
+                span {
+                    margin-right: 0.5rem;
+                }
             }
         }
-        .actions {
+
+        .description {
+            margin-bottom: 0 !important;
+            padding: 1rem 0;
+            color: $font-grey !important;
+        }
+
+
+        .btn-group{
+            padding-top: 1rem;
+            display: flex;
+            justify-content: start;
+            width: 100%;
+
+            & > * {
+                margin-right: 8px !important;
+            }
+
+            div, button {
+                box-shadow: $shadow-button !important;
+                background: white !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 45px !important;
+                width: 45px !important;
+                border-radius: 0.8rem;
+
+                &.selected {
+                    background: $gradient-primary !important;
+                    img {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    &__actions {
+
+        &.actions {
             display: flex;
             justify-content: flex-end;
             margin-bottom: 0;
@@ -52,4 +114,5 @@
             }
         }
     }
+
 }

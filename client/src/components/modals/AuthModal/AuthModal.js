@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Modal } from 'semantic-ui-react';
 import Auth from '../../Auth';
 
+import './AuthModal.scss';
+
 const AuthModal = ({trigger}) => {
 
     const [open, setOpen] = useState(false);
@@ -14,6 +16,8 @@ const AuthModal = ({trigger}) => {
             onOpen={() => setOpen(true)}
             open={open}
             trigger={trigger}
+            size="small"
+            className="AuthModal parki "
             >
         
             <Modal.Content >

@@ -13,66 +13,66 @@
         flex-wrap: wrap;
     }
     
-    .Service { 
+}
+.Service { 
 
-        width: 100%;
-        margin-bottom: 2rem;
+    width: 100%;
+    margin-bottom: 2rem;
 
-        @media (min-width: $breakpoint-sm-device) {
-            width: 50%;
+    @media (min-width: $breakpoint-sm-device) {
+        width: 50%;
+    }
+    @media (min-width: $breakpoint-tablet) {
+        width: 25%;
+        margin-bottom: 0;
+    }
+    @media (min-width: $breakpoint-smlg-device) {
+        width: 25%;
+    }
+    @media (min-width: $breakpoint-laptop) {
+        width: 25%;
+    }
+    @media (min-width: $breakpoint-extra) {
+        width: 25%;
+    }
+    
+
+    
+
+    &__image {
+        height: 150px;
+        width: 150px;
+        margin: auto;
+        background-color: #F2F2F2;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: $shadow-image;
+
+
+        img {
+            height: 70px;
+            width: auto;
         }
-        @media (min-width: $breakpoint-tablet) {
-            width: 25%;
-            margin-bottom: 0;
-        }
-        @media (min-width: $breakpoint-smlg-device) {
-            width: 25%;
-        }
-        @media (min-width: $breakpoint-laptop) {
-            width: 25%;
-        }
-        @media (min-width: $breakpoint-extra) {
-            width: 25%;
-        }
-        
+    }
 
-        
+    &__description {
+        width: 80%;
+        padding: 2rem 0;
+        margin: auto;
+        text-align: center;
 
-        &__image {
-            height: 150px;
-            width: 150px;
-            margin: auto;
-            background-color: #F2F2F2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: $shadow-image;
-
-
-            img {
-                height: 70px;
-                width: auto;
-            }
+        &__title {
+            font-size: 1.3rem;
+            color: $primary-color;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
         &__description {
-            width: 80%;
-            padding: 2rem 0;
-            margin: auto;
-            text-align: center;
-
-            &__title {
-                font-size: 1.3rem;
-                color: $primary-color;
-                font-weight: 700;
-                margin-bottom: 4px;
-            }
-
-            &__description {
-                color: grey;
-                font-size: 1rem;
-            }
+            color: grey;
+            font-size: 1rem;
         }
     }
 }

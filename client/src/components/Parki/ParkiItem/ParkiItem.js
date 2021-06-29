@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import {Image, Button, Rating, Icon} from 'semantic-ui-react'
+import {Image, Icon, Popup} from 'semantic-ui-react'
 import ReservationModal from '../../modals/ReservationModal'
 import AuthModal from '../../modals/AuthModal'
 import './ParkiItem.scss'
@@ -22,6 +22,8 @@ const ParkiItem = ({parki, auth, selected}) => {
         }
         history.push(location)
     }
+
+    console.log(parki)
     
     return (
         <div className={selected ? "ParkiItem ParkiItem--selected" : "ParkiItem"}>
@@ -30,30 +32,39 @@ const ParkiItem = ({parki, auth, selected}) => {
                     <Image  rounded src={image} />
                 </div>
             </div>
-            <div className="ParkiItem__info">
-                <div className="ParkiItem__host">
-                    <div>
+            <div className="ParkiItem__container">
+                <div className="ParkiItem__info">
+                    <div className="ParkiItem__host">
                         <Image src={image} avatar />
                         <span>{`${parki.user.firstname} ${parki.user.lastname}`}</span>
                     </div>
-                </div>
-                <div className="rating">
-                    <Rating maxRating={5} defaultRating={3} icon='star' />
-                </div>
 
-                {selected && 
-                    <div className="description">Je loue ma place de parking à la semaine Situé à Annecy centre, À l’abri dans un parking fermer.
+                    {selected && 
+                        <>
+                            <div className="description">{parki.description}</div>
+                            <div className="ParkiDetail__info__section__description">
+                                <div className="btn-group">
+                                {parki.parkingType.map((type, index) => (
+                                    <Popup key={index} content={`${type.label}`} trigger={<div className={"ui icon button"}><img src={`/assets/images/parki/types/${type.img}.svg`}></img></div>} />
+                                    
+                                ))}
+                                    
+                                </div>
+                            </div>
+
+                        </>
+                    
+                    }
+                    <div className="detail">
+                        <div className="address">{parki.address}</div>
+                        <div className="address"><span>Disponibilité:</span>{parki.disponibility >= 24 ? '24h' : 'de 7h00 à 22h00'}</div>
                     </div>
-                }
-                <div className="detail">
-                        <p className="address">{parki.address}</p>
-                        <div className="price">{`${35} €`}</div>
-                    </div>
-                <div className="actions">
+                </div>
+                <div className="ParkiItem__actions actions">
                     <div className="btn-group">
                         { auth ? (
                             <>
-                                <ReservationModal trigger={<button className="parki btn btn-gradient-primary">Reserver</button>} />
+                                <ReservationModal parki={parki} trigger={<button className="parki btn btn-gradient-primary">Reserver</button>} />
                                 <Link className={'parki btn btn-gradient-primary icon'} to={`/parki/${parki.id}`}><Icon name='chat' /></Link>
                             </>
                         ) : (
@@ -63,6 +74,8 @@ const ParkiItem = ({parki, auth, selected}) => {
                     <button className={'parki btn btn-gradient-primary icon'} onClick={handleParkiDetail}><Icon name='plus' /></button>
                     </div>
                 </div>
+
+
             </div>
         </div>
     )

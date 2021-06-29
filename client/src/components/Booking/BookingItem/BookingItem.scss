@@ -1,0 +1,10 @@
+.BookingItem {
+
+    &__info {
+        flex: 1 1 auto;
+        & > * {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+}

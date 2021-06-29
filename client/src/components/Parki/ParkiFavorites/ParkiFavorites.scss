@@ -1,0 +1,42 @@
+@import "../../../scss/default/variables";
+@import "../../../scss/index.scss";
+
+.ParkiFavorites {
+    display: flex;
+    padding: 2rem 0;
+
+    &__image {
+        flex: 0 0 150px;
+
+        img {
+            object-fit: cover;
+            width: 100% !important;
+            aspect-ratio: 1;
+            border-radius: 2rem !important;
+            box-shadow: $shadow-image;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        & > div {
+            display: flex;
+        }
+    }
+
+    &__info {
+        padding-left: 1rem;
+        padding-right: 3rem;
+
+        & > * {
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            font-size: 1.2rem;
+        }
+    }
+}

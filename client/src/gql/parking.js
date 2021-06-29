@@ -23,7 +23,6 @@ export const SEARCH = gql`
       coordinates {
         latitud
         longitud
-
       }
       bookings {
         startDate
@@ -31,9 +30,23 @@ export const SEARCH = gql`
       }
       address
       images {
-        data
         contentType
       }
+      prices {
+        single
+        multiple
+        subscription
+      }
+      parkingType {
+        label
+        img
+        description
+      }
+      disponibility
+      access
+      description
+      createAt
+      isActive
     }
   }
 `;
@@ -51,7 +64,6 @@ export const GET_PARKING = gql`
       coordinates {
         latitud
         longitud
-
       }
       bookings {
         startDate
@@ -61,6 +73,21 @@ export const GET_PARKING = gql`
       images {
         contentType
       }
+      prices {
+        single
+        multiple
+        subscription
+      }
+      parkingType {
+        label
+        img
+        description
+      }
+      disponibility
+      access
+      description
+      createAt
+      isActive
     }
   }
 `;

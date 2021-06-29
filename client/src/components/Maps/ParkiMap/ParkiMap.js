@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import ReactMapGL, { Marker } from 'react-map-gl'
-import {Button, Image} from 'semantic-ui-react'
+import {Image} from 'semantic-ui-react'
 
 import marker from '../../../assets/images/markerSelected.png'
 
@@ -9,10 +9,11 @@ import './ParkiMap.scss'
 
 const ParkiMap = ({coordinates}) => {
 
-    const [lonlat, setLonlat] = useState({
-        latitude: 45.899780,
-        longitude: 6.128350
-    })
+    // const [lonlat, setLonlat] = useState({
+    //     latitude: 45.899780,
+    //     longitude: 6.128350
+    // })
+    
     const [viewport, setViewport] = useState({
         latitude: 45.899780,
         longitude: 6.128350,

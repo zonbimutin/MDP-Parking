@@ -21,6 +21,14 @@ export const LOGIN = gql`
   }
 `;
 
+export const REMOVE_WISHLIST_ITEM = gql`
+  mutation removeFromWishlist($id: ID) {
+    removeFromWishlist(id: $id) {
+      response
+    }
+  }
+`;
+
 
 // Queries
 export const GET_WISHLIST = gql`
@@ -36,4 +44,25 @@ export const GET_WISHLIST = gql`
       address
     }
   }
+
 `
+// Queries
+export const GET_USER = gql`
+  query getUser($id:ID) {
+    getUser(id: $id) {
+      id
+      firstname
+      lastname
+      email
+    }
+  }
+
+`
+export const VALIDATE_TOKEN = gql`
+  query validateToken ($token: TokenInput) {
+    validateToken(token: $token){
+      token
+    }
+  }
+`
+

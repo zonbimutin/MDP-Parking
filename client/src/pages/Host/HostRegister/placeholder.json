@@ -1,0 +1,19 @@
+{
+    "data": [
+        {
+            "title": "Communauté collaborative",
+            "description": "Ensemble trouvons des parking plus facilement !",
+            "icon": "/assets/images/parki/icons/icon-1.svg"
+        },
+        {
+            "title": "Economiser de l’argent",
+            "description": "Économies jusqu’à 70 % sur vos parkings !",
+            "icon": "/assets/images/parki/icons/icon-2.svg"
+        },
+        {
+            "title": "Gain de temps",
+            "description": "Réservez en avance et garez-vous l’esprit tranquille !",
+            "icon": "/assets/images/parki/icons/icon-3.svg"
+        }
+    ]
+}

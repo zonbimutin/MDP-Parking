@@ -5,8 +5,12 @@ import Search from '../pages/Search';
 import Error404 from '../pages/Error404';
 import Profile from '../pages/Profile';
 import Parki from '../pages/Parki';
-import Register from '../pages/Host/Parkis/Register'
-import Favorites from '../pages/Favorites'
+import Register from '../pages/Host/Parkis/Register';
+import MyParkis from '../pages/Host/MyParkis';
+import Favorites from '../pages/Favorites';
+import Bookings from '../pages/Bookings';
+import ReservationDetail from '../pages/ReservationDetail';
+import HostRegister from '../pages/Host/HostRegister';
 
 
 const routes = [
@@ -35,14 +39,38 @@ const routes = [
         layout: LayoutBasic
     },
     {
-        path: '/host/parkis/register',
-        component: Register,
+        path: '/host/register',
+        component: HostRegister,
         exact: true,
         layout: LayoutBasic
     },
     {
         path: '/favorites',
         component: Favorites,
+        exact: true,
+        layout: LayoutBasic
+    },
+    {
+        path: '/bookings',
+        component: Bookings,
+        exact: true,
+        layout: LayoutBasic
+    },
+    {
+        path: '/bookings/:idBooking',
+        component: ReservationDetail,
+        exact: true,
+        layout: LayoutBasic
+    },
+    {
+        path: '/host/parkis',
+        component: MyParkis,
+        exact: true,
+        layout: LayoutBasic
+    },
+    {
+        path: '/host/parkis/register',
+        component: Register,
         exact: true,
         layout: LayoutBasic
     },

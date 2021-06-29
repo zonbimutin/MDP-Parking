@@ -43,9 +43,9 @@ const VideoSection = () => {
                 </div>
                 <div className="VideoSection__video">
                     <Embed
-                        id='125292332'
-                        placeholder='/images/vimeo-example.jpg'
-                        source='vimeo'
+                        id='fCPHYzhWAtE'
+                        source='youtube'
+                        placeholder='/assets/images/parki/video.png'
                     />
                 </div>
             </div>

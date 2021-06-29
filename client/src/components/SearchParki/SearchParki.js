@@ -132,12 +132,14 @@ const SearchParki = () => {
             setCoordinates(search.coordinates)
 
             let newSelectedTypes = []
-            search.selectedTypes.forEach(type => {
-                let index = parkingTypes.findIndex(find => find.id == type.id)
-                if(index > -1) {
-                    newSelectedTypes.push(parkingTypes[index])
-                }
-            });
+            if(search.selectedTypes && search.selectedTypes.length > 0){
+                search.selectedTypes.forEach(type => {
+                    let index = parkingTypes.findIndex(find => find.id == type.id)
+                    if(index > -1) {
+                        newSelectedTypes.push(parkingTypes[index])
+                    }
+                });
+            }
 
             setSelectedTypes(newSelectedTypes)
         }

@@ -1,0 +1,12 @@
+@import "../../scss/default/variables";
+@import "../../scss/index.scss";
+
+.ReservationDetail {
+
+    &__title {
+        padding-top: 4rem;
+        font-size: 3rem;
+        font-weight: 900;
+        color: $primary-color;
+    }
+}

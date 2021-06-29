@@ -1,0 +1,89 @@
+@import '../../../scss/index.scss';
+@import '../../../scss/default/variables.scss';
+
+.ParkiItemHost {
+    display: flex;
+    flex-direction: column;
+
+    .Reservation__parkiId {
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            margin-bottom: 0.3rem;
+        }
+    }
+
+    &__item {
+        display: flex;
+    }
+
+    &__bookings {
+
+    }
+
+    &__image {
+        flex: 0 0 150px;
+        padding: 1rem;
+
+        img {
+            object-fit: cover;
+            width: 100% !important;
+            aspect-ratio: 1;
+            border-radius: 2rem !important;
+            box-shadow: $shadow-image;
+        }
+    }
+
+    &__type {
+
+        .btn-group{
+            display: flex;
+            justify-content: start;
+            width: 100%;
+
+            & > * {
+                margin-right: 8px !important;
+            }
+
+            div, button {
+                box-shadow: $shadow-button !important;
+                background: white !important;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 45px !important;
+                width: 45px !important;
+                border-radius: 0.8rem;
+
+                &.selected {
+                    background: $gradient-primary !important;
+                    img {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+
+            }
+        }
+    }
+
+    &__info, &__actions {
+        padding: 1rem;
+    }
+
+    &__info {
+        flex: 1 1 auto;
+
+        & > * {
+            margin-bottom: 0.3rem;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            &.label div{
+                margin-left: 1rem;
+            }
+        }
+    }
+
+}

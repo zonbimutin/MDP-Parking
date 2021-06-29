@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
 
-import { Placeholder, Grid, Image } from 'semantic-ui-react'
+import { Image } from 'semantic-ui-react'
 
 
 import data from './placeholder.json'
+
 import './ServiceSection.scss'
 
 const Service = ({service, index}) => {
@@ -41,7 +42,7 @@ const ServiceSection = () => {
             <h1 className='section__title' >Ce qui va vous plaire !</h1>
             <div className='ServiceSection__serviceContainer'>
                 {services.map((service, index) => (
-                  <Service service={service} index={index} />
+                  <Service key={index} service={service} index={index} />
                 ))}
                
             </div>

@@ -4,6 +4,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { ApolloProvider } from "@apollo/client";
 import client from "./config/apollo";
 
+
 // Contexts
 import AuthContext from "./context/AuthContext";
 import SearchContext from "./context/SearchContext";
@@ -26,11 +27,8 @@ export default function App() {
 
 	useEffect(() => {
 		const token = getToken();
-		if (!token) {
-			setAuth(null);
-		} else {
-			setUser(token);
-		}
+		token ? setUser(token) : setAuth(null)
+
 	}, []);
 
 	const logout = () => {

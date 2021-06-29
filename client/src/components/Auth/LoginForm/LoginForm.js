@@ -79,10 +79,8 @@ const LoginForm = (props) => {
 
     return (
         <>
-            <h2 className="login-form-title">
-            Log in!
-            </h2>
-            <Form className="login-form" onSubmit={formik.handleSubmit}>
+            <div className="form-title">Se connecter!</div>
+            <Form className="login-form parki form-group" onSubmit={formik.handleSubmit}>
                 <Form.Input
                     type="text"
                     placeholder="Email"
@@ -100,9 +98,7 @@ const LoginForm = (props) => {
                     error={formik.errors.password && true}
                 />
 
-                <Button type="submit" className="btn-submit">
-                    Log in!
-                </Button>
+                <Button type="submit" className="parki btn btn-gradient-primary btn-lg ">Se connecter!</Button>
                 {error && <p className="submit-error">{error}</p>}
             </Form>
         </>     

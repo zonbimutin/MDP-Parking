@@ -1,3 +1,24 @@
+@import '../../../scss/index.scss';
+@import '../../../scss/default/variables';
+
 .ParkiRegister {
     
+    .ui.form .field {
+        & > label {
+            color: $font-grey !important;
+        }
+    }
+
+    .SearchParki__typeFilter {
+        .btn-group {
+            justify-content: flex-start;
+        }
+    }
+
+    &__form {
+        & > div {
+            margin-bottom: 2rem;
+        }
+    }
+
 }

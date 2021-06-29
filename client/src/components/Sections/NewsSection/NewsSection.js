@@ -89,12 +89,12 @@ const NewsSection = () => {
             <div className='NewsSection__container'>
                 <Slider {...settings}>
                     {news.map((news, index) => (
-                        <News index={index} news={news} isSecondary={false} />
+                        <News key={index} news={news} isSecondary={false} />
                     ))}
                 </Slider>
                 <Slider {...settings}>
                     {news.map((news, index) => (
-                        <News index={index} news={news} isSecondary={true} />
+                        <News key={index} news={news} isSecondary={true} />
                     ))}
                 </Slider>
             </div>

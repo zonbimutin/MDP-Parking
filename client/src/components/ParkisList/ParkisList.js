@@ -14,7 +14,7 @@ const ParkisList = ({parkis, selectedParki, loading, handleSelection}) => {
     return (
         <div className={'ParkisList'}>
             {loading && 
-                <Dimmer active >
+                <Dimmer active inverted>
                     <Loader />
                 </Dimmer>
             }

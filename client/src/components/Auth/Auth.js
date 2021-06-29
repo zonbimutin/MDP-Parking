@@ -25,14 +25,14 @@ const Auth = (props) => {
                 <p>
                     { showLogin ? (
                         <>
-                            Don’t have an account?
-                            <span onClick={() => setShowLogin(!showLogin)} >Sign up!</span>
+                            Vous n'avez pas de compte ?
+                            <span onClick={() => setShowLogin(!showLogin)} >S'enregistrer!</span>
                         </>
 
                     ) : (
                         <>
-                            Already have an account?
-                            <span onClick={() => setShowLogin(!showLogin)} >Log in!</span>
+                            Vous avez déjà un compte?
+                            <span onClick={() => setShowLogin(!showLogin)} >Se connecter!</span>
                         </>
                     ) }
                 </p>

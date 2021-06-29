@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 // User HOOK
 import useAuth from '../../../hooks/useAuth';
 
 //Components
 import { Dropdown, Image, Icon } from 'semantic-ui-react';
-import AuthModal from '../../modals/AuthModal';
 // Style
 import './UserMenu.scss';
 
@@ -31,9 +30,13 @@ const UserMenu = () => {
 
     // Auth Hook
     const { auth, logout } = useAuth();
+    // history
+    const history = useHistory();
 
-    console.log(auth);
-
+    const handleLogout = () => {
+        logout()
+        history.push('/')
+    }
 
     return (
         <div className='userMenu'>
@@ -49,21 +52,19 @@ const UserMenu = () => {
             >
                 <Dropdown.Menu className="parki ui card userMenu__menu">
 
-                    <Dropdown.Item>
-                        { auth ? (
-                            <>
+                    {auth && 
+                        <>
+                            <Dropdown.Item>
                                 <Link to={`/Profile/${auth.id}`}>Profile</Link>
-                                <a onClick={() => logout()}>Logout</a>
-                            </>
+                            </Dropdown.Item>
+                            <Dropdown.Divider />
+                            <Dropdown.Item>
+                                <div onClick={() => handleLogout()}>Logout</div>
+                            </Dropdown.Item>
+                        </>
+                                
+                    }
 
-                        ) : (
-                            <AuthModal trigger={<a>Login</a>} />
-                        )}
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item>
-                        <Link to='/reusme'>Resume</Link>
-                    </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>

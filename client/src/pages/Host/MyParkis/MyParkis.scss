@@ -1,0 +1,18 @@
+.MyParkis {
+
+    height: 100%;
+    
+    &__title {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__create {
+        display: flex;
+
+        .btn.parki {
+            margin: auto;
+        }
+    }
+
+}

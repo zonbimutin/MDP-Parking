@@ -8,7 +8,6 @@ import './ReservationModal.scss'
 const ReservationModal = ({trigger, parki}) => {
 
     const [open, setOpen] = useState(false);
-    console.log(parki)
 
     return (
         <Modal

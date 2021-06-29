@@ -43,6 +43,7 @@
                     }
                     .infobox {
                         &__info {
+                            overflow: hidden;
                             flex: 1 1 auto;
                             color: $font-dark;
     
@@ -68,6 +69,7 @@
 
                 .infobox {
                     &__info {
+                        overflow: hidden;
                         flex: 1 1 auto;
                         color: white;
 

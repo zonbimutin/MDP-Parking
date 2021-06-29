@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 //useAuth
 import useAuth from '../../hooks/useAuth';
 // semantic ui
-import { Container, Image, Button } from 'semantic-ui-react';
+import {Image} from 'semantic-ui-react';
 // Scss Style
 import './Header.scss';
 // Components
 import UserMenu from './UserMenu';
+import AuthModal from '../modals/AuthModal';
+import ParkiRegisterModal from '../modals/ParkiRegisterModal/ParkiRegisterModal';
 //Logo
 import Logo from '../../assets/images/logo-parki.png';
 
@@ -18,9 +20,6 @@ const Header = () => {
     const [logo, setLogo] = useState('')
 
     useEffect(() => {
-        window.addEventListener('load', function() {
-            console.log('All assets are loaded');
-        })
     
         window.addEventListener('scroll', function() {
             var value = window.scrollY;
@@ -45,11 +44,11 @@ const Header = () => {
       });
 
     useEffect(() => {
-
         fetch('/assets/images/parki/logo.svg')
             .then(data => setLogo(data.url))
       
     }, [])
+
 
 
     return (
@@ -61,15 +60,30 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className="header__right">
-                    <Link className='ui button' to='/'>Louer ma place !</Link>
-                    {auth && (
+
+                    {auth ? (
                         <>
-                            <Link className='ui button' to='/history'>Historique</Link>
-                            <Link className='ui button' to='/favorites'>Favoris</Link>
-                            <Link className='ui button' to='/messages'>Messagerie</Link>
+                            {auth.host ? (
+                                <>
+                                    <ParkiRegisterModal trigger={<button className="ui button parki btn-hover-gradient-primary">Louer ma place</button>} />
+                                    <Link className='ui button parki btn-hover-gradient-primary' to='/host/parkis'>Mes Parkis</Link>
+                                </>
+                            ) : (
+                                <>
+                                    <Link className='ui button parki btn-hover-gradient-primary' to='/host/register'>Devenir annonceur</Link>
+                                </>
+                            )}
+                            <Link className='ui button parki btn-hover-gradient-primary' to='/bookings'>Historique</Link>
+                            <Link className='ui button parki btn-hover-gradient-primary' to='/favorites'>Favoris</Link>
+                            <Link className='ui button parki btn-hover-gradient-primary' to='/messages'>Messagerie</Link>
+                            <UserMenu/>
+                        </>
+                    ): (
+                        <>
+                            <AuthModal trigger={<button className="ui button parki btn-hover-gradient-primary">Se connecter</button>} />
+
                         </>
                     )}
-                    <UserMenu/>
                 </div>
             </div>
         </div>

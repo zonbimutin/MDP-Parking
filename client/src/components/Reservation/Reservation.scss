@@ -1,3 +1,48 @@
+@import "../../scss/default/variables";
+@import "../../scss/index.scss";
+
 .Reservation {
-    
+
+    padding: 4rem;
+
+    &__parkiId {
+        span {
+            color: $font-grey;
+        }
+        margin-bottom: 1rem;
+    }
+
+    &__address {
+        color: $primary-color;
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+
+    &__info {
+        padding: 0 1rem;
+        
+        & > * {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &__dates {
+        font-size: 1.2rem;
+        label {
+            margin-right: 1rem;
+
+        }
+    }
+
+    &__host {
+        display: flex;
+        align-items: center;
+
+        font-size: 1.2rem;
+
+        label {
+            margin-right: 1rem;
+        }
+  
+    }
 }

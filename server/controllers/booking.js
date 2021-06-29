@@ -1,5 +1,6 @@
 const Booking = require("../models/booking");
 const Parking = require("../models/parking");
+const User = require("../models/user");
 
 async function getUserBookings(ctx){
 
@@ -77,10 +78,18 @@ async function getBooking(id, ctx){
     
     try {
 
-        if(!ctx.user.id) throw new Error(`La reservation n'existe pas `)
+        if(!ctx.user.id) throw new Error(`La reservation n'existe pas`)
         
-        const booking = await  Booking.findOne({_id: id, userId: ctx.user.id}).populate('parkingId')
-        if(!booking) throw new Error(`La reservation n'existe pas `)
+        console.log(id)
+
+        const booking = await  Booking.findOne({_id: id, userId: ctx.user.id})
+        if(!booking) throw new Error(`La reservation n'existe pas`)
+
+        const parking = await Parking.findById(booking.parkingId).populate('user').populate('parkingType');
+
+        booking.parkingId = parking
+
+        console.log(booking)
 
         return booking;
 

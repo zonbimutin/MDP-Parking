@@ -4,6 +4,7 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 
+
 function createToken(user, SECRET_KEY, expiresIn){
     const {id, username, firstname, lastname, email, host} = user;
     const payload = {
@@ -15,6 +16,22 @@ function createToken(user, SECRET_KEY, expiresIn){
         email,
     };
     return jwt.sign(payload, SECRET_KEY, { expiresIn });
+}
+
+async function validateToken({token}){
+
+    if (token) {
+        try {
+          const user = jwt.verify(
+            token,
+            process.env.SECRET_KEY
+          );
+          return {token};
+
+        } catch (error) {
+          throw new Error("Token plus valid!");
+        }
+      }
 }
 
 // Mutation
@@ -38,13 +55,16 @@ async function register( input ) {
     const salt = await bcryptjs.genSaltSync(10);
     newUser.password = await bcryptjs.hash(password, salt);
 
+    newUser.wishlist = []
+
     // Guardar el user en la DB
     try {
         const user = new User(newUser);
         user.save();
+        if (!user) throw new Error(`Impossible de créer l'utilisateur !`)
         return user;
     } catch (error) {
-        throw new Error('Cannot create user!')
+        throw new Error(`Impossible de créer l'utilisateur !`)
     }
 }
 
@@ -91,9 +111,7 @@ async function addIntoWishlist(idParking, ctx){
 async function removeFromWishlist(idParking, ctx){
 
     const {id} = ctx.user
-
-    const parking = await Parking.findById(idParking)
-    if(!parking) throw new Error('Parking not finded')
+    console.log(idParking)
 
     try {
 
@@ -118,10 +136,6 @@ async function removeFromWishlist(idParking, ctx){
     }
 }
 
-
-
-
-
 // Queries
 
 async function getWishlist(ctx){
@@ -139,9 +153,21 @@ async function getWishlist(ctx){
     }
 }
 
-function getUser(){
-    return null;
+function getUser(id){
+
+    try {
+
+        const user = User.findById(id)
+        if(!user) throw new Error(`l'utilisateur n'existe pas`)
+        
+        return user
+        
+    } catch (error) {
+        console.log(error.message)
+    }
+
 }
+
 
 module.exports = {
     register,
@@ -149,5 +175,6 @@ module.exports = {
     login,
     getWishlist,
     addIntoWishlist,
-    removeFromWishlist
+    removeFromWishlist,
+    validateToken
 }

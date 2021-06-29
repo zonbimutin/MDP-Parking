@@ -35,7 +35,7 @@ const UserSchema = Schema({
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Parking",
-        unique: true
+        require: true,
       }
     ],
     host: {

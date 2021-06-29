@@ -57,6 +57,43 @@ const ParkingShema = Schema({
             ref: "Booking",
         }
     ],
+    description: {
+        type: String,
+    },
+    access: {
+        type: String,
+    },
+    disponibility: {
+        type: Number,
+        enum:[24,12],
+        require: true,
+        default: 12
+    },
+
+    prices: {
+        single: {
+            type: Number,
+            require: true,
+            default: 12
+        },
+        multiple: {
+            type: Number,
+            require: true,
+            default: 6
+        },
+        subscription: {
+            type: Number,
+            require: true,
+            default: 4
+        },
+
+    },
+
+    isActive: {
+        type: Boolean,
+        default: false,
+        require: true
+    },
     createAt: {
         type: Date,
         default: Date.now(),

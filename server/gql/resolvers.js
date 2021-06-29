@@ -8,8 +8,9 @@ const parkingTypeController = require("../controllers/parkingType");
 const resolvers = {
     Query: {
         // User
-        getUser: () => userController.getUser(),
+        getUser: (_, {id}) => userController.getUser(id),
         getWishlist: (_,{}, ctx) => userController.getWishlist(ctx),
+        validateToken: (_,{token}) =>userController.validateToken(token),
 
         //booking
         getUserBookings: (_,{}, ctx) => bookingController.getUserBookings(ctx),
@@ -20,6 +21,7 @@ const resolvers = {
         getParkings: (_,{}) => parkingController.getAll(),
         getParking: (_, {id}) => parkingController.getParking(id),
         searchParkings: (_, {search}) => parkingController.searchParkings(search),
+        getPakingsByHost: (_,{}, ctx) => parkingController.getPakingsByHost(ctx),
 
     },
     Mutation: {
@@ -30,7 +32,7 @@ const resolvers = {
         removeFromWishlist: (_,{ id }, ctx) => userController.removeFromWishlist(id, ctx),
 
         //Host
-        registerHost: (_,{ input }, ctx) => hostController.register( input , ctx ),
+        registerHost: (_,{ }, ctx) => hostController.register( ctx ),
 
         //Parking
         registerParking: (_,{ input }, ctx) => parkingController.register( input , ctx ),

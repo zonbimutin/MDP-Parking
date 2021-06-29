@@ -51,7 +51,18 @@ const typeDefs = gql`
         city: String
         country: String
         images: [Image]
+        description: String
+        access: String
+        disponibility: Int
+        prices: Prices
+        isActive: Boolean
         createAt: String
+    }
+
+    type Prices {
+        single: Float
+        multiple: Float
+        subscription: Float
     }
 
     
@@ -68,7 +79,7 @@ const typeDefs = gql`
     #Booking
     type Booking {
         id: ID
-        idUser: ID
+        userId: ID
         idParking: ID
         bookingStatus: String
         startDate: String
@@ -91,6 +102,11 @@ const typeDefs = gql`
         label: String
         img: String
         description: String
+    }
+
+    #Token
+    input TokenInput {
+        token: String
     }
 
     ##### Inputs #####    
@@ -119,10 +135,14 @@ const typeDefs = gql`
         address: String!
         coordinates: CoordinatesInput!
         parkingNumber: Int
-        zipCode: Int
-        city: String
-        country: String
+        zipCode: Int!
+        city: String!
+        country: String!
         images: [ImageInput]
+        description: String
+        access: String
+        disponibility: Int!
+        parkingType: [ID]!
     }
     
     input CoordinatesInput {
@@ -165,6 +185,7 @@ const typeDefs = gql`
         # User
         getUser(id: ID): User
         getWishlist: [Parking]
+        validateToken(token: TokenInput): Token
 
         # Booking
         getUserBookings: [BookingPopulate]
@@ -174,6 +195,7 @@ const typeDefs = gql`
         getParkings: [Parking]
         getParking(id: ID): Parking
         searchParkings(search: SearchParking): [Parking]
+        getPakingsByHost: [Parking]
 
         
     }
@@ -189,7 +211,7 @@ const typeDefs = gql`
         removeFromWishlist(id: ID) : Response
 
         #Host
-        registerHost(input: HostInput): Host
+        registerHost: Token
 
         #Parking
         registerParking(input: ParkingInput): Parking

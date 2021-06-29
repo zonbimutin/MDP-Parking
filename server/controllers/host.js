@@ -1,18 +1,34 @@
 const Host = require('../models/host');
 const User = require('../models/user');
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 require("dotenv").config({ path : '.env'});
 
 const stripe = require('stripe')(process.env.STRIPE_KEY);
 
-async function register( input, ctx ) {
+function createToken(user, SECRET_KEY, expiresIn){
+    const {id, username, firstname, lastname, email, host} = user;
+    const payload = {
+        id,
+        host,
+        username,
+        firstname,
+        lastname,
+        email,
+    };
+    return jwt.sign(payload, SECRET_KEY, { expiresIn });
+}
+
+
+async function register( ctx ) {
 
     // Verify user
     const { id } = ctx.user
     let user = await User.findOne({_id: id})
-    if(!user) throw new Error("Invalid user!");
+    if(!user) throw new Error("Utilisateur invalide!");
     // Verify user host 
-    if(user.host) throw new Error("User is a host!");
+    if(user.host) throw new Error("L'utilisateur est déjà enregistré comme annonceur!");
 
     // Create Stripe account
     const account = await stripe.accounts.create({
@@ -24,7 +40,7 @@ async function register( input, ctx ) {
         //   transfers: {requested: true},
         // },
     });
-    if(!account) throw new Error("Cannot create stripe account");
+    if(!account) throw new Error("Impossible de créer un compte Stripe");
 
     // create Host
     try {
@@ -36,12 +52,18 @@ async function register( input, ctx ) {
         host.save();
         // Update user host
         await User.findByIdAndUpdate(id, { host: host._id });
+        
         user.save();
 
-        return host;
+        let tokenuser = ctx.user
+        tokenuser.host = host._id
+        
+        return {
+            token: createToken(tokenuser, process.env.SECRET_KEY, "24h")
+        };
 
     } catch (error) {
-        throw new Error('No se pudo crear el parking')
+        throw new Error(`Impossible d'enregistrer comme annonceur!`)
     }
    
 }
